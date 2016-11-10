@@ -20,12 +20,14 @@ import com.meisolsson.githubsdk.model.GitHubToken;
 import com.meisolsson.githubsdk.model.request.RequestToken;
 
 import retrofit2.http.Body;
+import retrofit2.http.Headers;
 import retrofit2.http.POST;
 import rx.Observable;
 
 public interface OAuthService {
 
     @POST("login/oauth/access_token")
+    @Headers("Accept: application/json")
     Observable<GitHubToken> getToken(@Body RequestToken body);
 
 }

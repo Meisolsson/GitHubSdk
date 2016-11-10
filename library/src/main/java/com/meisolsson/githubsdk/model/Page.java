@@ -43,8 +43,8 @@ public abstract class Page<V> {
     @Nullable
     public abstract List<V> items();
 
-    public static <V> JsonAdapter<Page<V>> jsonAdapter(Moshi moshi, Type type) {
-        return new AutoValue_Page.MoshiJsonAdapter(moshi, type);
+    public static <V> JsonAdapter<Page<V>> jsonAdapter(Moshi moshi, Type[] type) {
+        return new AutoValue_Page.MoshiJsonAdapter<>(moshi, type);
     }
 
     public static <V> Builder<V> builder() {

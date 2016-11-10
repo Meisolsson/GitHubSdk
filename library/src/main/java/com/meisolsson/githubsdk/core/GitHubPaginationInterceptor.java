@@ -39,7 +39,9 @@ public class GitHubPaginationInterceptor implements Interceptor {
                     String[] pageLink = link1.split(";");
                     String page = Uri.parse(pageLink[0].replaceAll("[<>]", "")).getQueryParameter("page");
                     String rel = pageLink[1].replaceAll("\"", "").replace("rel=", "");
-                    json += String.format("\"%s\":\"%s\",", rel.trim(), page);
+
+                    if (page != null)
+                        json += String.format("\"%s\":\"%s\",", rel.trim(), page);
                 }
             }
 

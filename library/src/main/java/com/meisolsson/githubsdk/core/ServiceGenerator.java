@@ -17,15 +17,19 @@
 package com.meisolsson.githubsdk.core;
 
 import android.content.Context;
+import android.text.TextUtils;
 
+import com.meisolsson.githubsdk.service.OAuthService;
 import com.squareup.moshi.Moshi;
 
 import java.io.IOException;
 
+import okhttp3.Authenticator;
 import okhttp3.Interceptor;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
 import okhttp3.Response;
+import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -45,35 +49,58 @@ public class ServiceGenerator {
             .setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private final static Retrofit.Builder builder = new Retrofit.Builder()
-            .baseUrl("https://api.github.com")
             .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
             .addConverterFactory(new StringResponseConverterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi));
 
-    private final static OkHttpClient.Builder httpClient = new OkHttpClient.Builder()
+    private final static OkHttpClient httpClient = new OkHttpClient.Builder()
             .addInterceptor(loggingInterceptor)
-            .addInterceptor(new GitHubPaginationInterceptor());
+            .addInterceptor(new GitHubPaginationInterceptor())
+            .build();
 
 
-    public static <S> S createService(final Context context, Class<S> serviceClass){
-        httpClient.addInterceptor(new Interceptor() {
-            @Override
-            public Response intercept(Chain chain) throws IOException {
-                Request original = chain.request();
+    public static <S> S createService(final Context context, Class<S> serviceClass) {
+        OkHttpClient client = httpClient.newBuilder()
+                .addInterceptor(new Interceptor() {
+                    @Override
+                    public Response intercept(Chain chain) throws IOException {
+                        Request original = chain.request();
 
-                Request.Builder requestBuilder = original.newBuilder()
-                        .header("Accept", "application/json")
-                        .header("Authorization", "Token " + TokenStore.getInstance(context).getToken())
-                        .method(original.method(), original.body());
+                        String[] headers = {
+                                "application/vnd.github.html+json",
+                                "application/vnd.github.raw+json"
+                        };
 
-                Request request = requestBuilder.build();
-                return chain.proceed(request);
-            }
-        });
+                        String token = TokenStore.getInstance(context).getToken();
+                        Request.Builder requestBuilder = original.newBuilder()
+                                .header("Authorization", "Token " + token)
+                                .method(original.method(), original.body());
 
-        OkHttpClient client = httpClient.build();
-        Retrofit retrofit = builder.client(client).build();
+                        if (original.header("Accept") == null) {
+                            requestBuilder.addHeader("Accept", TextUtils.join(",", headers));
+                        }
+
+                        Request request = requestBuilder.build();
+                        return chain.proceed(request);
+                    }
+                }).build();
+
+        Retrofit retrofit = builder.baseUrl("https://api.github.com")
+                .client(client)
+                .build();
         return retrofit.create(serviceClass);
+    }
+
+  /**
+   * Only used for OAuthService.getToken
+   * @return
+   */
+  public static OAuthService createAuthService(){
+        Retrofit retrofit = builder.baseUrl("https://github.com")
+            .client(httpClient)
+            .build();
+
+        return retrofit.create(OAuthService.class);
     }
 
 

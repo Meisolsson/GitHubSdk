@@ -1,0 +1,102 @@
+// Top-level build file where you can add configuration options common to all sub-projects/modules.
+
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.android.tools.build:gradle:2.2.2'
+        classpath 'com.neenbedankt.gradle.plugins:android-apt:1.8'
+        classpath 'com.novoda:bintray-release:0.3.4'    // clean build generatePomFileForMavenPublication bintrayUpload -PdryRun={true|false}
+    }
+}
+
+ext{
+    def versionMajor = 0
+    def versionMinor = 1
+    def versionPatch = 5
+
+    VERSION_NAME = "${versionMajor}.${versionMinor}.${versionPatch}"
+    VERSION_CODE = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
+
+    GROUP_NAME = "com.github.meisolsson"
+    SITE_URL = 'https://github.com/Meisolsson/GitHubSdk'
+    GIT_URL = 'https://github.com/Meisolsson/GitHubSdk.git'
+    IS_UPLOADING = project.getGradle().startParameter.taskNames.any{it.contains('bintrayUpload')}
+}
+
+allprojects {
+    repositories {
+        jcenter()
+    }
+
+    group = GROUP_NAME
+    version = VERSION_NAME
+
+    if (IS_UPLOADING && project.name in ['library']) {
+        println project.name
+        apply plugin: 'maven'
+
+        gradle.taskGraph.whenReady { taskGraph ->
+            taskGraph.getAllTasks().find {
+                it.path == ":$project.name:generatePomFileForMavenPublication"
+            }.doLast {
+                file("build/publications/maven/pom-default.xml").delete()
+                pom {
+
+                    withXml {
+                        def dependencies = ['rxjava', 'retrofit', 'android.joda', 'moshi']
+                        def dependenciesNode = asNode().appendNode('dependencies')
+
+                        //Iterate over the compile dependencies (we don't want the test ones), adding a <dependency> node for each
+                        configurations.compile.allDependencies.each {
+                            if(it.name == 'unspecified')
+                                return
+                            def dependencyNode = dependenciesNode.appendNode('dependency')
+                            dependencyNode.appendNode('groupId', it.group)
+                            dependencyNode.appendNode('artifactId', it.name)
+                            dependencyNode.appendNode('version', it.version)
+                            dependencyNode.appendNode('scope', 'runtime')
+                        }
+                    }
+                    //noinspection GroovyAssignabilityCheck
+                    project {
+                        name 'githubsdk'
+                        description = 'A SDK for GitHub built with Retrofit, Auto Value and Moshi'
+                        url SITE_URL
+                        inceptionYear 2016
+
+                        packaging 'aar'
+                        artifactId 'githubsdk'
+                        version VERSION_NAME
+
+                        // Set your license
+                        licenses {
+                            license {
+                                name 'The Apache Software License, Version 2.0'
+                                url 'http://www.apache.org/licenses/LICENSE-2.0.txt'
+                                distribution 'repo'
+                            }
+                        }
+                        developers {
+                            developer {
+                                id 'olssonhenrik'
+                                name 'Henrik Olsson'
+                                email 'henrikolsson@outlook.com'
+                            }
+                        }
+                        scm {
+                            connection GIT_URL
+                            developerConnection GIT_URL
+                            url SITE_URL
+                        }
+                    }
+                }.writeTo("build/publications/maven/pom-default.xml")
+            }
+        }
+    }
+}
+
+task clean(type: Delete) {
+    delete rootProject.buildDir
+}

@@ -52,7 +52,7 @@ public abstract class SearchPage<V> {
     @Nullable
     public abstract List<V> items();
 
-    public static <V> JsonAdapter<SearchPage<V>> jsonAdapter(Moshi moshi, Type type) {
-        return new AutoValue_SearchPage.MoshiJsonAdapter(moshi, type);
+    public static <V> JsonAdapter<SearchPage<V>> jsonAdapter(Moshi moshi, Type[] type) {
+        return new AutoValue_SearchPage.MoshiJsonAdapter<>(moshi, type);
     }
 }
