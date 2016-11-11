@@ -41,25 +41,25 @@ public interface PullRequestService {
     Observable<Page<PullRequest>> getPullRequests(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}")
-	Observable<PullRequest> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number);
+	Observable<PullRequest> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @POST("repos/{owner}/{repo}/pulls")
 	Observable<PullRequest> createPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Body CreatePullRequest body);
 
     @PATCH("repos/{owner}/{repo}/pulls/{number}")
-	Observable<PullRequest> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Body EditPullRequest body);
+	Observable<PullRequest> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditPullRequest body);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/commits")
-	Observable<Page<Commit>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Query("page") long page);
+	Observable<Page<Commit>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/files")
-	Observable<Page<GitHubFile>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Query("page") long page);
+	Observable<Page<GitHubFile>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/merge")
-	Observable<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number);
+	Observable<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @PUT("repos/{owner}/{repo}/pulls/{number}/merge")
-	Observable<MergeResponse> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Body MergeRequest body);
+	Observable<MergeResponse> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);
 
 
 }

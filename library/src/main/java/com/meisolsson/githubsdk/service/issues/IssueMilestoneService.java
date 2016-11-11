@@ -42,9 +42,9 @@ public interface IssueMilestoneService {
     Observable<Milestone> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
 
     @PATCH("repos/{owner}/{repo}/milestones/{number}")
-	Observable<Milestone> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Body CreateMilestone body);
+	Observable<Milestone> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
 
     @DELETE("repos/{owner}/{repo}/milestones/{number}")
-	Observable<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number);
+	Observable<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
 }

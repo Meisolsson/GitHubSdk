@@ -34,7 +34,7 @@ import rx.Observable;
 public interface PullRequestReviewCommentService {
 
     @GET("repos/{owner}/{repo}/pulls/{number}/comments")
-    Observable<Page<ReviewComment>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Query("page") long page);
+    Observable<Page<ReviewComment>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments")
 	Observable<Page<ReviewComment>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
@@ -43,7 +43,7 @@ public interface PullRequestReviewCommentService {
 	Observable<ReviewComment> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
     @POST("repos/{owner}/{repo}/pulls/{number}/comments")
-    Observable<ReviewComment> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") String number, @Body CreateReviewComment body);
+    Observable<ReviewComment> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
 
     @PATCH("repos/{owner}/{repo}/pulls/comments/{id}")
 	Observable<ReviewComment> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
