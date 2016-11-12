@@ -33,6 +33,7 @@ import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
+import retrofit2.http.Headers;
 import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -42,6 +43,7 @@ import rx.Observable;
 public interface GitService {
 
     @GET("repos/{owner}/{repo}/git/blobs/{sha}")
+    @Headers("Accept: application/json")
     Observable<GitBlob> getGitBlob(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @POST("repos/{owner}/{repo}/git/blobs")
