@@ -38,15 +38,15 @@ public interface IssueCommentService {
     @GET("repos/{owner}/{repo}/issues/comments")
     Observable<Page<GitHubComment>> getRepositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
-    @GET("repos/{owner}/{repo}/issues/{number}/comments/{id}")
-    Observable<GitHubComment> getIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id);
+    @GET("repos/{owner}/{repo}/issues/comments/{id}")
+    Observable<GitHubComment> getIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @POST("repos/{owner}/{repo}/issues/{number}/comments")
     Observable<GitHubComment> createIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CommentRequest body);
 
-    @PATCH("repos/{owner}/{repo}/issues/{number}/comments/{id}")
-    Observable<GitHubComment> editIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id, @Body CommentRequest body);
+    @PATCH("repos/{owner}/{repo}/issues/comments/{id}")
+    Observable<GitHubComment> editIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CommentRequest body);
 
-    @DELETE("repos/{owner}/{repo}/issues/{number}/comments/{id}")
-    Observable<Response<Boolean>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id);
+    @DELETE("repos/{owner}/{repo}/issues/comments/{id}")
+    Observable<Response<Boolean>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }
