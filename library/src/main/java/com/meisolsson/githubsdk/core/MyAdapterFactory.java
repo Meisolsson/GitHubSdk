@@ -19,7 +19,7 @@ package com.meisolsson.githubsdk.core;
 import com.ryanharter.auto.value.moshi.MoshiAdapterFactory;
 import com.squareup.moshi.JsonAdapter;
 
-@MoshiAdapterFactory
+@MoshiAdapterFactory(nullSafe = true)
 public abstract class MyAdapterFactory implements JsonAdapter.Factory {
 
     // Static factory method to access the package
