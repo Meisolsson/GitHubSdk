@@ -22,6 +22,7 @@ import com.meisolsson.githubsdk.model.ReleaseAsset;
 import com.meisolsson.githubsdk.model.request.repository.CreateRelease;
 import com.meisolsson.githubsdk.model.request.repository.EditReleaseAsset;
 
+import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -30,7 +31,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface RepositoryReleaseService {
 

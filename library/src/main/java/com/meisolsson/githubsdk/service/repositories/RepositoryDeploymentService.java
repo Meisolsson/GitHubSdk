@@ -22,12 +22,12 @@ import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.repository.CreateDeployment;
 import com.meisolsson.githubsdk.model.request.repository.CreateDeploymentStatus;
 
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface RepositoryDeploymentService {
 
