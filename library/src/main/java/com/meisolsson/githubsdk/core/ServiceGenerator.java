@@ -32,7 +32,7 @@ import okhttp3.Response;
 import okhttp3.Route;
 import okhttp3.logging.HttpLoggingInterceptor;
 import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
 import retrofit2.converter.moshi.MoshiConverterFactory;
 
 public class ServiceGenerator {
@@ -49,7 +49,7 @@ public class ServiceGenerator {
             .setLevel(HttpLoggingInterceptor.Level.BODY);
 
     private final static Retrofit.Builder builder = new Retrofit.Builder()
-            .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .addConverterFactory(new StringResponseConverterFactory())
             .addConverterFactory(MoshiConverterFactory.create(moshi));
 

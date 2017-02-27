@@ -18,10 +18,10 @@ package com.meisolsson.githubsdk.service.misc;
 
 import com.meisolsson.githubsdk.model.request.RequestMarkdown;
 
+import io.reactivex.Observable;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
-import rx.Observable;
 
 public interface MarkdownService {
 

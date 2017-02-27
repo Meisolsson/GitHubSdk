@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.Milestone;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.issue.CreateMilestone;
 
+import io.reactivex.Observable;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -28,7 +29,6 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface IssueMilestoneService {
 

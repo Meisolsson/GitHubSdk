@@ -20,10 +20,10 @@ import com.meisolsson.githubsdk.model.Commit;
 import com.meisolsson.githubsdk.model.CommitCompare;
 import com.meisolsson.githubsdk.model.Page;
 
+import io.reactivex.Observable;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
-import rx.Observable;
 
 public interface RepositoryCommitService {
 
