@@ -19,24 +19,28 @@ Next we get a token and add it to the TokenStore
 ```java
     ServiceGenerator.createAuthService()
             .getToken(request)
-            .subscribe(new ObserverAdapter<GitHubToken>() {
+            .subscribe(new SingleObserver<GitHubToken>() {
                 @Override
-                public void onError(Throwable e) {
-                    //TODO: Handle error
+                public void onSubscribe(Disposable d) {
                 }
 
                 @Override
-                public void onNext(GitHubToken token) {
+                public void onSuccess(GitHubToken token) {
                     if (token.accessToken() != null) {
                         TokenStore.getInstance(context).saveToken(token);
                     } else if (token.error() != null) {
                         //TODO: Handle error
                     }
                 }
+
+                @Override
+                public void onError(Throwable e) {
+                    //TODO: Handle error
+                }
             });
 ```
 
 After saving the token we can start fetching data! (This gets the currently authenticated user)
 ```java
-    Observable<User> observable = ServiceGenerator.createService(context, UserService.class).getUser();
+    Single<User> single = ServiceGenerator.createService(context, UserService.class).getUser();
 ```
