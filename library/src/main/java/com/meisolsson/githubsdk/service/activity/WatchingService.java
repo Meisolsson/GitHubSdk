@@ -21,7 +21,7 @@ import com.meisolsson.githubsdk.model.Repository;
 import com.meisolsson.githubsdk.model.Subscription;
 import com.meisolsson.githubsdk.model.User;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -32,21 +32,21 @@ import retrofit2.http.Query;
 public interface WatchingService {
 
     @GET("repos/{owner}/{repo}/subscribers")
-    Observable<Page<User>> getRepositoryWatchers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<User>> getRepositoryWatchers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("users/{username}/subscriptions")
-    Observable<Page<Repository>> getWatchedRepositories(@Path("username") String username, @Query("page") long page);
+    Single<Page<Repository>> getWatchedRepositories(@Path("username") String username, @Query("page") long page);
 
     @GET("user/subscriptions")
-    Observable<Page<Repository>> getWatchedRepositories(@Query("page") long page);
+    Single<Page<Repository>> getWatchedRepositories(@Query("page") long page);
 
     @GET("repos/{owner}/{repo}/subscription")
-    Observable<Subscription> getRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Subscription> getRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
 
     @PUT("repos/{owner}/{repo}/subscription")
-    Observable<Subscription> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo,
+    Single<Subscription> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo,
                                                        @Query("subscribed") boolean subscribed, @Query("ignored") boolean ignored);
 
     @DELETE("repos/{owner}/{repo}/subscription")
-    Observable<Response<Boolean>> deleteRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Boolean>> deleteRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
 }

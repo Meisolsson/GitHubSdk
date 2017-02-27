@@ -19,7 +19,7 @@ package com.meisolsson.githubsdk.service.repositories;
 import com.meisolsson.githubsdk.model.git.GitCommit;
 import com.meisolsson.githubsdk.model.request.pull_request.MergeRequest;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -27,5 +27,5 @@ import retrofit2.http.Path;
 public interface RepositoryMergeService {
 
     @POST("repos/{owner}/{repo}/merges")
-    Observable<GitCommit> merge(@Path("owner") String owner, @Path("repo") String repo, @Body MergeRequest body);
+    Single<GitCommit> merge(@Path("owner") String owner, @Path("repo") String repo, @Body MergeRequest body);
 }

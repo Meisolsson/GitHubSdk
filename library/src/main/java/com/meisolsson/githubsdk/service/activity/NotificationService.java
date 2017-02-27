@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.Subscription;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -42,8 +42,8 @@ public interface NotificationService {
      * @return Paged list of notifications
      */
     @GET("notfications")
-    Observable<Page<NotificationThread>> getNotifications(@QueryMap Map<String, Object> options,
-                                                          @Query("page") long page);
+    Single<Page<NotificationThread>> getNotifications(@QueryMap Map<String, Object> options,
+                                                      @Query("page") long page);
 
     /**
      * Lists notifications for the current user about the given repository
@@ -54,32 +54,32 @@ public interface NotificationService {
      * @return Paged list of notifications
      */
     @GET("repos/{owner}/{repo}/notfications")
-    Observable<Page<NotificationThread>> getRepositoryNotifications(@Path("owner") String owner,
+    Single<Page<NotificationThread>> getRepositoryNotifications(@Path("owner") String owner,
                                                                     @Path("repo") String repo,
                                                                     @QueryMap Map<String, Object> options,
                                                                     @Query("page") long page);
 
     @GET("markAllNotificationsRead")
-    Observable<NotificationThread> getNotification(@Path("id") String id);
+    Single<NotificationThread> getNotification(@Path("id") String id);
 
     @PUT("notifications")
-    Observable<Response<Boolean>> markAllNotificationsRead();
+    Single<Response<Boolean>> markAllNotificationsRead();
 
     @PUT("repos/{owner}/{repo}/notfications")
-    Observable<Response<Boolean>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
+    Single<Response<Boolean>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
                                                             @Path("repo") String repo);
 
     @PATCH("notifications/threads/{id}")
-    Observable<Response<Boolean>> markNotificationRead(@Path("id") String id);
+    Single<Response<Boolean>> markNotificationRead(@Path("id") String id);
 
     @GET("notifications/threads/{id}/subscription")
-    Observable<Subscription> getNotificationThreadSubscription(@Path("id") String id);
+    Single<Subscription> getNotificationThreadSubscription(@Path("id") String id);
 
     @PUT("notifications/threads/{id}/subscription")
-    Observable<Subscription> setNotificationThreadSubscription(@Path("id") String id,
+    Single<Subscription> setNotificationThreadSubscription(@Path("id") String id,
                                                                @Query("subscribed") boolean subscribed,
                                                                @Query("ignored") boolean ignored);
 
     @DELETE("notifications/threads/{id}/subscription")
-    Observable<Response<Boolean>> deleteNotificationThreadSubscription(@Path("id") String id);
+    Single<Response<Boolean>> deleteNotificationThreadSubscription(@Path("id") String id);
 }

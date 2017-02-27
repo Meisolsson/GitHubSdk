@@ -19,22 +19,22 @@ package com.meisolsson.githubsdk.service.repositories;
 import com.meisolsson.githubsdk.model.PagesBuild;
 import com.meisolsson.githubsdk.model.PagesInfo;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface RepositoryPagesService {
 
     @GET("repos/{owner}/{repo}/pages")
-    Observable<PagesInfo> getPagesInformation(@Path("owner") String owner, @Path("repo") String repo);
+    Single<PagesInfo> getPagesInformation(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds")
-	Observable<PagesBuild> getPagesBuilds(@Path("owner") String owner, @Path("repo") String repo);
+    Single<PagesBuild> getPagesBuilds(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds/latest")
-	Observable<PagesBuild> getLatestPagesBuild(@Path("owner") String owner, @Path("repo") String repo);
+	Single<PagesBuild> getLatestPagesBuild(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds/{id}")
-	Observable<PagesBuild> getPagesBuild(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<PagesBuild> getPagesBuild(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
 }

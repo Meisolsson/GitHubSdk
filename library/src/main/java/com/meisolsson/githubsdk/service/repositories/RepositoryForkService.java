@@ -19,7 +19,7 @@ package com.meisolsson.githubsdk.service.repositories;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.Repository;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
@@ -28,8 +28,8 @@ import retrofit2.http.Query;
 public interface RepositoryForkService {
 
     @GET("repos/{owner}/{repo}/forks")
-    Observable<Page<Repository>> getForks(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<Repository>> getForks(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/forks")
-	Observable<Repository> createFork(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Repository> createFork(@Path("owner") String owner, @Path("repo") String repo);
 }

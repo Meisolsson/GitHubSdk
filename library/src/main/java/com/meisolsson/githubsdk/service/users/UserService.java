@@ -20,7 +20,7 @@ import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.user.EditUser;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
@@ -30,14 +30,14 @@ import retrofit2.http.Query;
 public interface UserService {
 
     @GET("users/{username}")
-    Observable<User> getUser(@Path("username") String username);
+    Single<User> getUser(@Path("username") String username);
 
     @GET("/user")
-	Observable<User> getUser();
+	Single<User> getUser();
 
     @PATCH("/user")
-	Observable<User> editUser(@Body EditUser body);
+	Single<User> editUser(@Body EditUser body);
 
     @GET("/users")
-	Observable<Page<User>> getUsers(@Query("page") long page);
+	Single<Page<User>> getUsers(@Query("page") long page);
 }

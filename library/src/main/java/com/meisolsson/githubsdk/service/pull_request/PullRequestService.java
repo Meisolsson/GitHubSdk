@@ -25,7 +25,7 @@ import com.meisolsson.githubsdk.model.request.pull_request.CreatePullRequest;
 import com.meisolsson.githubsdk.model.request.pull_request.EditPullRequest;
 import com.meisolsson.githubsdk.model.request.pull_request.MergeRequest;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
@@ -38,28 +38,28 @@ import retrofit2.http.Query;
 public interface PullRequestService {
 
     @GET("repos/{owner}/{repo}/pulls")
-    Observable<Page<PullRequest>> getPullRequests(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<PullRequest>> getPullRequests(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}")
-	Observable<PullRequest> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<PullRequest> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @POST("repos/{owner}/{repo}/pulls")
-	Observable<PullRequest> createPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Body CreatePullRequest body);
+	Single<PullRequest> createPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Body CreatePullRequest body);
 
     @PATCH("repos/{owner}/{repo}/pulls/{number}")
-	Observable<PullRequest> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditPullRequest body);
+	Single<PullRequest> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditPullRequest body);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/commits")
-	Observable<Page<Commit>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+	Single<Page<Commit>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/files")
-	Observable<Page<GitHubFile>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+	Single<Page<GitHubFile>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/merge")
-	Observable<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+	Single<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @PUT("repos/{owner}/{repo}/pulls/{number}/merge")
-	Observable<MergeResponse> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);
+	Single<MergeResponse> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);
 
 
 }

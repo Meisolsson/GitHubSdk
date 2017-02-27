@@ -20,7 +20,7 @@ import com.meisolsson.githubsdk.model.Commit;
 import com.meisolsson.githubsdk.model.CommitCompare;
 import com.meisolsson.githubsdk.model.Page;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -28,14 +28,14 @@ import retrofit2.http.Query;
 public interface RepositoryCommitService {
 
     @GET("repos/{owner}/{repo}/commits")
-    Observable<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/commits")
-    Observable<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("page") long page);
+    Single<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/commits/{sha}")
-	Observable<Commit> getCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+	Single<Commit> getCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @GET("repos/{owner}/{repo}/compare/{base}...{head}")
-	Observable<CommitCompare> compareCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("base") String base, @Path("head") String head);
+	Single<CommitCompare> compareCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("base") String base, @Path("head") String head);
 }

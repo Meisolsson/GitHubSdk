@@ -18,7 +18,7 @@ package com.meisolsson.githubsdk.service.misc;
 
 import com.meisolsson.githubsdk.model.request.RequestMarkdown;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -27,5 +27,5 @@ public interface MarkdownService {
 
     @POST("markdown")
     @Headers("Content-type: text/plain")
-    Observable<String> renderMarkdown(@Body RequestMarkdown body);
+    Single<String> renderMarkdown(@Body RequestMarkdown body);
 }

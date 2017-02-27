@@ -21,7 +21,7 @@ import com.meisolsson.githubsdk.model.ReviewComment;
 import com.meisolsson.githubsdk.model.request.CommentRequest;
 import com.meisolsson.githubsdk.model.request.pull_request.CreateReviewComment;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -34,20 +34,20 @@ import retrofit2.http.Query;
 public interface PullRequestReviewCommentService {
 
     @GET("repos/{owner}/{repo}/pulls/{number}/comments")
-    Observable<Page<ReviewComment>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+    Single<Page<ReviewComment>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments")
-	Observable<Page<ReviewComment>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<ReviewComment>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments/{id}")
-	Observable<ReviewComment> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<ReviewComment> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
     @POST("repos/{owner}/{repo}/pulls/{number}/comments")
-    Observable<ReviewComment> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
+    Single<ReviewComment> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
 
     @PATCH("repos/{owner}/{repo}/pulls/comments/{id}")
-	Observable<ReviewComment> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
+	Single<ReviewComment> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/pulls/comments/{id}")
-	Observable<Response<Boolean>> deleteComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Boolean>> deleteComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 }

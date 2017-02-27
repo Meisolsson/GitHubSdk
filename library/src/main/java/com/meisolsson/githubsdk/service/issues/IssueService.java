@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.request.issue.IssueRequest;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -44,7 +44,7 @@ public interface IssueService {
      * including owned repositories, member repositories, and organization repositories
      */
     @GET("issues")
-    Observable<Page<Issue>> getIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Page<Issue>> getIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -52,7 +52,7 @@ public interface IssueService {
      * @return List all issues across owned and member repositories assigned to the authenticated user
      */
     @GET("user/issues")
-    Observable<Page<Issue>> getRepoMemberIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Page<Issue>> getRepoMemberIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -60,7 +60,7 @@ public interface IssueService {
      * @return List all issues for a given organization assigned to the authenticated user:
      */
     @GET("orgs/{org}/issues")
-    Observable<Page<Issue>> getOrgIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Page<Issue>> getOrgIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -70,7 +70,7 @@ public interface IssueService {
      * @return List of issue form the repository
      */
     @GET("repos/{owner}/{repo}/issues")
-    Observable<Page<Issue>> getRepositoryIssues(@Path("owner") String owner, @Path("repo") String repo,
+    Single<Page<Issue>> getRepositoryIssues(@Path("owner") String owner, @Path("repo") String repo,
                                                 @QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
@@ -81,7 +81,7 @@ public interface IssueService {
      * @return An issue
      */
     @GET("repos/{owner}/{repo}/issues/{number}")
-    Observable<Issue> getIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Issue> getIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     /**
      *
@@ -91,7 +91,7 @@ public interface IssueService {
      * @return The created issue
      */
     @POST("repos/{owner}/{repo}/issues")
-    Observable<Issue> createIssue(@Path("owner") String owner, @Path("repo") String repo, @Body IssueRequest issue);
+    Single<Issue> createIssue(@Path("owner") String owner, @Path("repo") String repo, @Body IssueRequest issue);
 
     /**
      *
@@ -102,7 +102,7 @@ public interface IssueService {
      * @return The edited issue
      */
     @PATCH("repos/{owner}/{repo}/issues/{number}")
-    Observable<Issue> editIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body IssueRequest issue);
+    Single<Issue> editIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body IssueRequest issue);
 
     /**
      *
@@ -113,7 +113,7 @@ public interface IssueService {
      */
     @Headers("Content-Length: 0")
     @PUT("repos/{owner}/{repo}/issues/{number}/lock")
-    Observable<Response<Boolean>> lockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Boolean>> lockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     /**
      *
@@ -123,5 +123,5 @@ public interface IssueService {
      * @return 204 if success
      */
     @DELETE("repos/{owner}/{repo}/issues/{number}/lock")
-    Observable<Response<Boolean>> unlockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Boolean>> unlockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 }

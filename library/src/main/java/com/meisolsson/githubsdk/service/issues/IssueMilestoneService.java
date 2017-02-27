@@ -20,7 +20,7 @@ import com.meisolsson.githubsdk.model.Milestone;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.issue.CreateMilestone;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -33,18 +33,18 @@ import retrofit2.http.Query;
 public interface IssueMilestoneService {
 
     @GET("repos/{owner}/{repo}/milestones")
-    Observable<Page<Milestone>> getRepositoryMilestones(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<Milestone>> getRepositoryMilestones(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/milestones/{number}")
-    Observable<Milestone> getMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Milestone> getMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @POST("repos/{owner}/{repo}/milestones")
-    Observable<Milestone> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
+    Single<Milestone> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
 
     @PATCH("repos/{owner}/{repo}/milestones/{number}")
-	Observable<Milestone> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
+	Single<Milestone> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
 
     @DELETE("repos/{owner}/{repo}/milestones/{number}")
-	Observable<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+	Single<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
 }
