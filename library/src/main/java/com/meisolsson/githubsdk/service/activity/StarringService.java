@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.User;
 
 import java.util.Map;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -35,7 +35,7 @@ import retrofit2.http.QueryMap;
 public interface StarringService {
 
     @GET("repos/{owner}/{repo}/stargazers")
-    Observable<Page<User>> getStargazers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<User>> getStargazers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     /**
      *
@@ -45,7 +45,7 @@ public interface StarringService {
      * @return
      */
     @GET("users/{username}/starred")
-    Observable<Page<Repository>> getStarredRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
+    Single<Page<Repository>> getStarredRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
 
     /**
      *
@@ -53,7 +53,7 @@ public interface StarringService {
      * @return
      */
     @GET("user/starred")
-    Observable<Page<Repository>> getStarredRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
+    Single<Page<Repository>> getStarredRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
 
     /**
      *
@@ -62,7 +62,7 @@ public interface StarringService {
      * @return If starred response code is 204. If not the code is 404
      */
     @GET("/user/starred/{owner}/{repo}")
-    Observable<Response<Boolean>> checkIfRepositoryIsStarred(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Boolean>> checkIfRepositoryIsStarred(@Path("owner") String owner, @Path("repo") String repo);
 
     /**
      *
@@ -72,7 +72,7 @@ public interface StarringService {
      */
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
-    Observable<Response<Boolean>> starRepository(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Boolean>> starRepository(@Path("owner") String owner, @Path("repo") String repo);
 
     /**
      *
@@ -81,5 +81,5 @@ public interface StarringService {
      * @return If success response code is 204.
      */
     @DELETE("/user/starred/{owner}/{repo}")
-    Observable<Response<Boolean>> unstarRepository(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Boolean>> unstarRepository(@Path("owner") String owner, @Path("repo") String repo);
 }

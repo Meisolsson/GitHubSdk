@@ -22,21 +22,21 @@ import com.meisolsson.githubsdk.model.SearchCode;
 import com.meisolsson.githubsdk.model.SearchPage;
 import com.meisolsson.githubsdk.model.User;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
 public interface SearchService {
 
     @GET("/search/repositories")
-    Observable<SearchPage<Repository>> searchRepositories(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
+    Single<SearchPage<Repository>> searchRepositories(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
 
     @GET("/search/code")
-    Observable<SearchPage<SearchCode>> searchCode(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
+    Single<SearchPage<SearchCode>> searchCode(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
 
     @GET("/search/issues")
-    Observable<SearchPage<Issue>> searchIssues(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
+    Single<SearchPage<Issue>> searchIssues(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
 
     @GET("/search/users")
-    Observable<SearchPage<User>> searchUsers(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
+    Single<SearchPage<User>> searchUsers(@Query("q") String query, @Query("sort") String sort, @Query("order") String order, @Query("page") long page);
 }

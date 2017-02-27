@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.request.repository.CreateContent;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -37,23 +37,23 @@ public interface RepositoryContentService {
 
     @GET("repos/{owner}/{repo}/readme")
     @Headers("Accept: application/vnd.github.html")
-    Observable<String> getReadmeHtml(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
+    Single<String> getReadmeHtml(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
 
     @GET("repos/{owner}/{repo}/contents/{path}")
-	Observable<Content> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
+    Single<Content> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
     @GET("repos/{owner}/{repo}/contents/{path}")
-    Observable<List<Content>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
+    Single<List<Content>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
     @PUT("repos/{owner}/{repo}/contents/{path}")
-	Observable<ContentCommit> createFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<ContentCommit> createFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @PUT("repos/{owner}/{repo}/contents/{path}")
-	Observable<ContentCommit> editFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<ContentCommit> editFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @DELETE("repos/{owner}/{repo}/contents/{path}")
-	Observable<ContentCommit> deleteFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<ContentCommit> deleteFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @HEAD("repos/{owner}/{repo}/readme")
-    Observable<Response<Void>> hasReadme(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Void>> hasReadme(@Path("owner") String owner, @Path("repo") String repo);
 }

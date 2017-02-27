@@ -21,7 +21,7 @@ import com.meisolsson.githubsdk.model.GistRevision;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.gist.CreateGist;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -34,47 +34,47 @@ import retrofit2.http.Query;
 public interface GistService {
 
     @GET("users/{username}/gists")
-    Observable<Page<Gist>> getUserGists(@Path("username") String username, @Query("page") long page);
+    Single<Page<Gist>> getUserGists(@Path("username") String username, @Query("page") long page);
 
     @GET("gists")
-    Observable<Page<Gist>> getUserGists(@Query("page") long page);
+    Single<Page<Gist>> getUserGists(@Query("page") long page);
 
     @GET("gists/public")
-    Observable<Page<Gist>> getPublicGists(@Query("page") long page);
+    Single<Page<Gist>> getPublicGists(@Query("page") long page);
 
     @GET("gists/starred")
-    Observable<Page<Gist>> getUserStarredGists(@Query("page") long page);
+    Single<Page<Gist>> getUserStarredGists(@Query("page") long page);
 
     @GET("gists/{id}")
-    Observable<Gist> getGist(@Path("id") String id);
+    Single<Gist> getGist(@Path("id") String id);
 
     @GET("gists/{id}/{sha}")
-    Observable<Gist> getGistRevision(@Path("id") String id, @Path("sha") String sha);
+    Single<Gist> getGistRevision(@Path("id") String id, @Path("sha") String sha);
 
     @POST("gists")
-    Observable<Gist> createGist(@Body CreateGist gistBody);
+    Single<Gist> createGist(@Body CreateGist gistBody);
 
     @POST("gists/{id}")
-    Observable<Gist> editGist(@Body CreateGist gistBody);
+    Single<Gist> editGist(@Body CreateGist gistBody);
 
     @GET("gists/{id}/commits")
-    Observable<Page<GistRevision>> getGistCommits(@Path("id") String id, @Query("page") long page);
+    Single<Page<GistRevision>> getGistCommits(@Path("id") String id, @Query("page") long page);
 
     @GET("gists/{id}/star")
-    Observable<Response<Boolean>> checkIfGistIsStarred(@Path("id") String id);
+    Single<Response<Boolean>> checkIfGistIsStarred(@Path("id") String id);
 
     @PUT("gists/{id}/star")
-    Observable<Response<Boolean>> starGist(@Path("id") String id);
+    Single<Response<Boolean>> starGist(@Path("id") String id);
 
     @DELETE("gists/{id}/star")
-    Observable<Response<Boolean>> unstarGist(@Path("id") String id);
+    Single<Response<Boolean>> unstarGist(@Path("id") String id);
 
     @POST("gists/{id}/forks")
-    Observable<Gist> forkGist(@Path("id") String id);
+    Single<Gist> forkGist(@Path("id") String id);
 
     @POST("gists/{id}/forks")
-    Observable<Page<Gist>> gistGistForks(@Path("id") String id, @Query("page") long page);
+    Single<Page<Gist>> gistGistForks(@Path("id") String id, @Query("page") long page);
 
     @DELETE("gists/{id}")
-    Observable<Response<Boolean>> deleteGist(@Path("id") String id);
+    Single<Response<Boolean>> deleteGist(@Path("id") String id);
 }

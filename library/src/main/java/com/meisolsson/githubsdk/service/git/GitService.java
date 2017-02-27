@@ -29,7 +29,7 @@ import com.meisolsson.githubsdk.model.request.git.CreateGitTag;
 import com.meisolsson.githubsdk.model.request.git.CreateGitTree;
 import com.meisolsson.githubsdk.model.request.git.UpdateGitReference;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -44,37 +44,37 @@ public interface GitService {
 
     @GET("repos/{owner}/{repo}/git/blobs/{sha}")
     @Headers("Accept: application/json")
-    Observable<GitBlob> getGitBlob(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+    Single<GitBlob> getGitBlob(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @POST("repos/{owner}/{repo}/git/blobs")
-    Observable<GitBlob> createGitBlob(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitBlob blob);
+    Single<GitBlob> createGitBlob(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitBlob blob);
 
     @GET("repos/{owner}/{repo}/git/commits/{sha}")
-    Observable<GitCommit> getGitCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+    Single<GitCommit> getGitCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @POST("repos/{owner}/{repo}/git/commits")
-    Observable<GitCommit> createGitCommit(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitCommit blob);
+    Single<GitCommit> createGitCommit(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitCommit blob);
 
     @GET("repos/{owner}/{repo}/git/tags/{sha}")
-    Observable<GitTag> getGitTag(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+    Single<GitTag> getGitTag(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @POST("repos/{owner}/{repo}/git/tags")
-    Observable<GitTag> createGitTag(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitTag blob);
+    Single<GitTag> createGitTag(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitTag blob);
 
     @GET("repos/{owner}/{repo}/git/trees/{sha}")
-    Observable<GitTree> getGitTree(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+    Single<GitTree> getGitTree(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @GET("repos/{owner}/{repo}/git/trees/{sha}?recursive=1")
-    Observable<GitTree> getGitTreeRecursive(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+    Single<GitTree> getGitTreeRecursive(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @POST("repos/{owner}/{repo}/git/trees")
-    Observable<GitTree> createGitTree(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitTree blob);
+    Single<GitTree> createGitTree(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitTree blob);
 
     @GET("repos/{owner}/{repo}/git/refs/heads/{branch}")
-    Observable<GitReference> getGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("branch") String branch);
+    Single<GitReference> getGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("branch") String branch);
 
     @GET("repos/{owner}/{repo}/git/refs")
-    Observable<Page<GitReference>> getGitReferences(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<GitReference>> getGitReferences(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     /**
      *
@@ -84,14 +84,14 @@ public interface GitService {
      * @return
      */
     @GET("repos/{owner}/{repo}/git/refs/{type}")
-    Observable<Page<GitReference>> getGitReferencesByType(@Path("owner") String owner, @Path("repo") String repo, @Path("type") String type, @Query("page") long page);
+    Single<Page<GitReference>> getGitReferencesByType(@Path("owner") String owner, @Path("repo") String repo, @Path("type") String type, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/git/refs")
-    Observable<GitReference> createGitReference(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitReference body);
+    Single<GitReference> createGitReference(@Path("owner") String owner, @Path("repo") String repo, @Body CreateGitReference body);
 
     @PATCH("repos/{owner}/{repo}/git/refs/{ref}")
-    Observable<GitReference> updateGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch, @Body UpdateGitReference body);
+    Single<GitReference> updateGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch, @Body UpdateGitReference body);
 
     @DELETE("repos/{owner}/{repo}/git/refs/{ref}")
-    Observable<Response<Boolean>> deleteGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch);
+    Single<Response<Boolean>> deleteGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch);
 }

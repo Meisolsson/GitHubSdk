@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.User;
 
 import java.util.List;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -34,14 +34,14 @@ import retrofit2.http.Query;
 public interface IssueAssigneeService {
 
     @GET("repos/{owner}/{repo}/assignees")
-    Observable<Page<User>> getAssignees(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<User>> getAssignees(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/assignees/{assignee}")
-    Observable<Response<Boolean>> isAssignee(@Path("owner") String owner, @Path("repo") String repo, @Path("assignee") String assignee);
+    Single<Response<Boolean>> isAssignee(@Path("owner") String owner, @Path("repo") String repo, @Path("assignee") String assignee);
 
     @POST("repos/{owner}/{repo}/issues/{number}/assignees")
-    Observable<Issue> addAssignees(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> assignees);
+    Single<Issue> addAssignees(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> assignees);
 
     @DELETE("repos/{owner}/{repo}/issues/{number}/assignees")
-    Observable<Issue> deleteAssignees(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> assignees);
+    Single<Issue> deleteAssignees(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> assignees);
 }

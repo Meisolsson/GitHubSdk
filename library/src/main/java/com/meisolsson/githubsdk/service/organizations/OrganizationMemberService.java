@@ -22,7 +22,7 @@ import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.organization.EditOrganizationMembership;
 import com.meisolsson.githubsdk.model.request.organization.EditOrganizationMembershipState;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -36,43 +36,43 @@ import retrofit2.http.Query;
 public interface OrganizationMemberService {
 
     @GET("orgs/{org}/members")
-    Observable<Page<User>> getMembers(@Path("org") String org, @Query("page") long page);
+    Single<Page<User>> getMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/members/{username}")
-	Observable<Response<Boolean>> isMember(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> isMember(@Path("org") String org, @Path("username") String username);
 
     @DELETE("orgs/{org}/members/{username}")
-	Observable<Response<Boolean>> deleteMember(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> deleteMember(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/public_members")
-	Observable<Page<User>> getPublicMembers(@Path("org") String org, @Query("page") long page);
+	Single<Page<User>> getPublicMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/public_members/{username}")
-	Observable<Response<Boolean>> isMemberPublic(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> isMemberPublic(@Path("org") String org, @Path("username") String username);
 
     @Headers("Content-Length: 0")
     @PUT("orgs/{org}/public_members/{username}")
-	Observable<Response<Boolean>> publicizeMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> publicizeMembership(@Path("org") String org, @Path("username") String username);
 
     @DELETE("orgs/{org}/public_members/{username}")
-	Observable<Response<Boolean>> unpublicizeMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> unpublicizeMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/memberships/{username}")
-	Observable<Membership> getMembership(@Path("org") String org, @Path("username") String username);
+	Single<Membership> getMembership(@Path("org") String org, @Path("username") String username);
 
     @PUT("orgs/{org}/memberships/{username}")
-	Observable<Membership> changeOrganizationMembership(@Path("org") String org, @Path("username") String username, @Body EditOrganizationMembership body);
+	Single<Membership> changeOrganizationMembership(@Path("org") String org, @Path("username") String username, @Body EditOrganizationMembership body);
 
     @DELETE("orgs/{org}/memberships/{username}")
-	Observable<Response<Boolean>> deleteOrganizationMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Boolean>> deleteOrganizationMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("/user/memberships/orgs")
-	Observable<Page<Membership>> getOrganizationMemberships(@Query("page") long page);
+	Single<Page<Membership>> getOrganizationMemberships(@Query("page") long page);
 
     @GET("user/memberships/orgs/{org}")
-	Observable<Membership> getOrganizationMembership(@Path("org") String org);
+	Single<Membership> getOrganizationMembership(@Path("org") String org);
 
     @PATCH("user/memberships/orgs/{org}")
-	Observable<Membership> changeOrganizationMembershipState(@Path("org") String org, @Body EditOrganizationMembershipState state);
+	Single<Membership> changeOrganizationMembershipState(@Path("org") String org, @Body EditOrganizationMembershipState state);
 
 }

@@ -24,7 +24,7 @@ import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.repository.CreateRepository;
 import com.meisolsson.githubsdk.model.request.repository.EditRepository;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -37,42 +37,42 @@ import retrofit2.http.Query;
 public interface RepositoryService {
 
     @GET("/user/repos")
-    Observable<Page<Repository>> getUserRepositories(@Query("page") long page);
+    Single<Page<Repository>> getUserRepositories(@Query("page") long page);
 
     @GET("users/{username}/repos")
-	Observable<Page<Repository>> getUserRepositories(@Path("username") String username, @Query("page") long page);
+	Single<Page<Repository>> getUserRepositories(@Path("username") String username, @Query("page") long page);
 
     @GET("orgs/{org}/repos")
-	Observable<Page<Repository>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
+	Single<Page<Repository>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
 
     @GET("/repositories")
-	Observable<Page<Repository>> getRepositories(@Query("page") long page);
+	Single<Page<Repository>> getRepositories(@Query("page") long page);
 
     @POST("/user/repos")
-	Observable<Repository> createRepository(@Body CreateRepository body);
+	Single<Repository> createRepository(@Body CreateRepository body);
 
     @POST("orgs/{org}/repos")
-	Observable<Repository> createOrganizationRepository(@Path("org") String org, @Body CreateRepository body);
+	Single<Repository> createOrganizationRepository(@Path("org") String org, @Body CreateRepository body);
 
     @GET("repos/{owner}/{repo}")
-	Observable<Repository> getRepository(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Repository> getRepository(@Path("owner") String owner, @Path("repo") String repo);
 
     @PATCH("repos/{owner}/{repo}")
-	Observable<Repository> editRepository(@Path("owner") String owner, @Path("repo") String repo, @Body EditRepository body);
+	Single<Repository> editRepository(@Path("owner") String owner, @Path("repo") String repo, @Body EditRepository body);
 
     @GET("repos/{owner}/{repo}/contributors")
-	Observable<Page<User>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Page<User>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/languages")
-	Observable<Response<Boolean>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Boolean>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/teams")
-	Observable<Page<Team>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Page<Team>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/tags")
-	Observable<Page<Branch>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Page<Branch>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @DELETE("repos/{owner}/{repo}")
-	Observable<Response<Boolean>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Boolean>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
 
 }

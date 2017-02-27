@@ -19,7 +19,7 @@ package com.meisolsson.githubsdk.service.activity;
 import com.meisolsson.githubsdk.model.GitHubEvent;
 import com.meisolsson.githubsdk.model.Page;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -33,7 +33,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("events")
-    Observable<Page<GitHubEvent>> getPublicEvents(@Query("page") long page);
+    Single<Page<GitHubEvent>> getPublicEvents(@Query("page") long page);
 
     /**
      * Lists events from a repository
@@ -44,7 +44,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("repos/{owner}/{repo}/events")
-    Observable<Page<GitHubEvent>> getRepositoryEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<GitHubEvent>> getRepositoryEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     /**
      * Lists public events for a network of repositories
@@ -55,7 +55,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("networks/{owner}/{repo}/events")
-    Observable<Page<GitHubEvent>> getNetworkRepositoryEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<GitHubEvent>> getNetworkRepositoryEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     /**
      * Lists public events for an organization
@@ -65,7 +65,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("orgs/{org}/events")
-    Observable<Page<GitHubEvent>> getPublicOrganizationEvents(@Path("org") String org, @Query("page") long page);
+    Single<Page<GitHubEvent>> getPublicOrganizationEvents(@Path("org") String org, @Query("page") long page);
 
     /**
      * Lists users organization dashboard events
@@ -76,7 +76,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/events/orgs/{org}")
-    Observable<Page<GitHubEvent>> getOrganizationEvents(@Path("username") String username, @Path("org") String org, @Query("page") long page);
+    Single<Page<GitHubEvent>> getOrganizationEvents(@Path("username") String username, @Path("org") String org, @Query("page") long page);
 
     /**
      * Lists a user's received events, if not authenticated as the given user
@@ -87,7 +87,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/received_events")
-    Observable<Page<GitHubEvent>> getUserRecievedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Page<GitHubEvent>> getUserRecievedEvents(@Path("username") String username, @Query("page") long page);
 
     /**
      * Lists a user's public received events
@@ -97,7 +97,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/received_events/public")
-    Observable<Page<GitHubEvent>> getPublicUserRecievedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Page<GitHubEvent>> getPublicUserRecievedEvents(@Path("username") String username, @Query("page") long page);
 
     /**
      * Lists a user's performed events, if not authenticated as the given user
@@ -108,7 +108,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/events")
-    Observable<Page<GitHubEvent>> getUserPerformedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Page<GitHubEvent>> getUserPerformedEvents(@Path("username") String username, @Query("page") long page);
 
     /**
      * Lists a user's public performed events
@@ -118,5 +118,5 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/events/public")
-    Observable<Page<GitHubEvent>> getPublicUserPerformedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Page<GitHubEvent>> getPublicUserPerformedEvents(@Path("username") String username, @Query("page") long page);
 }

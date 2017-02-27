@@ -19,7 +19,7 @@ package com.meisolsson.githubsdk.service.users;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.User;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
@@ -31,28 +31,28 @@ import retrofit2.http.Query;
 public interface UserFollowerService {
 
     @GET("users/{username}/followers")
-    Observable<Page<User>> getFollowers(@Path("username") String username, @Query("page") long page);
+    Single<Page<User>> getFollowers(@Path("username") String username, @Query("page") long page);
 
     @GET("/user/followers")
-	Observable<Page<User>> getFollowers(@Query("page") long page);
+	Single<Page<User>> getFollowers(@Query("page") long page);
 
     @GET("users/{username}/following")
-	Observable<Page<User>> getFollowing(@Path("username") String username, @Query("page") long page);
+	Single<Page<User>> getFollowing(@Path("username") String username, @Query("page") long page);
 
     @GET("/user/following")
-	Observable<Page<User>> getFollowing(@Query("page") long page);
+	Single<Page<User>> getFollowing(@Query("page") long page);
 
     @GET("user/following/{username}")
-	Observable<Response<Boolean>> isFollowing(@Path("username") String username);
+	Single<Response<Boolean>> isFollowing(@Path("username") String username);
 
     @GET("users/{username}/following/{target_user}")
-	Observable<Response<Boolean>> isFollowing(@Path("username") String username, @Path("target_user") String target_user);
+	Single<Response<Boolean>> isFollowing(@Path("username") String username, @Path("target_user") String target_user);
 
     @Headers("Content-Length: 0")
     @PUT("user/following/{username}")
-	Observable<Response<Boolean>> followUser(@Path("username") String username);
+	Single<Response<Boolean>> followUser(@Path("username") String username);
 
     @DELETE("user/following/{username}")
-	Observable<Response<Boolean>> unfollowUser(@Path("username") String username);
+	Single<Response<Boolean>> unfollowUser(@Path("username") String username);
 
 }

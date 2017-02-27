@@ -20,7 +20,7 @@ import com.meisolsson.githubsdk.model.GitHubComment;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.CommentRequest;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -33,17 +33,17 @@ import retrofit2.http.Query;
 public interface GistCommentService {
 
     @GET("gists/{gist_id}/comments")
-    Observable<Page<GitHubComment>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
+    Single<Page<GitHubComment>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
 
     @GET("gists/{gist_id}/comments/{id}")
-    Observable<GitHubComment> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
+    Single<GitHubComment> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
 
     @POST("gists/{gist_id}/comments")
-    Observable<GitHubComment> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);
+    Single<GitHubComment> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);
 
     @PATCH("gists/{gist_id}/comments/{id}")
-    Observable<GitHubComment> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
+    Single<GitHubComment> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("gists/{gist_id}/comments/{id}")
-    Observable<Response<Boolean>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
+    Single<Response<Boolean>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
 }

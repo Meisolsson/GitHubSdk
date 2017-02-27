@@ -20,7 +20,7 @@ import com.meisolsson.githubsdk.model.GitHubComment;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.CommentRequest;
 
-import io.reactivex.Observable;
+import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.DELETE;
@@ -33,20 +33,20 @@ import retrofit2.http.Query;
 public interface IssueCommentService {
 
     @GET("repos/{owner}/{repo}/issues/{number}/comments")
-    Observable<Page<GitHubComment>> getIssueComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+    Single<Page<GitHubComment>> getIssueComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/issues/comments")
-    Observable<Page<GitHubComment>> getRepositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Page<GitHubComment>> getRepositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/issues/comments/{id}")
-    Observable<GitHubComment> getIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+    Single<GitHubComment> getIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @POST("repos/{owner}/{repo}/issues/{number}/comments")
-    Observable<GitHubComment> createIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CommentRequest body);
+    Single<GitHubComment> createIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CommentRequest body);
 
     @PATCH("repos/{owner}/{repo}/issues/comments/{id}")
-    Observable<GitHubComment> editIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CommentRequest body);
+    Single<GitHubComment> editIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/issues/comments/{id}")
-    Observable<Response<Boolean>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+    Single<Response<Boolean>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }
