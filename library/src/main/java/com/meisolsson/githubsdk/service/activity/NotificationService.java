@@ -41,7 +41,7 @@ public interface NotificationService {
      *                <a href="https://developer.github.com/v3/activity/notifications/#parameters">GitHub API docs</a>
      * @return Paged list of notifications
      */
-    @GET("notfications")
+    @GET("notifications")
     Single<Page<NotificationThread>> getNotifications(@QueryMap Map<String, Object> options,
                                                       @Query("page") long page);
 
@@ -53,7 +53,7 @@ public interface NotificationService {
      * @param options See {@link #getNotifications(Map, long)}
      * @return Paged list of notifications
      */
-    @GET("repos/{owner}/{repo}/notfications")
+    @GET("repos/{owner}/{repo}/notifications")
     Single<Page<NotificationThread>> getRepositoryNotifications(@Path("owner") String owner,
                                                                     @Path("repo") String repo,
                                                                     @QueryMap Map<String, Object> options,
@@ -65,7 +65,7 @@ public interface NotificationService {
     @PUT("notifications")
     Single<Response<Boolean>> markAllNotificationsRead();
 
-    @PUT("repos/{owner}/{repo}/notfications")
+    @PUT("repos/{owner}/{repo}/notifications")
     Single<Response<Boolean>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
                                                             @Path("repo") String repo);
 
