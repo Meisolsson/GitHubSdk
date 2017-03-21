@@ -36,7 +36,7 @@ import retrofit2.http.Query;
 public interface OrganizationMemberService {
 
     @GET("orgs/{org}/members")
-    Single<Page<User>> getMembers(@Path("org") String org, @Query("page") long page);
+    Single<Response<Page<User>>> getMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/members/{username}")
 	Single<Response<Boolean>> isMember(@Path("org") String org, @Path("username") String username);
@@ -45,7 +45,7 @@ public interface OrganizationMemberService {
 	Single<Response<Boolean>> deleteMember(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/public_members")
-	Single<Page<User>> getPublicMembers(@Path("org") String org, @Query("page") long page);
+	Single<Response<Page<User>>> getPublicMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/public_members/{username}")
 	Single<Response<Boolean>> isMemberPublic(@Path("org") String org, @Path("username") String username);
@@ -58,21 +58,21 @@ public interface OrganizationMemberService {
 	Single<Response<Boolean>> unpublicizeMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/memberships/{username}")
-	Single<Membership> getMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Membership>> getMembership(@Path("org") String org, @Path("username") String username);
 
     @PUT("orgs/{org}/memberships/{username}")
-	Single<Membership> changeOrganizationMembership(@Path("org") String org, @Path("username") String username, @Body EditOrganizationMembership body);
+	Single<Response<Membership>> changeOrganizationMembership(@Path("org") String org, @Path("username") String username, @Body EditOrganizationMembership body);
 
     @DELETE("orgs/{org}/memberships/{username}")
 	Single<Response<Boolean>> deleteOrganizationMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("/user/memberships/orgs")
-	Single<Page<Membership>> getOrganizationMemberships(@Query("page") long page);
+	Single<Response<Page<Membership>>> getOrganizationMemberships(@Query("page") long page);
 
     @GET("user/memberships/orgs/{org}")
-	Single<Membership> getOrganizationMembership(@Path("org") String org);
+	Single<Response<Membership>> getOrganizationMembership(@Path("org") String org);
 
     @PATCH("user/memberships/orgs/{org}")
-	Single<Membership> changeOrganizationMembershipState(@Path("org") String org, @Body EditOrganizationMembershipState state);
+	Single<Response<Membership>> changeOrganizationMembershipState(@Path("org") String org, @Body EditOrganizationMembershipState state);
 
 }

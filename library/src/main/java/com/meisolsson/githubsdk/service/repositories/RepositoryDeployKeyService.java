@@ -32,13 +32,13 @@ import retrofit2.http.Query;
 public interface RepositoryDeployKeyService {
 
     @GET("repos/{owner}/{repo}/keys")
-    Single<Page<DeployKey>> getDeployKeys(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<DeployKey>>> getDeployKeys(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/keys/{id}")
-	Single<DeployKey> getDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<DeployKey>> getDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
     @POST("repos/{owner}/{repo}/keys")
-	Single<DeployKey> addDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployKey body);
+	Single<Response<DeployKey>> addDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployKey body);
 
     @DELETE("repos/{owner}/{repo}/keys/{id}")
 	Single<Response<Boolean>> deleteDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);

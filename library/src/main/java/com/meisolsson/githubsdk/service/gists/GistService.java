@@ -34,31 +34,31 @@ import retrofit2.http.Query;
 public interface GistService {
 
     @GET("users/{username}/gists")
-    Single<Page<Gist>> getUserGists(@Path("username") String username, @Query("page") long page);
+    Single<Response<Page<Gist>>> getUserGists(@Path("username") String username, @Query("page") long page);
 
     @GET("gists")
-    Single<Page<Gist>> getUserGists(@Query("page") long page);
+    Single<Response<Page<Gist>>> getUserGists(@Query("page") long page);
 
     @GET("gists/public")
-    Single<Page<Gist>> getPublicGists(@Query("page") long page);
+    Single<Response<Page<Gist>>> getPublicGists(@Query("page") long page);
 
     @GET("gists/starred")
-    Single<Page<Gist>> getUserStarredGists(@Query("page") long page);
+    Single<Response<Page<Gist>>> getUserStarredGists(@Query("page") long page);
 
     @GET("gists/{id}")
-    Single<Gist> getGist(@Path("id") String id);
+    Single<Response<Gist>> getGist(@Path("id") String id);
 
     @GET("gists/{id}/{sha}")
-    Single<Gist> getGistRevision(@Path("id") String id, @Path("sha") String sha);
+    Single<Response<Gist>> getGistRevision(@Path("id") String id, @Path("sha") String sha);
 
     @POST("gists")
-    Single<Gist> createGist(@Body CreateGist gistBody);
+    Single<Response<Gist>> createGist(@Body CreateGist gistBody);
 
     @POST("gists/{id}")
-    Single<Gist> editGist(@Body CreateGist gistBody);
+    Single<Response<Gist>> editGist(@Body CreateGist gistBody);
 
     @GET("gists/{id}/commits")
-    Single<Page<GistRevision>> getGistCommits(@Path("id") String id, @Query("page") long page);
+    Single<Response<Page<GistRevision>>> getGistCommits(@Path("id") String id, @Query("page") long page);
 
     @GET("gists/{id}/star")
     Single<Response<Boolean>> checkIfGistIsStarred(@Path("id") String id);
@@ -70,10 +70,10 @@ public interface GistService {
     Single<Response<Boolean>> unstarGist(@Path("id") String id);
 
     @POST("gists/{id}/forks")
-    Single<Gist> forkGist(@Path("id") String id);
+    Single<Response<Gist>> forkGist(@Path("id") String id);
 
     @POST("gists/{id}/forks")
-    Single<Page<Gist>> gistGistForks(@Path("id") String id, @Query("page") long page);
+    Single<Response<Page<Gist>>> gistGistForks(@Path("id") String id, @Query("page") long page);
 
     @DELETE("gists/{id}")
     Single<Response<Boolean>> deleteGist(@Path("id") String id);

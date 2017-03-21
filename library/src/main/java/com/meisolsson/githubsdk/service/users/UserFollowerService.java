@@ -31,16 +31,16 @@ import retrofit2.http.Query;
 public interface UserFollowerService {
 
     @GET("users/{username}/followers")
-    Single<Page<User>> getFollowers(@Path("username") String username, @Query("page") long page);
+    Single<Response<Page<User>>> getFollowers(@Path("username") String username, @Query("page") long page);
 
     @GET("/user/followers")
-	Single<Page<User>> getFollowers(@Query("page") long page);
+	Single<Response<Page<User>>> getFollowers(@Query("page") long page);
 
     @GET("users/{username}/following")
-	Single<Page<User>> getFollowing(@Path("username") String username, @Query("page") long page);
+	Single<Response<Page<User>>> getFollowing(@Path("username") String username, @Query("page") long page);
 
     @GET("/user/following")
-	Single<Page<User>> getFollowing(@Query("page") long page);
+	Single<Response<Page<User>>> getFollowing(@Query("page") long page);
 
     @GET("user/following/{username}")
 	Single<Response<Boolean>> isFollowing(@Path("username") String username);

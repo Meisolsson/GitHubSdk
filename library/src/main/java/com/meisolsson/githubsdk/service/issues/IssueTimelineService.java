@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.IssueEvent;
 import com.meisolsson.githubsdk.model.Page;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -27,5 +28,5 @@ import retrofit2.http.Query;
 public interface IssueTimelineService {
 
     @GET("repos/{owner}/{repo}/issues/{issue_number}/timeline")
-    Single<Page<IssueEvent>> getTimeline(@Path("owner") String owner, @Path("repo") String repo, @Path("issue_number") int issue_number, @Query("page") long page);
+    Single<Response<Page<IssueEvent>>> getTimeline(@Path("owner") String owner, @Path("repo") String repo, @Path("issue_number") int issue_number, @Query("page") long page);
 }

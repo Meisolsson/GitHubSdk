@@ -21,6 +21,7 @@ import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.organization.EditOrganization;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
@@ -30,18 +31,18 @@ import retrofit2.http.Query;
 public interface OrganizationService {
 
     @GET("/user/orgs")
-    Single<Page<User>> getMyOrganizations(@Query("page") long page);
+    Single<Response<Page<User>>> getMyOrganizations(@Query("page") long page);
 
     @GET("/organizations")
-    Single<Page<User>> getAllOrganizations(@Query("page") long page);
+    Single<Response<Page<User>>> getAllOrganizations(@Query("page") long page);
 
     @GET("users/{username}/orgs")
-	Single<Page<User>> getUserPublicOrganizations(@Path("username") String username, @Query("page") long page);
+	Single<Response<Page<User>>> getUserPublicOrganizations(@Path("username") String username, @Query("page") long page);
 
     @GET("orgs/{org}")
-	Single<Page<User>> getOrganization(@Path("org") String org, @Query("page") long page);
+	Single<Response<Page<User>>> getOrganization(@Path("org") String org, @Query("page") long page);
 
     @PATCH("orgs/{org}")
-	Single<User> editOrganization(@Path("org") String org, @Body EditOrganization body);
+	Single<Response<User>> editOrganization(@Path("org") String org, @Body EditOrganization body);
 
 }

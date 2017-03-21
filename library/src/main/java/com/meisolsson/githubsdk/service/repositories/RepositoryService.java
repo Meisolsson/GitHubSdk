@@ -37,40 +37,40 @@ import retrofit2.http.Query;
 public interface RepositoryService {
 
     @GET("/user/repos")
-    Single<Page<Repository>> getUserRepositories(@Query("page") long page);
+    Single<Response<Page<Repository>>> getUserRepositories(@Query("page") long page);
 
     @GET("users/{username}/repos")
-	Single<Page<Repository>> getUserRepositories(@Path("username") String username, @Query("page") long page);
+	Single<Response<Page<Repository>>> getUserRepositories(@Path("username") String username, @Query("page") long page);
 
     @GET("orgs/{org}/repos")
-	Single<Page<Repository>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
+	Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
 
     @GET("/repositories")
-	Single<Page<Repository>> getRepositories(@Query("page") long page);
+	Single<Response<Page<Repository>>> getRepositories(@Query("page") long page);
 
     @POST("/user/repos")
-	Single<Repository> createRepository(@Body CreateRepository body);
+	Single<Response<Repository>> createRepository(@Body CreateRepository body);
 
     @POST("orgs/{org}/repos")
-	Single<Repository> createOrganizationRepository(@Path("org") String org, @Body CreateRepository body);
+	Single<Response<Repository>> createOrganizationRepository(@Path("org") String org, @Body CreateRepository body);
 
     @GET("repos/{owner}/{repo}")
-	Single<Repository> getRepository(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Repository>> getRepository(@Path("owner") String owner, @Path("repo") String repo);
 
     @PATCH("repos/{owner}/{repo}")
-	Single<Repository> editRepository(@Path("owner") String owner, @Path("repo") String repo, @Body EditRepository body);
+	Single<Response<Repository>> editRepository(@Path("owner") String owner, @Path("repo") String repo, @Body EditRepository body);
 
     @GET("repos/{owner}/{repo}/contributors")
-	Single<Page<User>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Response<Page<User>>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/languages")
 	Single<Response<Boolean>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/teams")
-	Single<Page<Team>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Response<Page<Team>>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/tags")
-	Single<Page<Branch>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Response<Page<Branch>>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @DELETE("repos/{owner}/{repo}")
 	Single<Response<Boolean>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);

@@ -44,7 +44,7 @@ public interface IssueService {
      * including owned repositories, member repositories, and organization repositories
      */
     @GET("issues")
-    Single<Page<Issue>> getIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Response<Page<Issue>>> getIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -52,7 +52,7 @@ public interface IssueService {
      * @return List all issues across owned and member repositories assigned to the authenticated user
      */
     @GET("user/issues")
-    Single<Page<Issue>> getRepoMemberIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Response<Page<Issue>>> getRepoMemberIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -60,7 +60,7 @@ public interface IssueService {
      * @return List all issues for a given organization assigned to the authenticated user:
      */
     @GET("orgs/{org}/issues")
-    Single<Page<Issue>> getOrgIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
+    Single<Response<Page<Issue>>> getOrgIssues(@QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
      *
@@ -70,7 +70,7 @@ public interface IssueService {
      * @return List of issue form the repository
      */
     @GET("repos/{owner}/{repo}/issues")
-    Single<Page<Issue>> getRepositoryIssues(@Path("owner") String owner, @Path("repo") String repo,
+    Single<Response<Page<Issue>>> getRepositoryIssues(@Path("owner") String owner, @Path("repo") String repo,
                                                 @QueryMap Map<String, Object> filter, @Query("page") long page);
 
     /**
@@ -81,7 +81,7 @@ public interface IssueService {
      * @return An issue
      */
     @GET("repos/{owner}/{repo}/issues/{number}")
-    Single<Issue> getIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Issue>> getIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     /**
      *
@@ -91,7 +91,7 @@ public interface IssueService {
      * @return The created issue
      */
     @POST("repos/{owner}/{repo}/issues")
-    Single<Issue> createIssue(@Path("owner") String owner, @Path("repo") String repo, @Body IssueRequest issue);
+    Single<Response<Issue>> createIssue(@Path("owner") String owner, @Path("repo") String repo, @Body IssueRequest issue);
 
     /**
      *
@@ -102,7 +102,7 @@ public interface IssueService {
      * @return The edited issue
      */
     @PATCH("repos/{owner}/{repo}/issues/{number}")
-    Single<Issue> editIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body IssueRequest issue);
+    Single<Response<Issue>> editIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body IssueRequest issue);
 
     /**
      *

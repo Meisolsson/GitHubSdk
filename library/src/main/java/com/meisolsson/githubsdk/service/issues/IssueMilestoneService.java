@@ -33,16 +33,16 @@ import retrofit2.http.Query;
 public interface IssueMilestoneService {
 
     @GET("repos/{owner}/{repo}/milestones")
-    Single<Page<Milestone>> getRepositoryMilestones(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<Milestone>>> getRepositoryMilestones(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/milestones/{number}")
-    Single<Milestone> getMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Milestone>> getMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @POST("repos/{owner}/{repo}/milestones")
-    Single<Milestone> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
+    Single<Response<Milestone>> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
 
     @PATCH("repos/{owner}/{repo}/milestones/{number}")
-	Single<Milestone> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
+	Single<Response<Milestone>> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
 
     @DELETE("repos/{owner}/{repo}/milestones/{number}")
 	Single<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);

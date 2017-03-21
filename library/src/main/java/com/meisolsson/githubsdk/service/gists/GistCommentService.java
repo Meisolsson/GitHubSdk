@@ -33,16 +33,16 @@ import retrofit2.http.Query;
 public interface GistCommentService {
 
     @GET("gists/{gist_id}/comments")
-    Single<Page<GitHubComment>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
+    Single<Response<Page<GitHubComment>>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
 
     @GET("gists/{gist_id}/comments/{id}")
-    Single<GitHubComment> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
+    Single<Response<GitHubComment>> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
 
     @POST("gists/{gist_id}/comments")
-    Single<GitHubComment> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);
+    Single<Response<GitHubComment>> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);
 
     @PATCH("gists/{gist_id}/comments/{id}")
-    Single<GitHubComment> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
+    Single<Response<GitHubComment>> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("gists/{gist_id}/comments/{id}")
     Single<Response<Boolean>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);

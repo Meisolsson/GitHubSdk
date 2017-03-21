@@ -42,7 +42,7 @@ public interface NotificationService {
      * @return Paged list of notifications
      */
     @GET("notifications")
-    Single<Page<NotificationThread>> getNotifications(@QueryMap Map<String, Object> options,
+    Single<Response<Page<NotificationThread>>> getNotifications(@QueryMap Map<String, Object> options,
                                                       @Query("page") long page);
 
     /**
@@ -54,13 +54,13 @@ public interface NotificationService {
      * @return Paged list of notifications
      */
     @GET("repos/{owner}/{repo}/notifications")
-    Single<Page<NotificationThread>> getRepositoryNotifications(@Path("owner") String owner,
+    Single<Response<Page<NotificationThread>>> getRepositoryNotifications(@Path("owner") String owner,
                                                                     @Path("repo") String repo,
                                                                     @QueryMap Map<String, Object> options,
                                                                     @Query("page") long page);
 
     @GET("markAllNotificationsRead")
-    Single<NotificationThread> getNotification(@Path("id") String id);
+    Single<Response<NotificationThread>> getNotification(@Path("id") String id);
 
     @PUT("notifications")
     Single<Response<Boolean>> markAllNotificationsRead();
@@ -73,10 +73,10 @@ public interface NotificationService {
     Single<Response<Boolean>> markNotificationRead(@Path("id") String id);
 
     @GET("notifications/threads/{id}/subscription")
-    Single<Subscription> getNotificationThreadSubscription(@Path("id") String id);
+    Single<Response<Subscription>> getNotificationThreadSubscription(@Path("id") String id);
 
     @PUT("notifications/threads/{id}/subscription")
-    Single<Subscription> setNotificationThreadSubscription(@Path("id") String id,
+    Single<Response<Subscription>> setNotificationThreadSubscription(@Path("id") String id,
                                                                @Query("subscribed") boolean subscribed,
                                                                @Query("ignored") boolean ignored);
 

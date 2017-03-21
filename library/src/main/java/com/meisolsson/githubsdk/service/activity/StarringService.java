@@ -35,7 +35,7 @@ import retrofit2.http.QueryMap;
 public interface StarringService {
 
     @GET("repos/{owner}/{repo}/stargazers")
-    Single<Page<User>> getStargazers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<User>>> getStargazers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     /**
      *
@@ -45,7 +45,7 @@ public interface StarringService {
      * @return
      */
     @GET("users/{username}/starred")
-    Single<Page<Repository>> getStarredRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
+    Single<Response<Page<Repository>>> getStarredRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
 
     /**
      *
@@ -53,7 +53,7 @@ public interface StarringService {
      * @return
      */
     @GET("user/starred")
-    Single<Page<Repository>> getStarredRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
+    Single<Response<Page<Repository>>> getStarredRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
 
     /**
      *

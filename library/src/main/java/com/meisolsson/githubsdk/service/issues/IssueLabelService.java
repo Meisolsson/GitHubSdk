@@ -35,35 +35,35 @@ import retrofit2.http.Query;
 public interface IssueLabelService {
 
     @GET("repos/{owner}/{repo}/labels")
-    Single<Page<Label>> getRepositoryLabels(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<Label>>> getRepositoryLabels(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/labels/{name}")
-    Single<Label> getLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name);
+    Single<Response<Label>> getLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name);
 
     @POST("repos/{owner}/{repo}/labels")
-    Single<Label> createLabel(@Path("owner") String owner, @Path("repo") String repo, @Body Label label);
+    Single<Response<Label>> createLabel(@Path("owner") String owner, @Path("repo") String repo, @Body Label label);
 
     @PATCH("repos/{owner}/{repo}/labels/{name}")
-    Single<Label> editLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name, @Body Label label);
+    Single<Response<Label>> editLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name, @Body Label label);
 
     @DELETE("repos/{owner}/{repo}/labels/{name}")
-    Single<Label> deleteLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name);
+    Single<Response<Label>> deleteLabel(@Path("owner") String owner, @Path("repo") String repo, @Path("name") String name);
 
     @GET("repos/{owner}/{repo}/issues/{number}/labels")
-    Single<Page<Label>> getIssueLabels(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+    Single<Response<Page<Label>>> getIssueLabels(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/issues/{number}/labels")
-    Single<List<Label>> addLablesToIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
+    Single<Response<List<Label>>> addLablesToIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
 
     @DELETE("repos/{owner}/{repo}/issues/{number}/labels/{name}")
     Single<Response<Boolean>> deleteLableFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("name") String label);
 
     @PUT("repos/{owner}/{repo}/issues/{number}/labels")
-    Single<List<Label>> replaceLablesForIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
+    Single<Response<List<Label>>> replaceLablesForIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
 
     @DELETE("repos/{owner}/{repo}/issues/{number}/labels")
     Single<Response<Boolean>> deleteLablesFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @GET("repos/{owner}/{repo}/milestones/{number}/labels")
-    Single<Page<Label>> getMilestoneIssueLabels(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+    Single<Response<Page<Label>>> getMilestoneIssueLabels(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 }
