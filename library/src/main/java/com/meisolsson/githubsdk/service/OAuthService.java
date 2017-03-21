@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.GitHubToken;
 import com.meisolsson.githubsdk.model.request.RequestToken;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.Headers;
 import retrofit2.http.POST;
@@ -28,6 +29,6 @@ public interface OAuthService {
 
     @POST("login/oauth/access_token")
     @Headers("Accept: application/json")
-    Single<GitHubToken> getToken(@Body RequestToken body);
+    Single<Response<GitHubToken>> getToken(@Body RequestToken body);
 
 }

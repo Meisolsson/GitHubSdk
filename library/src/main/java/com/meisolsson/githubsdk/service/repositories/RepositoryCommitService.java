@@ -21,6 +21,7 @@ import com.meisolsson.githubsdk.model.CommitCompare;
 import com.meisolsson.githubsdk.model.Page;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -28,14 +29,14 @@ import retrofit2.http.Query;
 public interface RepositoryCommitService {
 
     @GET("repos/{owner}/{repo}/commits")
-    Single<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<Commit>>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/commits")
-    Single<Page<Commit>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("page") long page);
+    Single<Response<Page<Commit>>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/commits/{sha}")
-	Single<Commit> getCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
+	Single<Response<Commit>> getCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 
     @GET("repos/{owner}/{repo}/compare/{base}...{head}")
-	Single<CommitCompare> compareCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("base") String base, @Path("head") String head);
+	Single<Response<CommitCompare>> compareCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("base") String base, @Path("head") String head);
 }

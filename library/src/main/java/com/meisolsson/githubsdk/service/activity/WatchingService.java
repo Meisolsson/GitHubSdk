@@ -32,19 +32,19 @@ import retrofit2.http.Query;
 public interface WatchingService {
 
     @GET("repos/{owner}/{repo}/subscribers")
-    Single<Page<User>> getRepositoryWatchers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<User>>> getRepositoryWatchers(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("users/{username}/subscriptions")
-    Single<Page<Repository>> getWatchedRepositories(@Path("username") String username, @Query("page") long page);
+    Single<Response<Page<Repository>>> getWatchedRepositories(@Path("username") String username, @Query("page") long page);
 
     @GET("user/subscriptions")
-    Single<Page<Repository>> getWatchedRepositories(@Query("page") long page);
+    Single<Response<Page<Repository>>> getWatchedRepositories(@Query("page") long page);
 
     @GET("repos/{owner}/{repo}/subscription")
-    Single<Subscription> getRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Subscription>> getRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
 
     @PUT("repos/{owner}/{repo}/subscription")
-    Single<Subscription> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo,
+    Single<Response<Subscription>> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo,
                                                        @Query("subscribed") boolean subscribed, @Query("ignored") boolean ignored);
 
     @DELETE("repos/{owner}/{repo}/subscription")

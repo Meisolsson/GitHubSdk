@@ -20,21 +20,22 @@ import com.meisolsson.githubsdk.model.PagesBuild;
 import com.meisolsson.githubsdk.model.PagesInfo;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 
 public interface RepositoryPagesService {
 
     @GET("repos/{owner}/{repo}/pages")
-    Single<PagesInfo> getPagesInformation(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<PagesInfo>> getPagesInformation(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds")
-    Single<PagesBuild> getPagesBuilds(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<PagesBuild>> getPagesBuilds(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds/latest")
-	Single<PagesBuild> getLatestPagesBuild(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<PagesBuild>> getLatestPagesBuild(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/pages/builds/{id}")
-	Single<PagesBuild> getPagesBuild(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<PagesBuild>> getPagesBuild(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
 }

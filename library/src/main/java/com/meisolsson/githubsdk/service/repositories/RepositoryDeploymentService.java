@@ -23,6 +23,7 @@ import com.meisolsson.githubsdk.model.request.repository.CreateDeployment;
 import com.meisolsson.githubsdk.model.request.repository.CreateDeploymentStatus;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
@@ -32,15 +33,15 @@ import retrofit2.http.Query;
 public interface RepositoryDeploymentService {
 
     @GET("repos/{owner}/{repo}/deployments")
-    Single<Page<Deployment>> getDeployments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<Deployment>>> getDeployments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
 
     @POST("repos/{owner}/{repo}/deployments")
-    Single<Deployment> createDeployment(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployment body);
+    Single<Response<Deployment>> createDeployment(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployment body);
 
     @GET("repos/{owner}/{repo}/deployments/{id}/statuses")
-	Single<Page<DeploymentStatus>> getDeploymentStatuses(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Query("page") long page);
+	Single<Response<Page<DeploymentStatus>>> getDeploymentStatuses(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/deployments/{id}/statuses")
-	Single<DeploymentStatus> createDeploymentStatus(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Body CreateDeploymentStatus body);
+	Single<Response<DeploymentStatus>> createDeploymentStatus(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Body CreateDeploymentStatus body);
 }

@@ -37,22 +37,22 @@ public interface RepositoryContentService {
 
     @GET("repos/{owner}/{repo}/readme")
     @Headers("Accept: application/vnd.github.html")
-    Single<String> getReadmeHtml(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
+    Single<Response<String>> getReadmeHtml(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
 
     @GET("repos/{owner}/{repo}/contents/{path}")
-    Single<Content> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
+    Single<Response<Content>> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
     @GET("repos/{owner}/{repo}/contents/{path}")
-    Single<List<Content>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
+    Single<Response<List<Content>>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
     @PUT("repos/{owner}/{repo}/contents/{path}")
-	Single<ContentCommit> createFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<Response<ContentCommit>> createFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @PUT("repos/{owner}/{repo}/contents/{path}")
-	Single<ContentCommit> editFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<Response<ContentCommit>> editFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @DELETE("repos/{owner}/{repo}/contents/{path}")
-	Single<ContentCommit> deleteFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
+	Single<Response<ContentCommit>> deleteFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
 
     @HEAD("repos/{owner}/{repo}/readme")
     Single<Response<Void>> hasReadme(@Path("owner") String owner, @Path("repo") String repo);

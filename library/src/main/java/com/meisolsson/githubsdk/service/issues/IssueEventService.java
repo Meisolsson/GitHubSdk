@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.IssueEvent;
 import com.meisolsson.githubsdk.model.Page;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -27,11 +28,11 @@ import retrofit2.http.Query;
 public interface IssueEventService {
 
     @GET("repos/{owner}/{repo}/issues/{issue_number}/events")
-    Single<Page<IssueEvent>> getIssueEvents(@Path("owner") String owner, @Path("repo") String repo, @Path("issue_number") int issue_number, @Query("page") long page);
+    Single<Response<Page<IssueEvent>>> getIssueEvents(@Path("owner") String owner, @Path("repo") String repo, @Path("issue_number") int issue_number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/issues/events")
-	Single<Page<IssueEvent>> getRepositoryIssueEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+	Single<Response<Page<IssueEvent>>> getRepositoryIssueEvents(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/issues/events/{id}")
-	Single<IssueEvent> getIssueEvent(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<IssueEvent>> getIssueEvent(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 }

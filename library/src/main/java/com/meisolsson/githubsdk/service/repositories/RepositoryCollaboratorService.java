@@ -31,7 +31,7 @@ import retrofit2.http.Query;
 public interface RepositoryCollaboratorService {
 
     @GET("repos/{owner}/{repo}/collaborators")
-    Single<Page<User>> getCollaborators(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<User>>> getCollaborators(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/collaborators/{username}")
     Single<Response<Boolean>> isUserCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);

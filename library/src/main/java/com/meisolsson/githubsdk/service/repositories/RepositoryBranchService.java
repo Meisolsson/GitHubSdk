@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.Branch;
 import com.meisolsson.githubsdk.model.Page;
 
 import io.reactivex.Single;
+import retrofit2.Response;
 import retrofit2.http.GET;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
@@ -27,10 +28,10 @@ import retrofit2.http.Query;
 public interface RepositoryBranchService {
 
     @GET("repos/{owner}/{repo}/branches")
-    Single<Page<Branch>> getBranches(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<Branch>>> getBranches(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/branches/{branch}")
-    Single<Branch> getBranch(@Path("owner") String owner, @Path("repo") String repo, @Path("branch") String branch);
+    Single<Response<Branch>> getBranch(@Path("owner") String owner, @Path("repo") String repo, @Path("branch") String branch);
 
     //Branch protection still in preview, will be added later
 

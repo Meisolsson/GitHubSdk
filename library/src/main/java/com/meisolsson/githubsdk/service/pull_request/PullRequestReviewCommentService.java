@@ -34,19 +34,19 @@ import retrofit2.http.Query;
 public interface PullRequestReviewCommentService {
 
     @GET("repos/{owner}/{repo}/pulls/{number}/comments")
-    Single<Page<ReviewComment>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+    Single<Response<Page<ReviewComment>>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments")
-    Single<Page<ReviewComment>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<ReviewComment>>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments/{id}")
-	Single<ReviewComment> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<ReviewComment>> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
     @POST("repos/{owner}/{repo}/pulls/{number}/comments")
-    Single<ReviewComment> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
+    Single<Response<ReviewComment>> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
 
     @PATCH("repos/{owner}/{repo}/pulls/comments/{id}")
-	Single<ReviewComment> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
+	Single<Response<ReviewComment>> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/pulls/comments/{id}")
 	Single<Response<Boolean>> deleteComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);

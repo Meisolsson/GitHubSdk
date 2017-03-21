@@ -34,19 +34,19 @@ import retrofit2.http.Query;
 public interface RepositoryCommentService {
 
     @GET("repos/{owner}/{repo}/comments")
-    Single<Page<GitComment>> getRepositoryCommitComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<GitComment>>> getRepositoryCommitComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/commits/{ref}/comments")
-    Single<Page<GitComment>> getCommitComments(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String ref, @Query("page") long page);
+    Single<Response<Page<GitComment>>> getCommitComments(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String ref, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/commits/{sha}/comments")
-	Single<GitComment> createCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha, @Body CreateCommitComment body);
+	Single<Response<GitComment>> createCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha, @Body CreateCommitComment body);
 
     @GET("repos/{owner}/{repo}/comments/{id}")
-	Single<GitComment> getCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<GitComment>> getCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
 
     @PATCH("repos/{owner}/{repo}/comments/{id}")
-	Single<GitComment> editCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
+	Single<Response<GitComment>> editCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/comments/{id}")
 	Single<Response<Boolean>> deleteCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);

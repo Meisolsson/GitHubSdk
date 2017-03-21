@@ -39,34 +39,34 @@ import retrofit2.http.Query;
 public interface OrganizationTeamService {
 
     @GET("orgs/{org}/teams")
-    Single<Page<Team>> getOrganizationTeams(@Path("org") String org, @Query("page") long page);
+    Single<Response<Page<Team>>> getOrganizationTeams(@Path("org") String org, @Query("page") long page);
 
     @GET("teams/{id}")
-    Single<Team> getTeam(@Path("id") String id);
+    Single<Response<Team>> getTeam(@Path("id") String id);
 
     @POST("orgs/{org}/teams")
-	Single<Team> createTeam(@Path("org") String org, @Body CreateTeam body);
+	Single<Response<Team>> createTeam(@Path("org") String org, @Body CreateTeam body);
 
     @PATCH("teams/{id}")
-	Single<Team> editTeam(@Path("id") String id, @Body CreateTeam body);
+	Single<Response<Team>> editTeam(@Path("id") String id, @Body CreateTeam body);
 
     @DELETE("teams/{id}")
 	Single<Response<Boolean>> deleteTeam(@Path("id") String id);
 
     @GET("teams/{id}/members")
-	Single<Page<User>> getTeamMembers(@Path("id") String id, @Query("page") long page);
+	Single<Response<Page<User>>> getTeamMembers(@Path("id") String id, @Query("page") long page);
 
     @GET("teams/{id}/memberships/{username}")
-	Single<Membership> getTeamMembership(@Path("id") String id, @Path("username") String username);
+	Single<Response<Membership>> getTeamMembership(@Path("id") String id, @Path("username") String username);
 
     @PUT("teams/{id}/memberships/{username}")
-	Single<Membership> createTeamMembership(@Path("id") String id, @Path("username") String username, @Body CreateTeamMembership body);
+	Single<Response<Membership>> createTeamMembership(@Path("id") String id, @Path("username") String username, @Body CreateTeamMembership body);
 
     @DELETE("teams/{id}/memberships/{username}")
 	Single<Response<Boolean>> deleteTeamMembership(@Path("id") String id, @Path("username") String username);
 
     @GET("teams/{id}/repos")
-	Single<Page<Repository>> getTeamRepositories(@Path("id") String id, @Query("page") long page);
+	Single<Response<Page<Repository>>> getTeamRepositories(@Path("id") String id, @Query("page") long page);
 
     @GET("teams/{id}/repos/{owner}/{repo}")
 	Single<Response<Boolean>> isTeamManagingRepository(@Path("id") String id, @Path("owner") String owner, @Path("repo") String repo);
@@ -79,5 +79,5 @@ public interface OrganizationTeamService {
 	Single<Response<Boolean>> deleteTeamRepository(@Path("id") String id, @Path("owner") String owner, @Path("repo") String repo);
 
     @GET("/user/teams")
-	Single<Page<Team>> getTeams(@Query("page") long page);
+	Single<Response<Page<Team>>> getTeams(@Query("page") long page);
 }

@@ -38,28 +38,28 @@ import retrofit2.http.Query;
 public interface PullRequestService {
 
     @GET("repos/{owner}/{repo}/pulls")
-    Single<Page<PullRequest>> getPullRequests(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<PullRequest>>> getPullRequests(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}")
-    Single<PullRequest> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<PullRequest>> getPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @POST("repos/{owner}/{repo}/pulls")
-	Single<PullRequest> createPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Body CreatePullRequest body);
+	Single<Response<PullRequest>> createPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Body CreatePullRequest body);
 
     @PATCH("repos/{owner}/{repo}/pulls/{number}")
-	Single<PullRequest> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditPullRequest body);
+	Single<Response<PullRequest>> editPullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditPullRequest body);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/commits")
-	Single<Page<Commit>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+	Single<Response<Page<Commit>>> getPullRequestCommits(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/files")
-	Single<Page<GitHubFile>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
+	Single<Response<Page<GitHubFile>>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/merge")
 	Single<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @PUT("repos/{owner}/{repo}/pulls/{number}/merge")
-	Single<MergeResponse> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);
+	Single<Response<MergeResponse>> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);
 
 
 }
