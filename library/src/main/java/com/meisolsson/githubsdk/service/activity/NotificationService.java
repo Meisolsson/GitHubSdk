@@ -19,11 +19,13 @@ package com.meisolsson.githubsdk.service.activity;
 import com.meisolsson.githubsdk.model.NotificationThread;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.Subscription;
+import com.meisolsson.githubsdk.model.request.NotificationReadRequest;
 
 import java.util.Map;
 
 import io.reactivex.Single;
 import retrofit2.Response;
+import retrofit2.http.Body;
 import retrofit2.http.DELETE;
 import retrofit2.http.GET;
 import retrofit2.http.PATCH;
@@ -59,15 +61,16 @@ public interface NotificationService {
                                                                     @QueryMap Map<String, Object> options,
                                                                     @Query("page") long page);
 
-    @GET("markAllNotificationsRead")
-    Single<Response<NotificationThread>> getNotification(@Path("id") String id);
-
     @PUT("notifications")
-    Single<Response<Boolean>> markAllNotificationsRead();
+    Single<Response<Boolean>> markAllNotificationsRead(@Body NotificationReadRequest body);
 
     @PUT("repos/{owner}/{repo}/notifications")
     Single<Response<Boolean>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
-                                                            @Path("repo") String repo);
+                                                                 @Path("repo") String repo,
+                                                                 @Body NotificationReadRequest body);
+
+    @GET("notifications/threads/{id}")
+    Single<Response<NotificationThread>> getNotification(@Path("id") String id);
 
     @PATCH("notifications/threads/{id}")
     Single<Response<Boolean>> markNotificationRead(@Path("id") String id);
