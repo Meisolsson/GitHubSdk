@@ -12,8 +12,8 @@ buildscript {
 
 ext{
     def versionMajor = 0
-    def versionMinor = 3
-    def versionPatch = 1
+    def versionMinor = 4
+    def versionPatch = 0
 
     VERSION_NAME = "${versionMajor}.${versionMinor}.${versionPatch}"
     VERSION_CODE = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
