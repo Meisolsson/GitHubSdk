@@ -26,7 +26,7 @@ public abstract class CommentRequest {
     public abstract String body();
 
     public static JsonAdapter<CommentRequest> jsonAdapter(Moshi moshi){
-        return AutoValue_CommentRequest.jsonAdapter(moshi);
+        return new AutoValue_CommentRequest.MoshiJsonAdapter(moshi);
     }
 
     public static Builder builder() {

@@ -26,7 +26,7 @@ public abstract class EditOrganizationMembershipState {
     public abstract String state();
 
     public static JsonAdapter<EditOrganizationMembershipState> jsonAdapter(Moshi moshi){
-        return AutoValue_EditOrganizationMembershipState.jsonAdapter(moshi);
+        return new AutoValue_EditOrganizationMembershipState.MoshiJsonAdapter(moshi);
     }
 
     public static Builder builder() {

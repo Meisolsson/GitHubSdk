@@ -26,7 +26,7 @@ public abstract class EditOrganizationMembership {
     public abstract String role();
 
     public static JsonAdapter<EditOrganizationMembership> jsonAdapter(Moshi moshi){
-        return AutoValue_EditOrganizationMembership.jsonAdapter(moshi);
+        return new AutoValue_EditOrganizationMembership.MoshiJsonAdapter(moshi);
     }
 
     public static Builder builder() {

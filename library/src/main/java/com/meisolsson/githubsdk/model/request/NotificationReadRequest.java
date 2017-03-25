@@ -21,7 +21,7 @@ public abstract class NotificationReadRequest {
     public abstract Date lastReadAt();
 
     public static JsonAdapter<NotificationReadRequest> jsonAdapter(Moshi moshi){
-        return AutoValue_NotificationReadRequest.jsonAdapter(moshi);
+        return new AutoValue_NotificationReadRequest.MoshiJsonAdapter(moshi);
     }
 
     public static NotificationReadRequest.Builder builder() {

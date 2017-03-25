@@ -26,7 +26,7 @@ public abstract class CreateTeamMembership {
     public abstract String role();
 
     public static JsonAdapter<CreateTeamMembership> jsonAdapter(Moshi moshi){
-        return AutoValue_CreateTeamMembership.jsonAdapter(moshi);
+        return new AutoValue_CreateTeamMembership.MoshiJsonAdapter(moshi);
     }
 
     public static Builder builder() {
