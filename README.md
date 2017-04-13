@@ -8,7 +8,7 @@ Import it with Gradle like this:
 
 <code>compile 'com.github.meisolsson:githubsdk:0.4.1'</code>
 
-#How do I use it?
+# How do I use it?
 
 Firstly we init JodaTimeAndroid
 ```java
