@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.organization;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -36,7 +37,7 @@ public abstract class CreateTeam implements Parcelable {
     public abstract String description();
 
     @Json(name = "repo_names")
-    @Nullable
+    @NonNull
     public abstract List<String> repoNames();
 
     @Nullable
@@ -56,7 +57,7 @@ public abstract class CreateTeam implements Parcelable {
 
         public abstract Builder description(String description);
 
-        public abstract Builder repoNames(List<String> repoNames);
+        public abstract Builder repoNames(@NonNull List<String> repoNames);
 
         public abstract Builder privacy(String privacy);
 

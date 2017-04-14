@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.git;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.git.GitUser;
@@ -35,7 +36,7 @@ public abstract class CreateGitCommit implements Parcelable {
     @Nullable
     public abstract String tree();
 
-    @Nullable
+    @NonNull
     public abstract List<String> parents(); //SHA of parents
 
     @Nullable
@@ -58,7 +59,7 @@ public abstract class CreateGitCommit implements Parcelable {
 
         public abstract Builder tree(String tree);
 
-        public abstract Builder parents(List<String> parents);
+        public abstract Builder parents(@NonNull List<String> parents);
 
         public abstract Builder committer(GitUser committer);
 

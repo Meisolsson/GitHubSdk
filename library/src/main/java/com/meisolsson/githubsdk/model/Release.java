@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedTime;
@@ -52,7 +53,7 @@ public abstract class Release implements Parcelable {
     @Nullable
     public abstract User author();
 
-    @Nullable
+    @NonNull
     public abstract List<ReleaseAsset> assets();
 
     @Json(name = "html_url")

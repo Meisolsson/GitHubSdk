@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.git;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -34,7 +35,7 @@ public abstract class GitTree implements Parcelable {
     @Nullable
     public abstract String url();
 
-    @Nullable
+    @NonNull
     public abstract List<GitTreeEntry> tree();
 
     @Nullable

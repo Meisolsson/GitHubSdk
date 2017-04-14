@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedHtml;
@@ -67,10 +68,10 @@ public abstract class Issue implements Parcelable {
     @Nullable
     public abstract User assignee();
 
-    @Nullable
+    @NonNull
     public abstract List<User> assignees();
 
-    @Nullable
+    @NonNull
     public abstract List<Label> labels();
 
     @Nullable
@@ -140,7 +141,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder assignee(User assignee);
 
-        public abstract Builder labels(List<Label> labels);
+        public abstract Builder labels(@NonNull List<Label> labels);
 
         public abstract Builder milestone(Milestone milestone);
 
@@ -158,7 +159,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder repository(Repository repository);
 
-        public abstract Builder assignees(List<User> assignees);
+        public abstract Builder assignees(@NonNull List<User> assignees);
 
         public abstract Issue build();
     }

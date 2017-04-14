@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.model.payload;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.git.GitCommit;
@@ -43,7 +44,7 @@ public abstract class PushPayload extends GitHubPayload<PushPayload.Builder> imp
     @Nullable
     public abstract Integer size();
 
-    @Nullable
+    @NonNull
     public abstract List<GitCommit> commits();
 
     @Json(name = "distinct_size")
@@ -74,7 +75,7 @@ public abstract class PushPayload extends GitHubPayload<PushPayload.Builder> imp
 
         public abstract Builder size(Integer size);
 
-        public abstract Builder commits(List<GitCommit> commits);
+        public abstract Builder commits(@NonNull List<GitCommit> commits);
 
         public abstract Builder distinctSize(Integer distinctSize);
 
