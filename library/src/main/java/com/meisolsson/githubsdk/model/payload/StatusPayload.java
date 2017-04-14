@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.model.payload;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.Branch;
@@ -40,7 +41,7 @@ public abstract class StatusPayload extends GitHubPayload<StatusPayload.Builder>
     @Nullable
     public abstract String description();
 
-    @Nullable
+    @NonNull
     public abstract List<Branch> branches();
 
     @Json(name = "target_url")
@@ -69,7 +70,7 @@ public abstract class StatusPayload extends GitHubPayload<StatusPayload.Builder>
 
         public abstract Builder description(String description);
 
-        public abstract Builder branches(List<Branch> branches);
+        public abstract Builder branches(@NonNull List<Branch> branches);
 
         public abstract Builder targetUrl(String targetUrl);
 

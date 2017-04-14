@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -55,10 +56,10 @@ public abstract class CommitCompare implements Parcelable {
     @Nullable
     public abstract Integer totalCommits();
 
-    @Nullable
+    @NonNull
     public abstract List<Commit> commits();
 
-    @Nullable
+    @NonNull
     public abstract List<GitHubFile> files();
 
     public static JsonAdapter<CommitCompare> jsonAdapter(Moshi moshi){

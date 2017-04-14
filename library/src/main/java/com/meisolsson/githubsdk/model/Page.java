@@ -16,6 +16,7 @@
 
 package com.meisolsson.githubsdk.model;
 
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -40,7 +41,7 @@ public abstract class Page<V> {
     @Nullable
     public abstract Integer prev();
 
-    @Nullable
+    @NonNull
     public abstract List<V> items();
 
     public static <V> JsonAdapter<Page<V>> jsonAdapter(Moshi moshi, Type[] type) {
@@ -62,7 +63,7 @@ public abstract class Page<V> {
 
         public abstract Builder<V> prev(Integer prev);
 
-        public abstract Builder<V> items(List<V> items);
+        public abstract Builder<V> items(@NonNull List<V> items);
 
         public abstract Page<V> build();
     }

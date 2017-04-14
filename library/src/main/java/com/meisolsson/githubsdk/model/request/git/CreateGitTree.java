@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.git;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.git.GitTreeEntry;
@@ -30,7 +31,7 @@ import java.util.List;
 @AutoValue
 public abstract class CreateGitTree implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract List<GitTreeEntry> tree();
 
     @Json(name = "base_tree")
@@ -47,7 +48,7 @@ public abstract class CreateGitTree implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder tree(List<GitTreeEntry> tree);
+        public abstract Builder tree(@NonNull List<GitTreeEntry> tree);
 
         public abstract Builder baseTree(String baseTree);
 

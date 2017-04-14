@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.model.payload;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.GitHubWikiPage;
@@ -30,7 +31,7 @@ import java.util.List;
 @AutoValue
 public abstract class GollumPayload extends GitHubPayload<GollumPayload.Builder> implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract List<GitHubWikiPage> pages();
 
     public abstract Builder toBuilder();
@@ -50,7 +51,7 @@ public abstract class GollumPayload extends GitHubPayload<GollumPayload.Builder>
 
     @AutoValue.Builder
     public abstract static class Builder extends GitHubPayload.Builder<GollumPayload, Builder> {
-        public abstract Builder pages(List<GitHubWikiPage> pages);
+        public abstract Builder pages(@NonNull List<GitHubWikiPage> pages);
 
         public abstract GollumPayload build();
     }

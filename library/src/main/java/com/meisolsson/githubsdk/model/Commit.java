@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.git.GitCommit;
@@ -54,13 +55,13 @@ public abstract class Commit implements Parcelable {
     @Nullable
     public abstract User committer();
 
-    @Nullable
+    @NonNull
     public abstract List<Commit> parents();
 
     @Nullable
     public abstract GitHubStats stats();
 
-    @Nullable
+    @NonNull
     public abstract List<GitHubFile> files();
 
     @Json(name = "html_url")
@@ -96,11 +97,11 @@ public abstract class Commit implements Parcelable {
 
         public abstract Builder committer(User committer);
 
-        public abstract Builder parents(List<Commit> parents);
+        public abstract Builder parents(@NonNull List<Commit> parents);
 
         public abstract Builder stats(GitHubStats stats);
 
-        public abstract Builder files(List<GitHubFile> files);
+        public abstract Builder files(@NonNull List<GitHubFile> files);
 
         public abstract Builder htmlUrl(String htmlUrl);
 

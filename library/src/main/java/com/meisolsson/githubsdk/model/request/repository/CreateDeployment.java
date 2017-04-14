@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -40,7 +41,7 @@ public abstract class CreateDeployment implements Parcelable {
     public abstract Boolean autoMerge();
 
     @Json(name = "required_contexts")
-    @Nullable
+    @NonNull
     public abstract List<String> requiredContexts();
 
     @Nullable
@@ -68,7 +69,7 @@ public abstract class CreateDeployment implements Parcelable {
 
         public abstract Builder autoMerge(Boolean autoMerge);
 
-        public abstract Builder requiredContexts(List<String> requiredContexts);
+        public abstract Builder requiredContexts(@NonNull List<String> requiredContexts);
 
         public abstract Builder payload(String payload);
 

@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.issue;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.IssueState;
@@ -41,10 +42,10 @@ public abstract class IssueRequest implements Parcelable {
     @Nullable
     public abstract Integer milestone();
 
-    @Nullable
+    @NonNull
     public abstract List<String> labels();
 
-    @Nullable
+    @NonNull
     public abstract List<String> assignees();
 
     public static JsonAdapter<IssueRequest> jsonAdapter(Moshi moshi) {
@@ -65,9 +66,9 @@ public abstract class IssueRequest implements Parcelable {
 
         public abstract Builder milestone(Integer milestone);
 
-        public abstract Builder labels(List<String> labels);
+        public abstract Builder labels(@NonNull List<String> labels);
 
-        public abstract Builder assignees(List<String> assignees);
+        public abstract Builder assignees(@NonNull List<String> assignees);
 
         public abstract IssueRequest build();
     }
