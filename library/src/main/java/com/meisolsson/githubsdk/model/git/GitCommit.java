@@ -17,7 +17,6 @@
 package com.meisolsson.githubsdk.model.git;
 
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -51,7 +50,7 @@ public abstract class GitCommit implements Parcelable {
     @Nullable
     public abstract Boolean distinct();
 
-    @NonNull
+    @Nullable
     public abstract List<GitCommit> parents();
 
     @Json(name = "comment_count")
@@ -84,7 +83,7 @@ public abstract class GitCommit implements Parcelable {
 
         public abstract Builder distinct(Boolean distinct);
 
-        public abstract Builder parents(@NonNull List<GitCommit> parents);
+        public abstract Builder parents(@Nullable List<GitCommit> parents);
 
         public abstract Builder commentCount(Integer commentCount);
 

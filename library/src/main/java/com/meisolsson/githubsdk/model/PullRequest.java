@@ -17,7 +17,6 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedHtml;
@@ -83,7 +82,7 @@ public abstract class PullRequest implements Parcelable {
     @Nullable
     public abstract User assignee();
 
-    @NonNull
+    @Nullable
     public abstract List<Label> labels();
 
     @Nullable

@@ -17,7 +17,6 @@
 package com.meisolsson.githubsdk.model;
 
 import android.os.Parcelable;
-import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedTime;
@@ -51,10 +50,10 @@ public abstract class Gist implements Parcelable {
     @Nullable
     public abstract Map<String, GistFile> files();
 
-    @NonNull
+    @Nullable
     public abstract List<Gist> forks();
 
-    @NonNull
+    @Nullable
     public abstract List<GistRevision> history();
 
     @Nullable
@@ -105,9 +104,9 @@ public abstract class Gist implements Parcelable {
 
         public abstract Builder files(Map<String, GistFile> files);
 
-        public abstract Builder forks(@NonNull List<Gist> forks);
+        public abstract Builder forks(@Nullable List<Gist> forks);
 
-        public abstract Builder history(@NonNull List<GistRevision> history);
+        public abstract Builder history(@Nullable List<GistRevision> history);
 
         public abstract Builder truncated(Boolean truncated);
 

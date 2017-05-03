@@ -71,7 +71,7 @@ public abstract class Issue implements Parcelable {
     @NonNull
     public abstract List<User> assignees();
 
-    @NonNull
+    @Nullable
     public abstract List<Label> labels();
 
     @Nullable
@@ -141,7 +141,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder assignee(User assignee);
 
-        public abstract Builder labels(@NonNull List<Label> labels);
+        public abstract Builder labels(@Nullable List<Label> labels);
 
         public abstract Builder milestone(Milestone milestone);
 

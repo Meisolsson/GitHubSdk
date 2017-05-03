@@ -61,7 +61,7 @@ public abstract class Commit implements Parcelable {
     @Nullable
     public abstract GitHubStats stats();
 
-    @NonNull
+    @Nullable
     public abstract List<GitHubFile> files();
 
     @Json(name = "html_url")
@@ -97,7 +97,7 @@ public abstract class Commit implements Parcelable {
 
         public abstract Builder committer(User committer);
 
-        public abstract Builder parents(@NonNull List<Commit> parents);
+        public abstract Builder parents(@Nullable List<Commit> parents);
 
         public abstract Builder stats(GitHubStats stats);
 
