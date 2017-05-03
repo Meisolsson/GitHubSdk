@@ -55,7 +55,7 @@ public abstract class Commit implements Parcelable {
     @Nullable
     public abstract User committer();
 
-    @NonNull
+    @Nullable
     public abstract List<Commit> parents();
 
     @Nullable
