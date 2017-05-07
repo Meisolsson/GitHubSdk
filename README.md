@@ -6,7 +6,7 @@ As the project name suggests it's a SDK for GitHub and it's written for Android(
 
 Import it with Gradle like this:
 
-<code>compile 'com.github.meisolsson:githubsdk:0.4.4'</code>
+<code>compile 'com.github.meisolsson:githubsdk:0.4.5'</code>
 
 # How do I use it?
 
