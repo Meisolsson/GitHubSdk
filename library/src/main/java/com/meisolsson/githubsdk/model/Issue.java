@@ -68,7 +68,7 @@ public abstract class Issue implements Parcelable {
     @Nullable
     public abstract User assignee();
 
-    @NonNull
+    @Nullable
     public abstract List<User> assignees();
 
     @Nullable
@@ -159,7 +159,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder repository(Repository repository);
 
-        public abstract Builder assignees(@NonNull List<User> assignees);
+        public abstract Builder assignees(@Nullable List<User> assignees);
 
         public abstract Issue build();
     }
