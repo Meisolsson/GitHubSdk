@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.service.activity;
 
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.Repository;
+import com.meisolsson.githubsdk.model.request.repository.CreateSubscription;
 import com.meisolsson.githubsdk.model.Subscription;
 import com.meisolsson.githubsdk.model.User;
 
@@ -45,7 +46,7 @@ public interface WatchingService {
 
     @PUT("repos/{owner}/{repo}/subscription")
     Single<Response<Subscription>> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo,
-                                                       @Query("subscribed") boolean subscribed, @Query("ignored") boolean ignored);
+                                                             @Body CreateSubscription subscriptionBody);
 
     @DELETE("repos/{owner}/{repo}/subscription")
     Single<Response<Boolean>> deleteRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
