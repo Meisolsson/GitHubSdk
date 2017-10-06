@@ -16,8 +16,10 @@
 
 package com.meisolsson.githubsdk.model.git;
 
+import com.squareup.moshi.Json;
+
 public enum GitEntryType {
-    commit,
-    tree,
-    blob
+    @Json(name = "commit") Commit,
+    @Json(name = "tree") Tree,
+    @Json(name = "blob") Blob
 }

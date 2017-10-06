@@ -16,13 +16,15 @@
 
 package com.meisolsson.githubsdk.model;
 
+import com.squareup.moshi.Json;
+
 public enum NotificationReason {
-    subscribed,
-    manual,
-    author,
-    comment,
-    mention,
-    team_mention,
-    state_change,
-    assign,
+    @Json(name = "subscribed") Subscribed,
+    @Json(name = "manual") Manual,
+    @Json(name= "author") Author,
+    @Json(name = "comment") Comment,
+    @Json(name = "mention") Mention,
+    @Json(name = "team_mention") TeamMention,
+    @Json(name = "state_change") StateChange,
+    @Json(name = "assign") Assign
 }
