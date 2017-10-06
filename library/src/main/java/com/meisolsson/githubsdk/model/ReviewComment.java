@@ -81,6 +81,10 @@ public abstract class ReviewComment implements Parcelable {
     @Nullable
     public abstract Integer originalPosition();
 
+    @Json(name = "author_association")
+    @Nullable
+    public abstract AuthorAssociation authorAssociation();
+
     public static JsonAdapter<ReviewComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_ReviewComment.MoshiJsonAdapter(moshi);
     }

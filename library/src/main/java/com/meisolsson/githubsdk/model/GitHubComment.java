@@ -62,6 +62,10 @@ public abstract class GitHubComment implements Parcelable {
     @FormattedTime
     public abstract Date updatedAt();
 
+    @Json(name = "author_association")
+    @Nullable
+    public abstract AuthorAssociation authorAssociation();
+
     public static JsonAdapter<GitHubComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_GitHubComment.MoshiJsonAdapter(moshi);
     }
