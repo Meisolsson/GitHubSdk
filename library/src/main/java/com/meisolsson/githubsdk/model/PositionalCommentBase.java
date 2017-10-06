@@ -18,28 +18,31 @@ package com.meisolsson.githubsdk.model;
 
 import android.support.annotation.Nullable;
 
-import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
-import com.squareup.moshi.JsonAdapter;
-import com.squareup.moshi.Moshi;
 
-import java.util.Date;
+public abstract class PositionalCommentBase extends GitHubCommentBase {
 
-@AutoValue
-public abstract class GitHubComment extends GitHubCommentBase {
+    @Nullable
+    public abstract Integer position();
 
-    public abstract Builder toBuilder();
+    @Nullable
+    public abstract Integer line();
 
-    public static Builder builder() {
-        return new AutoValue_GitHubComment.Builder();
-    }
+    @Nullable
+    public abstract String path();
 
-    public static JsonAdapter<GitHubComment> jsonAdapter(Moshi moshi) {
-        return new AutoValue_GitHubComment.MoshiJsonAdapter(moshi);
-    }
+    @Json(name = "commit_id")
+    @Nullable
+    public abstract String commitId();
 
-    @AutoValue.Builder
-    public abstract static class Builder extends GitHubCommentBase.Builder<Builder> {
-        public abstract GitHubComment build();
+    public abstract static class Builder<B extends Builder<B>>
+            extends GitHubCommentBase.Builder<B> {
+        public abstract B position(Integer position);
+
+        public abstract B line(Integer line);
+
+        public abstract B path(String path);
+
+        public abstract B commitId(String commitId);
     }
 }

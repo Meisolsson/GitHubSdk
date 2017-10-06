@@ -16,58 +16,16 @@
 
 package com.meisolsson.githubsdk.model;
 
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
-import com.meisolsson.githubsdk.core.FormattedTime;
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
-import java.util.Date;
 
 @AutoValue
-public abstract class ReviewComment implements Parcelable {
-
-    @Nullable
-    public abstract String url();
-
-    @Nullable
-    public abstract String body();
-
-    @Nullable
-    public abstract Long id();
-
-    @Nullable
-    public abstract Integer position();
-
-    @Nullable
-    public abstract Integer line();
-
-    @Nullable
-    public abstract User user();
-
-    @Json(name = "html_url")
-    @Nullable
-    public abstract String htmlUrl();
-
-    @Json(name = "created_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date createdAt();
-
-    @Json(name = "updated_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date updatedAt();
-
-    @Nullable
-    public abstract String path();
-
-    @Json(name = "commit_id")
-    @Nullable
-    public abstract String commitId();
+public abstract class ReviewComment extends PositionalCommentBase {
 
     @Json(name = "diff_hunk")
     @Nullable
@@ -85,9 +43,7 @@ public abstract class ReviewComment implements Parcelable {
     @Nullable
     public abstract Integer pullRequestReviewId();
 
-    @Json(name = "author_association")
-    @Nullable
-    public abstract AuthorAssociation authorAssociation();
+    public abstract Builder toBuilder();
 
     @Json(name = "pull_request_url")
     @Nullable
@@ -95,5 +51,20 @@ public abstract class ReviewComment implements Parcelable {
 
     public static JsonAdapter<ReviewComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_ReviewComment.MoshiJsonAdapter(moshi);
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder extends PositionalCommentBase.Builder<Builder> {
+        public abstract Builder diffChunk(String diffChunk);
+
+        public abstract Builder originalCommitId(String originalCommitId);
+
+        public abstract Builder originalPosition(Integer originalPosition);
+
+        public abstract Builder pullRequestReviewId(Integer pullRequestReviewId);
+
+        public abstract Builder pullRequestUrl(String pullRequestUrl);
+
+        public abstract ReviewComment build();
     }
 }
