@@ -24,6 +24,8 @@ import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.repository.CreateRepository;
 import com.meisolsson.githubsdk.model.request.repository.EditRepository;
 
+import java.util.Map;
+
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -33,14 +35,21 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface RepositoryService {
 
     @GET("/user/repos")
     Single<Response<Page<Repository>>> getUserRepositories(@Query("page") long page);
 
+    @GET("/user/repos")
+    Single<Response<Page<Repository>>> getUserRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
+
     @GET("users/{username}/repos")
 	Single<Response<Page<Repository>>> getUserRepositories(@Path("username") String username, @Query("page") long page);
+
+    @GET("users/{username}/repos")
+	Single<Response<Page<Repository>>> getUserRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
 
     @GET("orgs/{org}/repos")
 	Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
