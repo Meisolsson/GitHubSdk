@@ -21,6 +21,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.meisolsson.githubsdk.model.ReferenceType;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -33,7 +34,7 @@ public abstract class DeletePayload extends GitHubPayload<DeletePayload.Builder>
 
     @Json(name = "ref_type")
     @Nullable
-    public abstract String refType();
+    public abstract ReferenceType refType();
 
     public abstract Builder toBuilder();
 
@@ -53,7 +54,7 @@ public abstract class DeletePayload extends GitHubPayload<DeletePayload.Builder>
     public abstract static class Builder extends GitHubPayload.Builder<DeletePayload, Builder> {
         public abstract Builder ref(String ref);
 
-        public abstract Builder refType(String refType);
+        public abstract Builder refType(ReferenceType refType);
 
         public abstract DeletePayload build();
     }

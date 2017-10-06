@@ -25,14 +25,20 @@ import com.meisolsson.githubsdk.model.Issue;
 import com.meisolsson.githubsdk.model.Label;
 import com.meisolsson.githubsdk.model.User;
 import com.google.auto.value.AutoValue;
+import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 @AutoValue
 public abstract class IssuesPayload extends GitHubPayload<IssuesPayload.Builder> implements Parcelable {
+    public enum Action {
+        @Json(name = "opened") Opened,
+        @Json(name = "closed") Closed,
+        @Json(name = "reopened") Reopened
+    }
 
     @Nullable
-    public abstract String action();
+    public abstract Action action();
 
     @Nullable
     public abstract Issue issue();
@@ -62,7 +68,7 @@ public abstract class IssuesPayload extends GitHubPayload<IssuesPayload.Builder>
 
     @AutoValue.Builder
     public abstract static class Builder extends GitHubPayload.Builder<IssuesPayload, Builder> {
-        public abstract Builder action(String action);
+        public abstract Builder action(Action action);
 
         public abstract Builder issue(Issue issue);
 
