@@ -19,18 +19,22 @@ package com.meisolsson.githubsdk.model.request.issue;
 import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
+import com.meisolsson.githubsdk.core.FormattedTime;
 import com.meisolsson.githubsdk.model.IssueState;
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
+import java.util.Date;
+
 @AutoValue
 public abstract class CreateMilestone implements Parcelable {
 
     @Json(name = "due_on")
     @Nullable
-    public abstract String dueOn();
+    @FormattedTime
+    public abstract Date dueOn();
 
     @Nullable
     public abstract String title();
@@ -51,7 +55,7 @@ public abstract class CreateMilestone implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder dueOn(String dueOn);
+        public abstract Builder dueOn(Date dueOn);
 
         public abstract Builder title(String title);
 
