@@ -21,6 +21,7 @@ import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedHtml;
 import com.meisolsson.githubsdk.core.FormattedTime;
+import com.meisolsson.githubsdk.model.Reactions;
 import com.meisolsson.githubsdk.model.User;
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
@@ -76,6 +77,9 @@ public abstract class GitComment implements Parcelable {
     @Nullable
     public abstract String commitId();
 
+    @Nullable
+    public abstract Reactions reactions();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<GitComment> jsonAdapter(Moshi moshi) {
@@ -111,6 +115,8 @@ public abstract class GitComment implements Parcelable {
         public abstract Builder path(String path);
 
         public abstract Builder commitId(String commitId);
+
+        public abstract Builder reactions(Reactions reactions);
 
         public abstract GitComment build();
     }

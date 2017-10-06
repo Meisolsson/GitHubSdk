@@ -107,6 +107,9 @@ public abstract class Issue implements Parcelable {
     @Nullable
     public abstract Repository repository();
 
+    @Nullable
+    public abstract Reactions reactions();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<Issue> jsonAdapter(Moshi moshi) {
@@ -158,6 +161,8 @@ public abstract class Issue implements Parcelable {
         public abstract Builder closedBy(User closedBy);
 
         public abstract Builder repository(Repository repository);
+
+        public abstract Builder reactions(Reactions reactions);
 
         public abstract Builder assignees(@Nullable List<User> assignees);
 
