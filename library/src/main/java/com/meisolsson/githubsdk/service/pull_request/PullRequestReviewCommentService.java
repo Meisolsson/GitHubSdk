@@ -40,14 +40,14 @@ public interface PullRequestReviewCommentService {
     Single<Response<Page<ReviewComment>>> getRepositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments/{id}")
-	Single<Response<ReviewComment>> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<ReviewComment>> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @POST("repos/{owner}/{repo}/pulls/{number}/comments")
     Single<Response<ReviewComment>> createReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateReviewComment body);
 
     @PATCH("repos/{owner}/{repo}/pulls/comments/{id}")
-	Single<Response<ReviewComment>> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
+	Single<Response<ReviewComment>> editReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id,  @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/pulls/comments/{id}")
-	Single<Response<Boolean>> deleteComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Boolean>> deleteComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }

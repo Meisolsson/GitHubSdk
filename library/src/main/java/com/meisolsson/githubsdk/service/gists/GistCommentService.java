@@ -36,7 +36,7 @@ public interface GistCommentService {
     Single<Response<Page<GitHubComment>>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
 
     @GET("gists/{gist_id}/comments/{id}")
-    Single<Response<GitHubComment>> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
+    Single<Response<GitHubComment>> getGistComment(@Path("gist_id") String gistId, @Path("id") long id);
 
     @POST("gists/{gist_id}/comments")
     Single<Response<GitHubComment>> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);

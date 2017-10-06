@@ -38,7 +38,7 @@ public interface RepositoryReleaseService {
     Single<Response<Page<Release>>> getReleases(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/releases/{id}")
-    Single<Response<Release>> getRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+    Single<Response<Release>> getRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @GET("repos/{owner}/{repo}/releases/latest")
 	Single<Response<Release>> getLatestRelease(@Path("owner") String owner, @Path("repo") String repo);
@@ -50,20 +50,20 @@ public interface RepositoryReleaseService {
 	Single<Response<Release>> createRelease(@Path("owner") String owner, @Path("repo") String repo, @Body CreateRelease body);
 
     @PATCH("repos/{owner}/{repo}/releases/{id}")
-	Single<Response<Release>> editRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Body CreateRelease body);
+	Single<Response<Release>> editRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CreateRelease body);
 
     @DELETE("repos/{owner}/{repo}/releases/{id}")
-	Single<Response<Boolean>> deleteRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Boolean>> deleteRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @GET("repos/{owner}/{repo}/releases/{id}/assets")
-	Single<Response<Page<ReleaseAsset>>> getRelaseAssets(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Query("page") long page);
+	Single<Response<Page<ReleaseAsset>>> getRelaseAssets(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/releases/assets/{id}")
-	Single<Response<ReleaseAsset>> getReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<ReleaseAsset>> getReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @PATCH("repos/{owner}/{repo}/releases/assets/{id}")
-	Single<Response<ReleaseAsset>> editReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Body EditReleaseAsset body);
+	Single<Response<ReleaseAsset>> editReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body EditReleaseAsset body);
 
     @DELETE("repos/{owner}/{repo}/releases/assets/{id}")
-	Single<Response<Boolean>> deleteReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Boolean>> deleteReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }
