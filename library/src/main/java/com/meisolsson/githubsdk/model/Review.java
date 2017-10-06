@@ -28,72 +28,41 @@ import com.squareup.moshi.Moshi;
 import java.util.Date;
 
 @AutoValue
-public abstract class ReviewComment implements Parcelable {
-
-    @Nullable
-    public abstract String url();
-
-    @Nullable
-    public abstract String body();
-
+public abstract class Review implements Parcelable {
     @Nullable
     public abstract Long id();
 
     @Nullable
-    public abstract Integer position();
-
-    @Nullable
-    public abstract Integer line();
-
-    @Nullable
     public abstract User user();
 
-    @Json(name = "html_url")
     @Nullable
-    public abstract String htmlUrl();
-
-    @Json(name = "created_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date createdAt();
-
-    @Json(name = "updated_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date updatedAt();
+    public abstract ReviewState state();
 
     @Nullable
-    public abstract String path();
+    public abstract String body();
+
+    @Json(name = "body_html")
+    @Nullable
+    public abstract String bodyHtml();
 
     @Json(name = "commit_id")
     @Nullable
     public abstract String commitId();
 
-    @Json(name = "diff_hunk")
+    @Json(name = "html_url")
     @Nullable
-    public abstract String diffChunk();
-
-    @Json(name = "original_commit_id")
-    @Nullable
-    public abstract String originalCommitId();
-
-    @Json(name = "original_position")
-    @Nullable
-    public abstract Integer originalPosition();
-
-    @Json(name = "pull_request_review_id")
-    @Nullable
-    public abstract Integer pullRequestReviewId();
-
-    @Json(name = "author_association")
-    @Nullable
-    public abstract AuthorAssociation authorAssociation();
+    public abstract String htmlUrl();
 
     @Json(name = "pull_request_url")
     @Nullable
     public abstract String pullRequestUrl();
 
-    public static JsonAdapter<ReviewComment> jsonAdapter(Moshi moshi) {
-        return new AutoValue_ReviewComment.MoshiJsonAdapter(moshi);
+    @Json(name = "submitted_at")
+    @Nullable
+    @FormattedTime
+    public abstract Date submittedAt();
+
+    public static JsonAdapter<Review> jsonAdapter(Moshi moshi) {
+        return new AutoValue_Review.MoshiJsonAdapter(moshi);
     }
 }

@@ -26,9 +26,27 @@ import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 import java.util.Date;
+import java.util.List;
 
 @AutoValue
 public abstract class IssueEvent implements Parcelable {
+    @AutoValue
+    public static abstract class DismissedReview implements Parcelable {
+        @Json(name = "review_id")
+        @Nullable
+        public abstract Integer reviewId();
+
+        @Nullable
+        public abstract ReviewEventState state();
+
+        @Json(name = "dismissal_message")
+        @Nullable
+        public abstract String dismissalMessage();
+
+        public static JsonAdapter<DismissedReview> jsonAdapter(Moshi moshi) {
+            return new AutoValue_IssueEvent_DismissedReview.MoshiJsonAdapter(moshi);
+        }
+    }
 
     @Nullable
     public abstract String url();
@@ -69,6 +87,22 @@ public abstract class IssueEvent implements Parcelable {
 
     @Nullable
     public abstract User actor();
+
+    @Json(name = "review_requester")
+    @Nullable
+    public abstract User reviewRequester();
+
+    @Json(name = "requested_reviewer")
+    @Nullable
+    public abstract User requestedReviewer();
+
+    @Json(name = "requested_reviewers")
+    @Nullable
+    public abstract List<User> requestedReviewers();
+
+    @Json(name = "dismissed_review")
+    @Nullable
+    public abstract DismissedReview dismissedReview();
 
     // TODO: All of the below belong to the timeline API and need to be re-checked
     //       once that API is out of preview.
