@@ -31,6 +31,14 @@ import java.util.List;
 
 @AutoValue
 public abstract class PullRequest implements Parcelable {
+    public enum MergeableState {
+        @Json(name = "behind") Behind,
+        @Json(name = "blocked") Blocked,
+        @Json(name = "clean") Clean,
+        @Json(name = "dirty") Dirty,
+        @Json(name = "unknown") Unknown,
+        @Json(name = "unstable") Unstable
+    }
 
     @Nullable
     public abstract String url();
@@ -72,6 +80,10 @@ public abstract class PullRequest implements Parcelable {
 
     @Nullable
     public abstract Boolean merged();
+
+    @Json(name = "mergeable_state")
+    @Nullable
+    public abstract MergeableState mergeableState();
 
     @Nullable
     public abstract IssueState state();
