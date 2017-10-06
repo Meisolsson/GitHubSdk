@@ -101,10 +101,10 @@ public abstract class PullRequest implements Parcelable {
     public abstract Milestone milestone();
 
     @Nullable
-    public abstract Commit base();
+    public abstract PullRequestMarker base();
 
     @Nullable
-    public abstract Commit head();
+    public abstract PullRequestMarker head();
 
     @Json(name = "html_url")
     @Nullable
