@@ -110,10 +110,6 @@ public abstract class PullRequest implements Parcelable {
     @Nullable
     public abstract String htmlUrl();
 
-    @Json(name = "pull_request")
-    @Nullable
-    public abstract PullRequest pullRequest();
-
     @Json(name = "closed_at")
     @Nullable
     @FormattedTime
