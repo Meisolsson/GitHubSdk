@@ -37,7 +37,7 @@ public interface PullRequestReviewCommentService {
     Single<Response<Page<ReviewComment>>> getPullRequestComments(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments")
-    Single<Response<Page<ReviewComment>>> getRespositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
+    Single<Response<Page<ReviewComment>>> getRepositoryComments(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/comments/{id}")
 	Single<Response<ReviewComment>> getReviewComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);

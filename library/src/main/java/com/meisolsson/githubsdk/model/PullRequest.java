@@ -68,7 +68,7 @@ public abstract class PullRequest implements Parcelable {
     public abstract Boolean locked();
 
     @Nullable
-    public abstract Boolean mergable();
+    public abstract Boolean mergeable();
 
     @Nullable
     public abstract Boolean merged();
