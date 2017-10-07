@@ -26,6 +26,15 @@ import com.squareup.moshi.Moshi;
 
 @AutoValue
 public abstract class MergeRequest implements Parcelable {
+    public enum Method {
+        @Json(name = "merge") Merge,
+        @Json(name = "squash") Squash,
+        @Json(name = "rebase") Rebase
+    }
+
+    @Json(name = "commit_title")
+    @Nullable
+    public abstract String commitTitle();
 
     @Json(name = "commit_message")
     @Nullable
@@ -34,11 +43,7 @@ public abstract class MergeRequest implements Parcelable {
     @Nullable
     public abstract String sha();
 
-    @Nullable
-    public abstract String base();
-
-    @Nullable
-    public abstract String head();
+    public abstract Method method();
 
     public static JsonAdapter<MergeRequest> jsonAdapter(Moshi moshi) {
         return new AutoValue_MergeRequest.MoshiJsonAdapter(moshi);
@@ -50,13 +55,13 @@ public abstract class MergeRequest implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
+        public abstract Builder commitTitle(String commitTitle);
+
         public abstract Builder commitMessage(String commitMessage);
 
         public abstract Builder sha(String sha);
 
-        public abstract Builder base(String base);
-
-        public abstract Builder head(String head);
+        public abstract Builder method(Method method);
 
         public abstract MergeRequest build();
     }
