@@ -35,7 +35,24 @@ public abstract class Label implements Parcelable {
     @Nullable
     public abstract String color();
 
+    public abstract Builder toBuilder();
+
+    public static Builder builder() {
+        return new AutoValue_Label.Builder();
+    }
+
     public static JsonAdapter<Label> jsonAdapter(Moshi moshi) {
         return new AutoValue_Label.MoshiJsonAdapter(moshi);
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract Builder url(String url);
+
+        public abstract Builder name(String name);
+
+        public abstract Builder color(String color);
+
+        public abstract Label build();
     }
 }
