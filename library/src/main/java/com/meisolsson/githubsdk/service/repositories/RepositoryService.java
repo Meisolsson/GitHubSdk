@@ -54,6 +54,9 @@ public interface RepositoryService {
     @GET("orgs/{org}/repos")
 	Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
 
+    @GET("orgs/{org}/repos")
+    Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @QueryMap Map<String, String> options, @Query("page") long page);
+
     @GET("/repositories")
 	Single<Response<Page<Repository>>> getRepositories(@Query("page") long page);
 
