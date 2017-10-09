@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.service.repositories;
 
 import com.meisolsson.githubsdk.model.Content;
 import com.meisolsson.githubsdk.model.ContentCommit;
+import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.repository.CreateContent;
 
 import java.util.List;
@@ -43,7 +44,7 @@ public interface RepositoryContentService {
     Single<Response<Content>> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
     @GET("repos/{owner}/{repo}/contents/{path}")
-    Single<Response<List<Content>>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
+    Single<Response<Page<Content>>> getDirectoryContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref, @Query("page") long page);
 
     @PUT("repos/{owner}/{repo}/contents/{path}")
 	Single<Response<ContentCommit>> createFile(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Body CreateContent body);
