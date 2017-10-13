@@ -17,6 +17,8 @@
 package com.meisolsson.githubsdk.model.request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
@@ -25,16 +27,20 @@ import com.squareup.moshi.Moshi;
 
 @AutoValue
 public abstract class RequestToken implements Parcelable {
-    
+
     @Json(name = "client_id")
+    @NonNull
     public abstract String clientId();
 
     @Json(name = "client_secret")
+    @NonNull
     public abstract String clientSecret();
 
     @Json(name = "redirect_uri")
+    @Nullable
     public abstract String redirectUri();
-    
+
+    @NonNull
     abstract String code();
 
     public static JsonAdapter<RequestToken> jsonAdapter(Moshi moshi){
@@ -47,13 +53,13 @@ public abstract class RequestToken implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder clientId(String clientId);
+        public abstract Builder clientId(@NonNull String clientId);
 
-        public abstract Builder clientSecret(String clientSecret);
+        public abstract Builder clientSecret(@NonNull String clientSecret);
 
-        public abstract Builder redirectUri(String redirectUri);
+        public abstract Builder redirectUri(@Nullable String redirectUri);
 
-        public abstract Builder code(String code);
+        public abstract Builder code(@NonNull String code);
 
         public abstract RequestToken build();
     }

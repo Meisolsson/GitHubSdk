@@ -30,7 +30,7 @@ import java.util.List;
 @AutoValue
 public abstract class CreateDeployment implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String ref();
 
     @Nullable
@@ -41,7 +41,7 @@ public abstract class CreateDeployment implements Parcelable {
     public abstract Boolean autoMerge();
 
     @Json(name = "required_contexts")
-    @NonNull
+    @Nullable
     public abstract List<String> requiredContexts();
 
     @Nullable
@@ -63,19 +63,19 @@ public abstract class CreateDeployment implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder ref(String ref);
+        public abstract Builder ref(@NonNull String ref);
 
-        public abstract Builder task(String task);
+        public abstract Builder task(@Nullable String task);
 
-        public abstract Builder autoMerge(Boolean autoMerge);
+        public abstract Builder autoMerge(@Nullable Boolean autoMerge);
 
-        public abstract Builder requiredContexts(@NonNull List<String> requiredContexts);
+        public abstract Builder requiredContexts(@Nullable List<String> requiredContexts);
 
-        public abstract Builder payload(String payload);
+        public abstract Builder payload(@Nullable String payload);
 
-        public abstract Builder environment(String environment);
+        public abstract Builder environment(@Nullable String environment);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
         public abstract CreateDeployment build();
     }

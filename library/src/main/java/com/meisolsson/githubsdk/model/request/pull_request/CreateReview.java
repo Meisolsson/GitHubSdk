@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.pull_request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -36,13 +37,13 @@ public abstract class CreateReview implements Parcelable {
 
     @AutoValue
     public abstract static class DraftComment implements Parcelable {
-        @Nullable
+        @NonNull
         public abstract String body();
 
-        @Nullable
+        @NonNull
         public abstract String path();
 
-        @Nullable
+        @NonNull
         public abstract Integer position();
 
         public static JsonAdapter<DraftComment> jsonAdapter(Moshi moshi) {
@@ -55,17 +56,17 @@ public abstract class CreateReview implements Parcelable {
 
         @AutoValue.Builder
         public abstract static class Builder {
-            public abstract Builder body(String body);
+            public abstract Builder body(@NonNull String body);
 
-            public abstract Builder path(String path);
+            public abstract Builder path(@NonNull String path);
 
-            public abstract Builder position(Integer position);
+            public abstract Builder position(@NonNull Integer position);
 
             public abstract DraftComment build();
         }
     }
 
-    @Nullable
+    @NonNull
     public abstract String body();
 
     @Json(name = "commit_id")
@@ -89,13 +90,13 @@ public abstract class CreateReview implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder body(String body);
+        public abstract Builder body(@NonNull String body);
 
-        public abstract Builder commitId(String commitId);
+        public abstract Builder commitId(@Nullable String commitId);
 
-        public abstract Builder event(Event event);
+        public abstract Builder event(@Nullable Event event);
 
-        public abstract Builder comments(List<DraftComment> comments);
+        public abstract Builder comments(@Nullable List<DraftComment> comments);
 
         public abstract CreateReview build();
     }

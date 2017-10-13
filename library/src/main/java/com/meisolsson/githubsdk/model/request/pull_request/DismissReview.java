@@ -17,7 +17,7 @@
 package com.meisolsson.githubsdk.model.request.pull_request;
 
 import android.os.Parcelable;
-import android.support.annotation.Nullable;
+import android.support.annotation.NonNull;
 
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.JsonAdapter;
@@ -26,7 +26,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class DismissReview implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String message();
 
     public static JsonAdapter<DismissReview> jsonAdapter(Moshi moshi) {
@@ -40,7 +40,7 @@ public abstract class DismissReview implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder message(String message);
+        public abstract Builder message(@NonNull String message);
 
         public abstract DismissReview build();
     }

@@ -16,6 +16,8 @@
 
 package com.meisolsson.githubsdk.model.request;
 
+import android.support.annotation.NonNull;
+
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -23,6 +25,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class ReactionRequest {
 
+    @NonNull
     public abstract String content();
 
     public static JsonAdapter<ReactionRequest> jsonAdapter(Moshi moshi){
@@ -35,7 +38,7 @@ public abstract class ReactionRequest {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder content(String content);
+        public abstract Builder content(@NonNull String content);
 
         public abstract ReactionRequest build();
     }

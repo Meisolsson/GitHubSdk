@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.issue;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.core.FormattedTime;
@@ -36,7 +37,7 @@ public abstract class CreateMilestone implements Parcelable {
     @FormattedTime
     public abstract Date dueOn();
 
-    @Nullable
+    @NonNull
     public abstract String title();
 
     @Nullable
@@ -55,13 +56,13 @@ public abstract class CreateMilestone implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder dueOn(Date dueOn);
+        public abstract Builder dueOn(@Nullable Date dueOn);
 
-        public abstract Builder title(String title);
+        public abstract Builder title(@NonNull String title);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
-        public abstract Builder state(IssueState state);
+        public abstract Builder state(@Nullable IssueState state);
 
         public abstract CreateMilestone build();
     }

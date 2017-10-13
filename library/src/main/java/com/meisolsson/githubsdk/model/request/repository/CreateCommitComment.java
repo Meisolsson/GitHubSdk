@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,7 +27,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreateCommitComment implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String body();
 
     @Nullable
@@ -46,11 +47,11 @@ public abstract class CreateCommitComment implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder body(String body);
+        public abstract Builder body(@NonNull String body);
 
-        public abstract Builder path(String path);
+        public abstract Builder path(@Nullable String path);
 
-        public abstract Builder position(Integer position);
+        public abstract Builder position(@Nullable Integer position);
 
         public abstract CreateCommitComment build();
     }

@@ -43,6 +43,7 @@ public abstract class MergeRequest implements Parcelable {
     @Nullable
     public abstract String sha();
 
+    @Nullable
     public abstract Method method();
 
     public static JsonAdapter<MergeRequest> jsonAdapter(Moshi moshi) {

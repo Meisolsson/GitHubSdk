@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.pull_request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -35,7 +36,7 @@ public abstract class SubmitReview implements Parcelable {
     @Nullable
     public abstract String body();
 
-    @Nullable
+    @NonNull
     public abstract Event event();
 
     public static JsonAdapter<SubmitReview> jsonAdapter(Moshi moshi) {
@@ -49,9 +50,9 @@ public abstract class SubmitReview implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder body(String body);
+        public abstract Builder body(@Nullable String body);
 
-        public abstract Builder event(Event event);
+        public abstract Builder event(@NonNull Event event);
 
         public abstract SubmitReview build();
     }

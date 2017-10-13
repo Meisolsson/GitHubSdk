@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -28,7 +29,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreateStatus implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract StatusState state();
 
     @Json(name = "target_url")
@@ -52,13 +53,13 @@ public abstract class CreateStatus implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder state(StatusState state);
+        public abstract Builder state(@NonNull StatusState state);
 
-        public abstract Builder targetUrl(String targetUrl);
+        public abstract Builder targetUrl(@Nullable String targetUrl);
 
-        public abstract Builder context(String context);
+        public abstract Builder context(@Nullable String context);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
         public abstract CreateStatus build();
     }

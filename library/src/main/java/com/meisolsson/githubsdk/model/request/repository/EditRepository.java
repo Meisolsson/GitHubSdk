@@ -18,6 +18,7 @@ package com.meisolsson.githubsdk.model.request.repository;
 
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -28,7 +29,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class EditRepository implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String name();
 
     @Nullable
@@ -67,21 +68,21 @@ public abstract class EditRepository implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder name(String name);
+        public abstract Builder name(@NonNull String name);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
-        public abstract Builder homepage(String homepage);
+        public abstract Builder homepage(@Nullable String homepage);
 
-        public abstract Builder isPrivate(Boolean _private);
+        public abstract Builder isPrivate(@Nullable Boolean _private);
 
-        public abstract Builder hasIssues(Boolean hasIssues);
+        public abstract Builder hasIssues(@Nullable Boolean hasIssues);
 
-        public abstract Builder hasWiki(Boolean hasWiki);
+        public abstract Builder hasWiki(@Nullable Boolean hasWiki);
 
-        public abstract Builder hasDownloads(Boolean hasDownloads);
+        public abstract Builder hasDownloads(@Nullable Boolean hasDownloads);
 
-        public abstract Builder defaultBranch(String defaultBranch);
+        public abstract Builder defaultBranch(@Nullable String defaultBranch);
 
         public abstract EditRepository build();
     }
