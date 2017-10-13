@@ -37,6 +37,9 @@ public abstract class Branch implements Parcelable {
     @Nullable
     public abstract Boolean isProtected();
 
+    @Nullable
+    public abstract VerificationResult verification();
+
     public static JsonAdapter<Branch> jsonAdapter(Moshi moshi) {
         return new AutoValue_Branch.MoshiJsonAdapter(moshi);
     }
