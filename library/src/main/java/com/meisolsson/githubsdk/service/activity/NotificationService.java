@@ -20,6 +20,7 @@ import com.meisolsson.githubsdk.model.NotificationThread;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.Subscription;
 import com.meisolsson.githubsdk.model.request.NotificationReadRequest;
+import com.meisolsson.githubsdk.model.request.activity.SubscriptionRequest;
 
 import java.util.Map;
 
@@ -79,9 +80,7 @@ public interface NotificationService {
     Single<Response<Subscription>> getNotificationThreadSubscription(@Path("id") String id);
 
     @PUT("notifications/threads/{id}/subscription")
-    Single<Response<Subscription>> setNotificationThreadSubscription(@Path("id") String id,
-                                                               @Query("subscribed") boolean subscribed,
-                                                               @Query("ignored") boolean ignored);
+    Single<Response<Subscription>> setNotificationThreadSubscription(@Path("id") String id, @Body SubscriptionRequest request);
 
     @DELETE("notifications/threads/{id}/subscription")
     Single<Response<Boolean>> deleteNotificationThreadSubscription(@Path("id") String id);
