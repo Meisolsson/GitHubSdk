@@ -76,7 +76,7 @@ public interface RepositoryService {
 	Single<Response<Page<User>>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/languages")
-	Single<Response<Boolean>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/teams")
 	Single<Response<Page<Team>>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
@@ -85,6 +85,6 @@ public interface RepositoryService {
 	Single<Response<Page<Branch>>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @DELETE("repos/{owner}/{repo}")
-	Single<Response<Boolean>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
 
 }

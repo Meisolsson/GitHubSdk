@@ -53,7 +53,7 @@ public interface RepositoryReleaseService {
 	Single<Response<Release>> editRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CreateRelease body);
 
     @DELETE("repos/{owner}/{repo}/releases/{id}")
-	Single<Response<Boolean>> deleteRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+	Single<Response<Void>> deleteRelease(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @GET("repos/{owner}/{repo}/releases/{id}/assets")
 	Single<Response<Page<ReleaseAsset>>> getRelaseAssets(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Query("page") long page);
@@ -65,5 +65,5 @@ public interface RepositoryReleaseService {
 	Single<Response<ReleaseAsset>> editReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body EditReleaseAsset body);
 
     @DELETE("repos/{owner}/{repo}/releases/assets/{id}")
-	Single<Response<Boolean>> deleteReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+	Single<Response<Void>> deleteReleaseAsset(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }

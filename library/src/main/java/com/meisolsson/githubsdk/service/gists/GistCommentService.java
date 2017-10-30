@@ -45,5 +45,5 @@ public interface GistCommentService {
     Single<Response<GitHubComment>> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("gists/{gist_id}/comments/{id}")
-    Single<Response<Boolean>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
+    Single<Response<Void>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
 }

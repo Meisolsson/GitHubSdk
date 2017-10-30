@@ -63,18 +63,18 @@ public interface NotificationService {
                                                                     @Query("page") long page);
 
     @PUT("notifications")
-    Single<Response<Boolean>> markAllNotificationsRead(@Body NotificationReadRequest body);
+    Single<Response<Void>> markAllNotificationsRead(@Body NotificationReadRequest body);
 
     @PUT("repos/{owner}/{repo}/notifications")
-    Single<Response<Boolean>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
-                                                                 @Path("repo") String repo,
-                                                                 @Body NotificationReadRequest body);
+    Single<Response<Void>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
+                                                              @Path("repo") String repo,
+                                                              @Body NotificationReadRequest body);
 
     @GET("notifications/threads/{id}")
     Single<Response<NotificationThread>> getNotification(@Path("id") String id);
 
     @PATCH("notifications/threads/{id}")
-    Single<Response<Boolean>> markNotificationRead(@Path("id") String id);
+    Single<Response<Void>> markNotificationRead(@Path("id") String id);
 
     @GET("notifications/threads/{id}/subscription")
     Single<Response<Subscription>> getNotificationThreadSubscription(@Path("id") String id);
@@ -83,5 +83,5 @@ public interface NotificationService {
     Single<Response<Subscription>> setNotificationThreadSubscription(@Path("id") String id, @Body SubscriptionRequest request);
 
     @DELETE("notifications/threads/{id}/subscription")
-    Single<Response<Boolean>> deleteNotificationThreadSubscription(@Path("id") String id);
+    Single<Response<Void>> deleteNotificationThreadSubscription(@Path("id") String id);
 }

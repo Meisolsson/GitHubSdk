@@ -113,7 +113,7 @@ public interface IssueService {
      */
     @Headers("Content-Length: 0")
     @PUT("repos/{owner}/{repo}/issues/{number}/lock")
-    Single<Response<Boolean>> lockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Void>> lockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     /**
      *
@@ -123,5 +123,5 @@ public interface IssueService {
      * @return 204 if success
      */
     @DELETE("repos/{owner}/{repo}/issues/{number}/lock")
-    Single<Response<Boolean>> unlockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Void>> unlockIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 }

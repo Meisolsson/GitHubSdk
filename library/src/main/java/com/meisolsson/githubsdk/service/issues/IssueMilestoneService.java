@@ -45,6 +45,6 @@ public interface IssueMilestoneService {
 	Single<Response<Milestone>> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
 
     @DELETE("repos/{owner}/{repo}/milestones/{number}")
-	Single<Response<Boolean>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+	Single<Response<Void>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
 }

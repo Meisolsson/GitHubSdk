@@ -34,12 +34,12 @@ public interface RepositoryCollaboratorService {
     Single<Response<Page<User>>> getCollaborators(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/collaborators/{username}")
-    Single<Response<Boolean>> isUserCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
+    Single<Response<Void>> isUserCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
 
     @Headers("Content-Length: 0")
     @PUT("repos/{owner}/{repo}/collaborators/{username}")
-	Single<Response<Boolean>> addUserAsCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
+	Single<Response<Void>> addUserAsCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
 
     @DELETE("repos/{owner}/{repo}/collaborators/{username}")
-	Single<Response<Boolean>> deleteUseraAsCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
+	Single<Response<Void>> deleteUseraAsCollaborator(@Path("owner") String owner, @Path("repo") String repo, @Path("username") String username);
 }

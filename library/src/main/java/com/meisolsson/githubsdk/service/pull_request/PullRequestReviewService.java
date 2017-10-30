@@ -56,5 +56,5 @@ public interface PullRequestReviewService {
     Single<Response<Review>> dismissReview(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id,  @Body DismissReview body);
 
     @DELETE("repos/{owner}/{repo}/pulls/{number}/reviews/{id}")
-    Single<Response<Boolean>> deleteReview(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id);
+    Single<Response<Void>> deleteReview(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("id") long id);
 }

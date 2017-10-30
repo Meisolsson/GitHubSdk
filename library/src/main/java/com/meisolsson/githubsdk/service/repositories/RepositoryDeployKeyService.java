@@ -41,6 +41,6 @@ public interface RepositoryDeployKeyService {
 	Single<Response<DeployKey>> addDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployKey body);
 
     @DELETE("repos/{owner}/{repo}/keys/{id}")
-	Single<Response<Boolean>> deleteDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+	Single<Response<Void>> deleteDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
 }

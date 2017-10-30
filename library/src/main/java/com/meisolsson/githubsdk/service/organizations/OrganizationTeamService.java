@@ -51,7 +51,7 @@ public interface OrganizationTeamService {
 	Single<Response<Team>> editTeam(@Path("id") long id, @Body CreateTeam body);
 
     @DELETE("teams/{id}")
-	Single<Response<Boolean>> deleteTeam(@Path("id") long id);
+	Single<Response<Void>> deleteTeam(@Path("id") long id);
 
     @GET("teams/{id}/members")
 	Single<Response<Page<User>>> getTeamMembers(@Path("id") long id, @Query("page") long page);
@@ -63,20 +63,20 @@ public interface OrganizationTeamService {
 	Single<Response<Membership>> createTeamMembership(@Path("id") long id, @Path("username") String username, @Body CreateTeamMembership body);
 
     @DELETE("teams/{id}/memberships/{username}")
-	Single<Response<Boolean>> deleteTeamMembership(@Path("id") long id, @Path("username") String username);
+	Single<Response<Void>> deleteTeamMembership(@Path("id") long id, @Path("username") String username);
 
     @GET("teams/{id}/repos")
 	Single<Response<Page<Repository>>> getTeamRepositories(@Path("id") long id, @Query("page") long page);
 
     @GET("teams/{id}/repos/{owner}/{repo}")
-	Single<Response<Boolean>> isTeamManagingRepository(@Path("id") long id, @Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> isTeamManagingRepository(@Path("id") long id, @Path("owner") String owner, @Path("repo") String repo);
 
     @Headers("Content-Length: 0")
     @PUT("teams/{id}/repos/{org}/{repo}")
-	Single<Response<Boolean>> changeTeamRepository(@Path("id") long id, @Path("org") String org, @Path("repo") String repo);
+	Single<Response<Void>> changeTeamRepository(@Path("id") long id, @Path("org") String org, @Path("repo") String repo);
 
     @DELETE("teams/{id}/repos/{owner}/{repo}")
-	Single<Response<Boolean>> deleteTeamRepository(@Path("id") long id, @Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> deleteTeamRepository(@Path("id") long id, @Path("owner") String owner, @Path("repo") String repo);
 
     @GET("/user/teams")
 	Single<Response<Page<Team>>> getTeams(@Query("page") long page);

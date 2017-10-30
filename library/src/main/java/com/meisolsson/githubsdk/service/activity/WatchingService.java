@@ -49,5 +49,5 @@ public interface WatchingService {
     Single<Response<Subscription>> setRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo, @Body SubscriptionRequest request);
 
     @DELETE("repos/{owner}/{repo}/subscription")
-    Single<Response<Boolean>> deleteRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Void>> deleteRepositorySubscription(@Path("owner") String owner, @Path("repo") String repo);
 }

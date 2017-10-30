@@ -56,5 +56,5 @@ public interface ReactionService {
     Single<Response<Reaction>> createPullRequestReviewCommentReaction(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long commentId, @Body ReactionRequest request);
 
     @DELETE("reactions/{id}")
-    Single<Response<Boolean>> deleteReaction(@Path("id") long id);
+    Single<Response<Void>> deleteReaction(@Path("id") long id);
 }

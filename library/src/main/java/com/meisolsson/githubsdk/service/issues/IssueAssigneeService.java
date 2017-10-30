@@ -37,7 +37,7 @@ public interface IssueAssigneeService {
     Single<Response<Page<User>>> getAssignees(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/assignees/{assignee}")
-    Single<Response<Boolean>> isAssignee(@Path("owner") String owner, @Path("repo") String repo, @Path("assignee") String assignee);
+    Single<Response<Void>> isAssignee(@Path("owner") String owner, @Path("repo") String repo, @Path("assignee") String assignee);
 
     @POST("repos/{owner}/{repo}/issues/{number}/assignees")
     Single<Response<Issue>> addAssignees(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> assignees);
