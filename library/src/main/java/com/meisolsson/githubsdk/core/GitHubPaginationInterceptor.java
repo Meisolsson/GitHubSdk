@@ -17,8 +17,10 @@
 package com.meisolsson.githubsdk.core;
 
 import android.net.Uri;
+import android.text.TextUtils;
 
 import java.io.IOException;
+import java.util.ArrayList;
 
 import okhttp3.Interceptor;
 import okhttp3.Response;
@@ -29,24 +31,41 @@ public class GitHubPaginationInterceptor implements Interceptor {
     @Override
     public Response intercept(Chain chain) throws IOException {
         Response response = chain.proceed(chain.request());
-        if(response.isSuccessful() && response.peekBody(1).string().equals("[")) {
-            String json = "{";
+        if (response.isSuccessful()) {
+            String linkHeader = response.header("link");
+            final boolean isArray = response.peekBody(1).string().equals("[");
+            final ArrayList<String> pageJson;
 
-            String link = response.header("link");
-            if(link != null) {
-                String[] links = link.split(",");
-                for (String link1 : links) {
-                    String[] pageLink = link1.split(";");
+            if (linkHeader != null) {
+                pageJson = new ArrayList<>();
+                String[] links = linkHeader.split(",");
+                for (String link : links) {
+                    String[] pageLink = link.split(";");
                     String page = Uri.parse(pageLink[0].replaceAll("[<>]", "")).getQueryParameter("page");
                     String rel = pageLink[1].replaceAll("\"", "").replace("rel=", "");
 
                     if (page != null)
-                        json += String.format("\"%s\":\"%s\",", rel.trim(), page);
+                        pageJson.add(String.format("\"%s\":\"%s\"", rel.trim(), page));
                 }
+            } else {
+                pageJson = null;
             }
 
-            json += String.format("\"items\":%s}", response.body().string());
-            return response.newBuilder().body(ResponseBody.create(response.body().contentType(), json)).build();
+            final boolean hasPageInfo = pageJson != null && !pageJson.isEmpty();
+            if (isArray || hasPageInfo) {
+                final String json;
+                if (isArray) {
+                    json = String.format("{%s%s\"items\":%s}",
+                            hasPageInfo ? TextUtils.join(",", pageJson) : "",
+                            hasPageInfo ? ", " : "",
+                            response.body().string());
+                } else {
+                    json = String.format("{%s, %s",
+                            TextUtils.join(", ", pageJson),
+                            response.body().string().substring(1));
+                }
+                return response.newBuilder().body(ResponseBody.create(response.body().contentType(), json)).build();
+            }
         }
         return response;
     }
