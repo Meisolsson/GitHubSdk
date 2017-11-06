@@ -18,5 +18,6 @@ package com.meisolsson.githubsdk.model;
 
 public enum UserType {
     User,
-    Organization
+    Organization,
+    Bot
 }
