@@ -48,7 +48,7 @@ public abstract class Issue implements Parcelable {
     public abstract String title();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer comments();
@@ -127,7 +127,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder title(String title);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder comments(Integer comments);
 

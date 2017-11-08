@@ -31,7 +31,7 @@ import java.util.Date;
 public abstract class DeployKey implements Parcelable {
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract String key();

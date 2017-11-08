@@ -43,7 +43,7 @@ public abstract class GitHubComment implements Parcelable {
     public abstract String bodyHtml();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract User user();

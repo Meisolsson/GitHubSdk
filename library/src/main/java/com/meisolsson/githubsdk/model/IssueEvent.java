@@ -37,7 +37,7 @@ public abstract class IssueEvent implements Parcelable {
     public abstract Label label();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Json(name = "commit_url")
     @Nullable

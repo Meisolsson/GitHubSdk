@@ -58,7 +58,7 @@ public abstract class User implements Parcelable {
     public abstract String email();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer followers();
@@ -140,7 +140,7 @@ public abstract class User implements Parcelable {
 
         public abstract Builder email(String email);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder followers(Integer followers);
 

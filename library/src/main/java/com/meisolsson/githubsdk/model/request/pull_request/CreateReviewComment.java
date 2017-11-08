@@ -41,7 +41,7 @@ public abstract class CreateReviewComment implements Parcelable {
     public abstract Integer position();
 
     @Json(name = "in_reply_to")
-    public abstract Integer inReplyTo();
+    public abstract Long inReplyTo();
 
     public static JsonAdapter<CreateReviewComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_CreateReviewComment.MoshiJsonAdapter(moshi);
@@ -62,7 +62,7 @@ public abstract class CreateReviewComment implements Parcelable {
 
         public abstract Builder position(Integer position);
 
-        public abstract Builder inReplyTo(Integer inReplyTo);
+        public abstract Builder inReplyTo(Long inReplyTo);
 
         public abstract CreateReviewComment build();
     }

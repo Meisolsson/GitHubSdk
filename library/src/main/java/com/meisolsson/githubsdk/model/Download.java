@@ -37,7 +37,7 @@ public abstract class Download implements Parcelable {
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer size();

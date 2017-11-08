@@ -37,7 +37,7 @@ public abstract class ReviewComment implements Parcelable {
     public abstract String body();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer position();

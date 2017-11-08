@@ -43,7 +43,7 @@ public abstract class Milestone implements Parcelable {
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer number();
@@ -100,7 +100,7 @@ public abstract class Milestone implements Parcelable {
 
         public abstract Builder description(String description);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder number(Integer number);
 

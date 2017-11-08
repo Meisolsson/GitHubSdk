@@ -54,7 +54,7 @@ public abstract class CreateRepository implements Parcelable {
 
     @Json(name = "team_id")
     @Nullable
-    public abstract Integer teamId();
+    public abstract Long teamId();
 
     @Json(name = "auto_init")
     @Nullable
@@ -92,7 +92,7 @@ public abstract class CreateRepository implements Parcelable {
 
         public abstract Builder hasDownloads(Boolean hasDownloads);
 
-        public abstract Builder teamId(Integer teamId);
+        public abstract Builder teamId(Long teamId);
 
         public abstract Builder autoInit(Boolean autoInit);
 

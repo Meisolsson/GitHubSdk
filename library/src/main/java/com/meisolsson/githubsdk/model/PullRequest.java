@@ -47,7 +47,7 @@ public abstract class PullRequest implements Parcelable {
     public abstract String title();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer comments();

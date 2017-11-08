@@ -50,7 +50,7 @@ public abstract class Deployment implements Parcelable {
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Map<String, String> payload();

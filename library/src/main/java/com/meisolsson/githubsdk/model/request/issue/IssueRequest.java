@@ -40,7 +40,7 @@ public abstract class IssueRequest implements Parcelable {
     public abstract String body();
 
     @Nullable
-    public abstract Integer milestone();
+    public abstract Long milestone();
 
     @NonNull
     public abstract List<String> labels();
@@ -64,7 +64,7 @@ public abstract class IssueRequest implements Parcelable {
 
         public abstract Builder body(String body);
 
-        public abstract Builder milestone(Integer milestone);
+        public abstract Builder milestone(Long milestone);
 
         public abstract Builder labels(@NonNull List<String> labels);
 

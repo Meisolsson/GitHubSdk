@@ -44,7 +44,7 @@ public abstract class GitComment implements Parcelable {
     public abstract String bodyHtml();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer position();
@@ -94,7 +94,7 @@ public abstract class GitComment implements Parcelable {
 
         public abstract Builder bodyHtml(String bodyHtml);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder position(Integer position);
 
