@@ -42,6 +42,10 @@ public abstract class EditRepository implements Parcelable {
     @Nullable
     public abstract Boolean isPrivate();
 
+    @Json(name = "archived")
+    @Nullable
+    public abstract Boolean isArchived();
+
     @Json(name = "has_issues")
     @Nullable
     public abstract Boolean hasIssues();
@@ -75,6 +79,8 @@ public abstract class EditRepository implements Parcelable {
         public abstract Builder homepage(@Nullable String homepage);
 
         public abstract Builder isPrivate(@Nullable Boolean _private);
+
+        public abstract Builder isArchived(@Nullable Boolean archived);
 
         public abstract Builder hasIssues(@Nullable Boolean hasIssues);
 
