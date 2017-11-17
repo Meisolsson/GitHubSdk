@@ -47,6 +47,7 @@ public enum IssueEventType {
     @Json(name = "removed_from_project") RemovedFromProject,
     @Json(name = "renamed") Renamed,
     @Json(name = "reopened") Reopened,
+    @Json(name = "reviewed") Reviewed,
     @Json(name = "review_dismissed") ReviewDismissed,
     @Json(name = "review_requested") ReviewRequested,
     @Json(name = "review_request_removed") ReviewRequestRemoved,
