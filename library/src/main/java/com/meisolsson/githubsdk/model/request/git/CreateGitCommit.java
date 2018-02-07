@@ -30,10 +30,10 @@ import java.util.List;
 @AutoValue
 public abstract class CreateGitCommit implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String message();
 
-    @Nullable
+    @NonNull
     public abstract String tree();
 
     @NonNull
@@ -55,15 +55,15 @@ public abstract class CreateGitCommit implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder message(String message);
+        public abstract Builder message(@NonNull String message);
 
-        public abstract Builder tree(String tree);
+        public abstract Builder tree(@NonNull String tree);
 
         public abstract Builder parents(@NonNull List<String> parents);
 
-        public abstract Builder committer(GitUser committer);
+        public abstract Builder committer(@Nullable GitUser committer);
 
-        public abstract Builder author(GitUser author);
+        public abstract Builder author(@Nullable GitUser author);
 
         public abstract CreateGitCommit build();
     }

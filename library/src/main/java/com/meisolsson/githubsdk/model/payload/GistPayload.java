@@ -22,14 +22,19 @@ import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.Gist;
 import com.google.auto.value.AutoValue;
+import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
 @AutoValue
 public abstract class GistPayload extends GitHubPayload<GistPayload.Builder> implements Parcelable {
+    public enum Action {
+        @Json(name = "create") Created,
+        @Json(name = "update") Updated
+    }
 
     @Nullable
-    public abstract String action();
+    public abstract Action action();
 
     @Nullable
     public abstract Gist gist();
@@ -50,7 +55,7 @@ public abstract class GistPayload extends GitHubPayload<GistPayload.Builder> imp
 
     @AutoValue.Builder
     public abstract static class Builder extends GitHubPayload.Builder<GistPayload, Builder> {
-        public abstract Builder action(String action);
+        public abstract Builder action(Action action);
 
         public abstract Builder gist(Gist gist);
 

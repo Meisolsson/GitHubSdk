@@ -27,7 +27,7 @@ import com.squareup.moshi.Moshi;
 public abstract class Content implements Parcelable {
 
     @Nullable
-    public abstract String type();
+    public abstract ContentType type();
 
     @Nullable
     public abstract String encoding();

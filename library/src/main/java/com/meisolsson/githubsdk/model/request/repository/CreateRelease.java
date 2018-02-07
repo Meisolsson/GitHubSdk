@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -28,7 +29,7 @@ import com.squareup.moshi.Moshi;
 public abstract class CreateRelease implements Parcelable {
 
     @Json(name = "tag_name")
-    @Nullable
+    @NonNull
     public abstract String tagName();
 
     @Json(name = "target_commitish")
@@ -58,17 +59,17 @@ public abstract class CreateRelease implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder tagName(String tagName);
+        public abstract Builder tagName(@NonNull String tagName);
 
-        public abstract Builder targetCommitish(String targetCommitish);
+        public abstract Builder targetCommitish(@Nullable String targetCommitish);
 
-        public abstract Builder name(String name);
+        public abstract Builder name(@Nullable String name);
 
-        public abstract Builder body(String body);
+        public abstract Builder body(@Nullable String body);
 
-        public abstract Builder draft(Boolean draft);
+        public abstract Builder draft(@Nullable Boolean draft);
 
-        public abstract Builder prerelease(Boolean prerelease);
+        public abstract Builder prerelease(@Nullable Boolean prerelease);
 
         public abstract CreateRelease build();
     }

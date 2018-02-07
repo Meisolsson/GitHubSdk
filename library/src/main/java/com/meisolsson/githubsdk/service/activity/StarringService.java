@@ -62,7 +62,7 @@ public interface StarringService {
      * @return If starred response code is 204. If not the code is 404
      */
     @GET("/user/starred/{owner}/{repo}")
-    Single<Response<Boolean>> checkIfRepositoryIsStarred(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Void>> checkIfRepositoryIsStarred(@Path("owner") String owner, @Path("repo") String repo);
 
     /**
      *
@@ -72,7 +72,7 @@ public interface StarringService {
      */
     @Headers("Content-Length: 0")
     @PUT("/user/starred/{owner}/{repo}")
-    Single<Response<Boolean>> starRepository(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Void>> starRepository(@Path("owner") String owner, @Path("repo") String repo);
 
     /**
      *
@@ -81,5 +81,5 @@ public interface StarringService {
      * @return If success response code is 204.
      */
     @DELETE("/user/starred/{owner}/{repo}")
-    Single<Response<Boolean>> unstarRepository(@Path("owner") String owner, @Path("repo") String repo);
+    Single<Response<Void>> unstarRepository(@Path("owner") String owner, @Path("repo") String repo);
 }

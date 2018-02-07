@@ -41,7 +41,7 @@ public abstract class DeploymentStatus implements Parcelable {
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract User creator();

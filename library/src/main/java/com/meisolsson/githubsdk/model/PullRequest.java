@@ -31,6 +31,14 @@ import java.util.List;
 
 @AutoValue
 public abstract class PullRequest implements Parcelable {
+    public enum MergeableState {
+        @Json(name = "behind") Behind,
+        @Json(name = "blocked") Blocked,
+        @Json(name = "clean") Clean,
+        @Json(name = "dirty") Dirty,
+        @Json(name = "unknown") Unknown,
+        @Json(name = "unstable") Unstable
+    }
 
     @Nullable
     public abstract String url();
@@ -47,7 +55,7 @@ public abstract class PullRequest implements Parcelable {
     public abstract String title();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer comments();
@@ -68,10 +76,14 @@ public abstract class PullRequest implements Parcelable {
     public abstract Boolean locked();
 
     @Nullable
-    public abstract Boolean mergable();
+    public abstract Boolean mergeable();
 
     @Nullable
     public abstract Boolean merged();
+
+    @Json(name = "mergeable_state")
+    @Nullable
+    public abstract MergeableState mergeableState();
 
     @Nullable
     public abstract IssueState state();
@@ -89,18 +101,14 @@ public abstract class PullRequest implements Parcelable {
     public abstract Milestone milestone();
 
     @Nullable
-    public abstract Commit base();
+    public abstract PullRequestMarker base();
 
     @Nullable
-    public abstract Commit head();
+    public abstract PullRequestMarker head();
 
     @Json(name = "html_url")
     @Nullable
     public abstract String htmlUrl();
-
-    @Json(name = "pull_request")
-    @Nullable
-    public abstract PullRequest pullRequest();
 
     @Json(name = "closed_at")
     @Nullable
@@ -146,7 +154,82 @@ public abstract class PullRequest implements Parcelable {
     @Nullable
     public abstract User mergedBy();
 
+    public abstract Builder toBuilder();
+
+    public static Builder builder() {
+        return new AutoValue_PullRequest.Builder();
+    }
+
     public static JsonAdapter<PullRequest> jsonAdapter(Moshi moshi) {
         return new AutoValue_PullRequest.MoshiJsonAdapter(moshi);
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder {
+        public abstract Builder url(String url);
+
+        public abstract Builder body(String body);
+
+        public abstract Builder bodyHtml(String bodyHtml);
+
+        public abstract Builder title(String title);
+
+        public abstract Builder id(Long id);
+
+        public abstract Builder comments(Integer comments);
+
+        public abstract Builder number(Integer number);
+
+        public abstract Builder additions(Integer additions);
+
+        public abstract Builder commits(Integer commits);
+
+        public abstract Builder deletions(Integer deletions);
+
+        public abstract Builder locked(Boolean locked);
+
+        public abstract Builder mergeable(Boolean mergeable);
+
+        public abstract Builder merged(Boolean merged);
+
+        public abstract Builder mergeableState(MergeableState mergeableState);
+
+        public abstract Builder state(IssueState state);
+
+        public abstract Builder user(User user);
+
+        public abstract Builder assignee(User assignee);
+
+        public abstract Builder labels(List<Label> labels);
+
+        public abstract Builder milestone(Milestone milestone);
+
+        public abstract Builder base(PullRequestMarker base);
+
+        public abstract Builder head(PullRequestMarker head);
+
+        public abstract Builder htmlUrl(String htmlUrl);
+
+        public abstract Builder closedAt(Date closedAt);
+
+        public abstract Builder createdAt(Date createdAt);
+
+        public abstract Builder updatedAt(Date updatedAt);
+
+        public abstract Builder closedBy(User closedBy);
+
+        public abstract Builder changedFiles(Integer changedFiles);
+
+        public abstract Builder diffUrl(String diffUrl);
+
+        public abstract Builder patchUrl(String patchUrl);
+
+        public abstract Builder mergeCommitSha(String mergeCommitSha);
+
+        public abstract Builder mergedAt(Date mergedAt);
+
+        public abstract Builder mergedBy(User mergedBy);
+
+        public abstract PullRequest build();
     }
 }

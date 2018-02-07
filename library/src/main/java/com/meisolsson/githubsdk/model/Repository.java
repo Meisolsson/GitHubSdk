@@ -55,6 +55,10 @@ public abstract class Repository implements Parcelable {
     @Nullable
     public abstract Boolean isFork();
 
+    @Json(name = "archived")
+    @Nullable
+    public abstract Boolean isArchived();
+
     @Nullable
     public abstract User owner();
 
@@ -169,6 +173,8 @@ public abstract class Repository implements Parcelable {
         public abstract Builder id(Long id);
 
         public abstract Builder isFork(Boolean newFork);
+
+        public abstract Builder isArchived(Boolean archived);
 
         public abstract Builder owner(User owner);
 

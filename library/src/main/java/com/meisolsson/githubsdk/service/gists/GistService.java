@@ -61,13 +61,13 @@ public interface GistService {
     Single<Response<Page<GistRevision>>> getGistCommits(@Path("id") String id, @Query("page") long page);
 
     @GET("gists/{id}/star")
-    Single<Response<Boolean>> checkIfGistIsStarred(@Path("id") String id);
+    Single<Response<Void>> checkIfGistIsStarred(@Path("id") String id);
 
     @PUT("gists/{id}/star")
-    Single<Response<Boolean>> starGist(@Path("id") String id);
+    Single<Response<Void>> starGist(@Path("id") String id);
 
     @DELETE("gists/{id}/star")
-    Single<Response<Boolean>> unstarGist(@Path("id") String id);
+    Single<Response<Void>> unstarGist(@Path("id") String id);
 
     @POST("gists/{id}/forks")
     Single<Response<Gist>> forkGist(@Path("id") String id);
@@ -76,5 +76,5 @@ public interface GistService {
     Single<Response<Page<Gist>>> gistGistForks(@Path("id") String id, @Query("page") long page);
 
     @DELETE("gists/{id}")
-    Single<Response<Boolean>> deleteGist(@Path("id") String id);
+    Single<Response<Void>> deleteGist(@Path("id") String id);
 }

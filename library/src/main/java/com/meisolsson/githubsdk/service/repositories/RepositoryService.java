@@ -24,6 +24,8 @@ import com.meisolsson.githubsdk.model.User;
 import com.meisolsson.githubsdk.model.request.repository.CreateRepository;
 import com.meisolsson.githubsdk.model.request.repository.EditRepository;
 
+import java.util.Map;
+
 import io.reactivex.Single;
 import retrofit2.Response;
 import retrofit2.http.Body;
@@ -33,17 +35,27 @@ import retrofit2.http.PATCH;
 import retrofit2.http.POST;
 import retrofit2.http.Path;
 import retrofit2.http.Query;
+import retrofit2.http.QueryMap;
 
 public interface RepositoryService {
 
     @GET("/user/repos")
     Single<Response<Page<Repository>>> getUserRepositories(@Query("page") long page);
 
+    @GET("/user/repos")
+    Single<Response<Page<Repository>>> getUserRepositories(@QueryMap Map<String, String> options, @Query("page") long page);
+
     @GET("users/{username}/repos")
 	Single<Response<Page<Repository>>> getUserRepositories(@Path("username") String username, @Query("page") long page);
 
+    @GET("users/{username}/repos")
+	Single<Response<Page<Repository>>> getUserRepositories(@Path("username") String username, @QueryMap Map<String, String> options, @Query("page") long page);
+
     @GET("orgs/{org}/repos")
 	Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @Query("page") long page);
+
+    @GET("orgs/{org}/repos")
+    Single<Response<Page<Repository>>> getOrganizationRepositories(@Path("org") String org, @QueryMap Map<String, String> options, @Query("page") long page);
 
     @GET("/repositories")
 	Single<Response<Page<Repository>>> getRepositories(@Query("page") long page);
@@ -64,7 +76,7 @@ public interface RepositoryService {
 	Single<Response<Page<User>>> getContributors(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/languages")
-	Single<Response<Boolean>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> getLanguages(@Path("owner") String owner, @Path("repo") String repo);
 
     @GET("repos/{owner}/{repo}/teams")
 	Single<Response<Page<Team>>> getTeams(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
@@ -73,6 +85,6 @@ public interface RepositoryService {
 	Single<Response<Page<Branch>>> getTags(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @DELETE("repos/{owner}/{repo}")
-	Single<Response<Boolean>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
+	Single<Response<Void>> deleteRepository(@Path("owner") String owner, @Path("repo") String repo);
 
 }

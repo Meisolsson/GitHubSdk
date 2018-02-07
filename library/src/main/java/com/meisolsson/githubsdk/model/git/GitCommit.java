@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.meisolsson.githubsdk.model.VerificationResult;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -57,6 +58,9 @@ public abstract class GitCommit implements Parcelable {
     @Nullable
     public abstract Integer commentCount();
 
+    @Nullable
+    public abstract VerificationResult verification();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<GitCommit> jsonAdapter(Moshi moshi) {
@@ -86,6 +90,8 @@ public abstract class GitCommit implements Parcelable {
         public abstract Builder parents(@Nullable List<GitCommit> parents);
 
         public abstract Builder commentCount(Integer commentCount);
+
+        public abstract Builder verification(VerificationResult verification);
 
         public abstract GitCommit build();
     }

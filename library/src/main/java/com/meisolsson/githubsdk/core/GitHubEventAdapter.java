@@ -68,7 +68,7 @@ public class GitHubEventAdapter {
         String id = null;
         Date createdAt = null;
         boolean _public = false;
-        Repository repo = null;
+        GitHubEvent.RepoIdentifier repo = null;
 
         Moshi moshi = ServiceGenerator.moshi;
 
@@ -94,7 +94,7 @@ public class GitHubEventAdapter {
                     _public = json.nextBoolean();
                     break;
                 case "repo":
-                    repo = Repository.jsonAdapter(moshi).fromJson(json);
+                    repo = GitHubEvent.RepoIdentifier.jsonAdapter(moshi).fromJson(json);
                     break;
                 case "payload":
                     payload = readPayload(type, moshi, json).toBuilder().type(type).build();
@@ -136,7 +136,7 @@ public class GitHubEventAdapter {
             writer.name("actor");
             User.jsonAdapter(moshi).toJson(writer, event.actor());
             writer.name("repo");
-            Repository.jsonAdapter(moshi).toJson(writer, event.repo());
+            GitHubEvent.RepoIdentifier.jsonAdapter(moshi).toJson(writer, event.repo());
             writer.name("payload");
             payloadToJson(event.type(), moshi, event.payload(), writer);
 

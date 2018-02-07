@@ -68,6 +68,9 @@ public abstract class Commit implements Parcelable {
     @Nullable
     public abstract String htmlUrl();
 
+    @Nullable
+    public abstract VerificationResult verification();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<Commit> jsonAdapter(Moshi moshi) {
@@ -104,6 +107,8 @@ public abstract class Commit implements Parcelable {
         public abstract Builder files(@NonNull List<GitHubFile> files);
 
         public abstract Builder htmlUrl(String htmlUrl);
+
+        public abstract Builder verification(VerificationResult verification);
 
         public abstract Commit build();
     }

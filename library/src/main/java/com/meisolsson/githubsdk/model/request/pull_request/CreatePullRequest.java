@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.pull_request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,13 +27,13 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreatePullRequest implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String title();
 
-    @Nullable
+    @NonNull
     public abstract String head();
 
-    @Nullable
+    @NonNull
     public abstract String base();
 
     @Nullable
@@ -49,13 +50,13 @@ public abstract class CreatePullRequest implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder title(String title);
+        public abstract Builder title(@NonNull String title);
 
-        public abstract Builder head(String head);
+        public abstract Builder head(@NonNull String head);
 
-        public abstract Builder base(String base);
+        public abstract Builder base(@NonNull String base);
 
-        public abstract Builder body(String body);
+        public abstract Builder body(@Nullable String body);
 
         public abstract CreatePullRequest build();
     }

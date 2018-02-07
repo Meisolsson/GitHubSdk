@@ -56,7 +56,7 @@ public interface PullRequestService {
 	Single<Response<Page<GitHubFile>>> getPullRequestFiles(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/pulls/{number}/merge")
-	Single<Response<Boolean>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+	Single<Response<Void>> hasPullRequestBeenMerged(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @PUT("repos/{owner}/{repo}/pulls/{number}/merge")
 	Single<Response<MergeResponse>> mergePullRequest(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body MergeRequest body);

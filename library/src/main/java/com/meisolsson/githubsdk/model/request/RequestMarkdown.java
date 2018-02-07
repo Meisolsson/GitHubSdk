@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -29,7 +30,7 @@ public abstract class RequestMarkdown implements Parcelable {
     public static final String MODE_MARKDOWN = "markdown";
     public static final String MODE_GFM = "gfm";
 
-    @Nullable
+    @NonNull
     public abstract String text();
 
     @Nullable
@@ -48,11 +49,11 @@ public abstract class RequestMarkdown implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder text(String text);
+        public abstract Builder text(@NonNull String text);
 
-        public abstract Builder mode(String mode);
+        public abstract Builder mode(@Nullable String mode);
 
-        public abstract Builder context(String context);
+        public abstract Builder context(@Nullable String context);
 
         public abstract RequestMarkdown build();
     }

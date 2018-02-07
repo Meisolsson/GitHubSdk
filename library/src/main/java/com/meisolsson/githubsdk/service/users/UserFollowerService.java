@@ -43,16 +43,16 @@ public interface UserFollowerService {
 	Single<Response<Page<User>>> getFollowing(@Query("page") long page);
 
     @GET("user/following/{username}")
-	Single<Response<Boolean>> isFollowing(@Path("username") String username);
+	Single<Response<Void>> isFollowing(@Path("username") String username);
 
     @GET("users/{username}/following/{target_user}")
-	Single<Response<Boolean>> isFollowing(@Path("username") String username, @Path("target_user") String target_user);
+	Single<Response<Void>> isFollowing(@Path("username") String username, @Path("target_user") String target_user);
 
     @Headers("Content-Length: 0")
     @PUT("user/following/{username}")
-	Single<Response<Boolean>> followUser(@Path("username") String username);
+	Single<Response<Void>> followUser(@Path("username") String username);
 
     @DELETE("user/following/{username}")
-	Single<Response<Boolean>> unfollowUser(@Path("username") String username);
+	Single<Response<Void>> unfollowUser(@Path("username") String username);
 
 }

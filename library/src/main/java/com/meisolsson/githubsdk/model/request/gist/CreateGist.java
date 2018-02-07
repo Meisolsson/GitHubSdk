@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.gist;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.meisolsson.githubsdk.model.GistFile;
@@ -30,7 +31,7 @@ import java.util.Map;
 @AutoValue
 public abstract class CreateGist implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract Map<String, GistFile> files();
 
     @Nullable
@@ -53,11 +54,11 @@ public abstract class CreateGist implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder files(Map<String, GistFile> files);
+        public abstract Builder files(@NonNull Map<String, GistFile> files);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
-        public abstract Builder isPublic(Boolean newPublic);
+        public abstract Builder isPublic(@Nullable Boolean newPublic);
 
         public abstract CreateGist build();
     }

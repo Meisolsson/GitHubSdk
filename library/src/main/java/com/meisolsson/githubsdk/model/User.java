@@ -58,7 +58,7 @@ public abstract class User implements Parcelable {
     public abstract String email();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer followers();
@@ -80,9 +80,21 @@ public abstract class User implements Parcelable {
     @Nullable
     public abstract Integer publicRepos();
 
+    @Json(name = "total_private_repos")
+    @Nullable
+    public abstract Integer totalPrivateRepos();
+
+    @Json(name = "owned_private_repos")
+    @Nullable
+    public abstract Integer ownedPrivateRepos();
+
     @Json(name = "public_gists")
     @Nullable
     public abstract Integer publicGists();
+
+    @Json(name = "private_gists")
+    @Nullable
+    public abstract Integer privateGists();
 
     @Json(name = "html_url")
     @Nullable
@@ -140,7 +152,7 @@ public abstract class User implements Parcelable {
 
         public abstract Builder email(String email);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder followers(Integer followers);
 
@@ -154,7 +166,13 @@ public abstract class User implements Parcelable {
 
         public abstract Builder publicRepos(Integer publicRepos);
 
+        public abstract Builder totalPrivateRepos(Integer totalPrivateRepos);
+
+        public abstract Builder ownedPrivateRepos(Integer ownedPrivateRepos);
+
         public abstract Builder publicGists(Integer publicGists);
+
+        public abstract Builder privateGists(Integer privateGists);
 
         public abstract Builder htmlUrl(String htmlUrl);
 

@@ -48,5 +48,5 @@ public interface IssueCommentService {
     Single<Response<GitHubComment>> editIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/issues/comments/{id}")
-    Single<Response<Boolean>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
+    Single<Response<Void>> deleteIssueComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 }

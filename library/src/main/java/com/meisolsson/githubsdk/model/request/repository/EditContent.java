@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,16 +27,16 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class EditContent implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String path();
 
-    @Nullable
+    @NonNull
     public abstract String message();
 
-    @Nullable
+    @NonNull
     public abstract String content();
 
-    @Nullable
+    @NonNull
     public abstract String sha();
 
     @Nullable
@@ -51,15 +52,15 @@ public abstract class EditContent implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder path(String path);
+        public abstract Builder path(@NonNull String path);
 
-        public abstract Builder message(String message);
+        public abstract Builder message(@NonNull String message);
 
-        public abstract Builder content(String content);
+        public abstract Builder content(@NonNull String content);
 
-        public abstract Builder sha(String sha);
+        public abstract Builder sha(@NonNull String sha);
 
-        public abstract Builder branch(String branch);
+        public abstract Builder branch(@Nullable String branch);
 
         public abstract EditContent build();
     }

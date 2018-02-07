@@ -93,5 +93,5 @@ public interface GitService {
     Single<Response<GitReference>> updateGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch, @Body UpdateGitReference body);
 
     @DELETE("repos/{owner}/{repo}/git/refs/{ref}")
-    Single<Response<Boolean>> deleteGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch);
+    Single<Response<Void>> deleteGitReference(@Path("owner") String owner, @Path("repo") String repo, @Path("ref") String branch);
 }

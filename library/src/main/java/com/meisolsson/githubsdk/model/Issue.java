@@ -48,7 +48,7 @@ public abstract class Issue implements Parcelable {
     public abstract String title();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer comments();
@@ -107,6 +107,9 @@ public abstract class Issue implements Parcelable {
     @Nullable
     public abstract Repository repository();
 
+    @Nullable
+    public abstract Reactions reactions();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<Issue> jsonAdapter(Moshi moshi) {
@@ -127,7 +130,7 @@ public abstract class Issue implements Parcelable {
 
         public abstract Builder title(String title);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder comments(Integer comments);
 
@@ -158,6 +161,8 @@ public abstract class Issue implements Parcelable {
         public abstract Builder closedBy(User closedBy);
 
         public abstract Builder repository(Repository repository);
+
+        public abstract Builder reactions(Reactions reactions);
 
         public abstract Builder assignees(@Nullable List<User> assignees);
 

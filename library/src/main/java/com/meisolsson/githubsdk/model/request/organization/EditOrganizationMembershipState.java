@@ -16,6 +16,8 @@
 
 package com.meisolsson.githubsdk.model.request.organization;
 
+import android.support.annotation.NonNull;
+
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -23,6 +25,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class EditOrganizationMembershipState {
 
+    @NonNull
     public abstract String state();
 
     public static JsonAdapter<EditOrganizationMembershipState> jsonAdapter(Moshi moshi){
@@ -35,7 +38,7 @@ public abstract class EditOrganizationMembershipState {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder state(String state);
+        public abstract Builder state(@NonNull String state);
 
         public abstract EditOrganizationMembershipState build();
     }

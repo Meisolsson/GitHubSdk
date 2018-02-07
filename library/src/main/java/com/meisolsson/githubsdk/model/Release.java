@@ -42,7 +42,7 @@ public abstract class Release implements Parcelable {
     public abstract String body();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Boolean draft();

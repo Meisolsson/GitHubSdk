@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.git;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,7 +27,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class UpdateGitReference implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String sha();
 
     @Nullable
@@ -42,9 +43,9 @@ public abstract class UpdateGitReference implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder sha(String sha);
+        public abstract Builder sha(@NonNull String sha);
 
-        public abstract Builder force(Boolean force);
+        public abstract Builder force(@Nullable Boolean force);
 
         public abstract UpdateGitReference build();
     }

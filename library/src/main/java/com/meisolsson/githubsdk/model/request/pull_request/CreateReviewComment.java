@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.pull_request;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -27,7 +28,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreateReviewComment implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String body();
 
     @Json(name = "commit_id")
@@ -41,7 +42,8 @@ public abstract class CreateReviewComment implements Parcelable {
     public abstract Integer position();
 
     @Json(name = "in_reply_to")
-    public abstract Integer inReplyTo();
+    @Nullable
+    public abstract Long inReplyTo();
 
     public static JsonAdapter<CreateReviewComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_CreateReviewComment.MoshiJsonAdapter(moshi);
@@ -54,15 +56,15 @@ public abstract class CreateReviewComment implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder body(String body);
+        public abstract Builder body(@NonNull String body);
 
-        public abstract Builder commitId(String commitId);
+        public abstract Builder commitId(@Nullable String commitId);
 
-        public abstract Builder path(String path);
+        public abstract Builder path(@Nullable String path);
 
-        public abstract Builder position(Integer position);
+        public abstract Builder position(@Nullable Integer position);
 
-        public abstract Builder inReplyTo(Integer inReplyTo);
+        public abstract Builder inReplyTo(@Nullable Long inReplyTo);
 
         public abstract CreateReviewComment build();
     }

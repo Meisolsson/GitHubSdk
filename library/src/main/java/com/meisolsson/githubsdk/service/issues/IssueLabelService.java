@@ -56,13 +56,13 @@ public interface IssueLabelService {
     Single<Response<List<Label>>> addLablesToIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
 
     @DELETE("repos/{owner}/{repo}/issues/{number}/labels/{name}")
-    Single<Response<Boolean>> deleteLableFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("name") String label);
+    Single<Response<Void>> deleteLableFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Path("name") String label);
 
     @PUT("repos/{owner}/{repo}/issues/{number}/labels")
     Single<Response<List<Label>>> replaceLablesForIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body List<String> labels);
 
     @DELETE("repos/{owner}/{repo}/issues/{number}/labels")
-    Single<Response<Boolean>> deleteLablesFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
+    Single<Response<Void>> deleteLablesFromIssue(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
 
     @GET("repos/{owner}/{repo}/milestones/{number}/labels")
     Single<Response<Page<Label>>> getMilestoneIssueLabels(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Query("page") long page);

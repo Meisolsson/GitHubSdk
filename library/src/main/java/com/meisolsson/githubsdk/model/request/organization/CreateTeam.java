@@ -30,14 +30,14 @@ import java.util.List;
 @AutoValue
 public abstract class CreateTeam implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String name();
 
     @Nullable
     public abstract String description();
 
     @Json(name = "repo_names")
-    @NonNull
+    @Nullable
     public abstract List<String> repoNames();
 
     @Nullable
@@ -53,13 +53,13 @@ public abstract class CreateTeam implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder name(String name);
+        public abstract Builder name(@NonNull String name);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
-        public abstract Builder repoNames(@NonNull List<String> repoNames);
+        public abstract Builder repoNames(@Nullable List<String> repoNames);
 
-        public abstract Builder privacy(String privacy);
+        public abstract Builder privacy(@Nullable String privacy);
 
         public abstract CreateTeam build();
     }

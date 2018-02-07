@@ -34,6 +34,9 @@ public interface RepositoryCommitService {
     @GET("repos/{owner}/{repo}/commits")
     Single<Response<Page<Commit>>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("page") long page);
 
+    @GET("repos/{owner}/{repo}/commits")
+    Single<Response<Page<Commit>>> getCommits(@Path("owner") String owner, @Path("repo") String repo, @Query("sha") String sha, @Query("path") String path, @Query("page") long page);
+
     @GET("repos/{owner}/{repo}/commits/{sha}")
 	Single<Response<Commit>> getCommit(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha);
 

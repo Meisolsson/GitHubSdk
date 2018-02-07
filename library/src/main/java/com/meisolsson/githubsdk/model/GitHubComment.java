@@ -16,11 +16,8 @@
 
 package com.meisolsson.githubsdk.model;
 
-import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
-import com.meisolsson.githubsdk.core.FormattedHtml;
-import com.meisolsson.githubsdk.core.FormattedTime;
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
@@ -29,40 +26,20 @@ import com.squareup.moshi.Moshi;
 import java.util.Date;
 
 @AutoValue
-public abstract class GitHubComment implements Parcelable {
+public abstract class GitHubComment extends GitHubCommentBase {
 
-    @Nullable
-    public abstract String url();
+    public abstract Builder toBuilder();
 
-    @Nullable
-    public abstract String body();
-
-    @Nullable
-    @Json(name = "body_html")
-    @FormattedHtml
-    public abstract String bodyHtml();
-
-    @Nullable
-    public abstract Integer id();
-
-    @Nullable
-    public abstract User user();
-
-    @Json(name = "html_url")
-    @Nullable
-    public abstract String htmlUrl();
-
-    @Json(name = "created_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date createdAt();
-
-    @Json(name = "updated_at")
-    @Nullable
-    @FormattedTime
-    public abstract Date updatedAt();
+    public static Builder builder() {
+        return new AutoValue_GitHubComment.Builder();
+    }
 
     public static JsonAdapter<GitHubComment> jsonAdapter(Moshi moshi) {
         return new AutoValue_GitHubComment.MoshiJsonAdapter(moshi);
+    }
+
+    @AutoValue.Builder
+    public abstract static class Builder extends GitHubCommentBase.Builder<Builder> {
+        public abstract GitHubComment build();
     }
 }
