@@ -40,8 +40,8 @@ public interface RepositoryDeploymentService {
     Single<Response<Deployment>> createDeployment(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployment body);
 
     @GET("repos/{owner}/{repo}/deployments/{id}/statuses")
-	Single<Response<Page<DeploymentStatus>>> getDeploymentStatuses(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Query("page") long page);
+	Single<Response<Page<DeploymentStatus>>> getDeploymentStatuses(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Query("page") long page);
 
     @POST("repos/{owner}/{repo}/deployments/{id}/statuses")
-	Single<Response<DeploymentStatus>> createDeploymentStatus(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id, @Body CreateDeploymentStatus body);
+	Single<Response<DeploymentStatus>> createDeploymentStatus(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id, @Body CreateDeploymentStatus body);
 }

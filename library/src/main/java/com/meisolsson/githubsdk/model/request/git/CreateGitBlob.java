@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.git;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,7 +27,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreateGitBlob implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String content();
 
     @Nullable
@@ -42,9 +43,9 @@ public abstract class CreateGitBlob implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder content(String content);
+        public abstract Builder content(@NonNull String content);
 
-        public abstract Builder encoding(String encoding);
+        public abstract Builder encoding(@Nullable String encoding);
 
         public abstract CreateGitBlob build();
     }

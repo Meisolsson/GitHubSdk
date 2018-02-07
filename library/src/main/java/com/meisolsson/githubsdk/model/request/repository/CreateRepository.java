@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -27,7 +28,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CreateRepository implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String name();
 
     @Nullable
@@ -54,7 +55,7 @@ public abstract class CreateRepository implements Parcelable {
 
     @Json(name = "team_id")
     @Nullable
-    public abstract Integer teamId();
+    public abstract Long teamId();
 
     @Json(name = "auto_init")
     @Nullable
@@ -78,27 +79,27 @@ public abstract class CreateRepository implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder name(String name);
+        public abstract Builder name(@NonNull String name);
 
-        public abstract Builder description(String description);
+        public abstract Builder description(@Nullable String description);
 
-        public abstract Builder homepage(String homepage);
+        public abstract Builder homepage(@Nullable String homepage);
 
-        public abstract Builder isPrivate(Boolean _private);
+        public abstract Builder isPrivate(@Nullable Boolean _private);
 
-        public abstract Builder hasIssues(Boolean hasIssues);
+        public abstract Builder hasIssues(@Nullable Boolean hasIssues);
 
-        public abstract Builder hasWiki(Boolean hasWiki);
+        public abstract Builder hasWiki(@Nullable Boolean hasWiki);
 
-        public abstract Builder hasDownloads(Boolean hasDownloads);
+        public abstract Builder hasDownloads(@Nullable Boolean hasDownloads);
 
-        public abstract Builder teamId(Integer teamId);
+        public abstract Builder teamId(@Nullable Long teamId);
 
-        public abstract Builder autoInit(Boolean autoInit);
+        public abstract Builder autoInit(@Nullable Boolean autoInit);
 
-        public abstract Builder gitignoreTemplate(String gitignoreTemplate);
+        public abstract Builder gitignoreTemplate(@Nullable String gitignoreTemplate);
 
-        public abstract Builder licenseTemplate(String licenseTemplate);
+        public abstract Builder licenseTemplate(@Nullable String licenseTemplate);
 
         public abstract CreateRepository build();
     }

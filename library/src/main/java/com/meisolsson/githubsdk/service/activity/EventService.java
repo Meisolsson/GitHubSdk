@@ -81,14 +81,14 @@ public interface EventService {
 
     /**
      * Lists a user's received events, if not authenticated as the given user
-     * it will function as {@link #getPublicUserRecievedEvents(String, long)}
+     * it will function as {@link #getPublicUserReceivedEvents(String, long)}
      *
      * @param username Users login
      * @param page Page index, starts at 0
      * @return Paged list of events
      */
     @GET("users/{username}/received_events")
-    Single<Response<Page<GitHubEvent>>> getUserRecievedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Response<Page<GitHubEvent>>> getUserReceivedEvents(@Path("username") String username, @Query("page") long page);
 
     /**
      * Lists a user's public received events
@@ -98,7 +98,7 @@ public interface EventService {
      * @return Paged list of events
      */
     @GET("users/{username}/received_events/public")
-    Single<Response<Page<GitHubEvent>>> getPublicUserRecievedEvents(@Path("username") String username, @Query("page") long page);
+    Single<Response<Page<GitHubEvent>>> getPublicUserReceivedEvents(@Path("username") String username, @Query("page") long page);
 
     /**
      * Lists a user's performed events, if not authenticated as the given user

@@ -20,8 +20,11 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+
+import java.util.List;
 
 @AutoValue
 public abstract class SearchCode implements Parcelable {
@@ -43,6 +46,10 @@ public abstract class SearchCode implements Parcelable {
 
     @Nullable
     public abstract Double score();
+
+    @Json(name = "text_matches")
+    @Nullable
+    public abstract List<TextMatch> textMatches();
 
     public static JsonAdapter<SearchCode> jsonAdapter(Moshi moshi) {
         return new AutoValue_SearchCode.MoshiJsonAdapter(moshi);

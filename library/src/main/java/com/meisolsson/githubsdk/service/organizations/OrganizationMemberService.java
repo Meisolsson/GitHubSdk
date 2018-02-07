@@ -39,23 +39,23 @@ public interface OrganizationMemberService {
     Single<Response<Page<User>>> getMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/members/{username}")
-	Single<Response<Boolean>> isMember(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> isMember(@Path("org") String org, @Path("username") String username);
 
     @DELETE("orgs/{org}/members/{username}")
-	Single<Response<Boolean>> deleteMember(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> deleteMember(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/public_members")
 	Single<Response<Page<User>>> getPublicMembers(@Path("org") String org, @Query("page") long page);
 
     @GET("orgs/{org}/public_members/{username}")
-	Single<Response<Boolean>> isMemberPublic(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> isMemberPublic(@Path("org") String org, @Path("username") String username);
 
     @Headers("Content-Length: 0")
     @PUT("orgs/{org}/public_members/{username}")
-	Single<Response<Boolean>> publicizeMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> publicizeMembership(@Path("org") String org, @Path("username") String username);
 
     @DELETE("orgs/{org}/public_members/{username}")
-	Single<Response<Boolean>> unpublicizeMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> unpublicizeMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("orgs/{org}/memberships/{username}")
 	Single<Response<Membership>> getMembership(@Path("org") String org, @Path("username") String username);
@@ -64,7 +64,7 @@ public interface OrganizationMemberService {
 	Single<Response<Membership>> changeOrganizationMembership(@Path("org") String org, @Path("username") String username, @Body EditOrganizationMembership body);
 
     @DELETE("orgs/{org}/memberships/{username}")
-	Single<Response<Boolean>> deleteOrganizationMembership(@Path("org") String org, @Path("username") String username);
+	Single<Response<Void>> deleteOrganizationMembership(@Path("org") String org, @Path("username") String username);
 
     @GET("/user/memberships/orgs")
 	Single<Response<Page<Membership>>> getOrganizationMemberships(@Query("page") long page);

@@ -36,7 +36,7 @@ public interface GistCommentService {
     Single<Response<Page<GitHubComment>>> getGistComments(@Path("gist_id") String gistId, @Query("page") long page);
 
     @GET("gists/{gist_id}/comments/{id}")
-    Single<Response<GitHubComment>> getGistComment(@Path("gist_id") String gistId, @Path("id") String id);
+    Single<Response<GitHubComment>> getGistComment(@Path("gist_id") String gistId, @Path("id") long id);
 
     @POST("gists/{gist_id}/comments")
     Single<Response<GitHubComment>> createGistComment(@Path("gist_id") String gistId, @Body CommentRequest body);
@@ -45,5 +45,5 @@ public interface GistCommentService {
     Single<Response<GitHubComment>> editGistComment(@Path("gist_id") String gistId, @Path("id") long id, @Body CommentRequest body);
 
     @DELETE("gists/{gist_id}/comments/{id}")
-    Single<Response<Boolean>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
+    Single<Response<Void>> deleteGistComment(@Path("gist_id") String gistId, @Path("id") long id);
 }

@@ -20,9 +20,12 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.meisolsson.githubsdk.core.FormattedTime;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
+
+import java.util.Date;
 
 @AutoValue
 public abstract class Download implements Parcelable {
@@ -37,7 +40,7 @@ public abstract class Download implements Parcelable {
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer size();
@@ -52,6 +55,11 @@ public abstract class Download implements Parcelable {
     @Json(name = "content_type")
     @Nullable
     public abstract String contentType();
+
+    @Json(name = "created_at")
+    @Nullable
+    @FormattedTime
+    public abstract Date createdAt();
 
     public static JsonAdapter<Download> jsonAdapter(Moshi moshi) {
         return new AutoValue_Download.MoshiJsonAdapter(moshi);

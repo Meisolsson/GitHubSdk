@@ -37,13 +37,13 @@ public abstract class Milestone implements Parcelable {
     public abstract String title();
 
     @Nullable
-    public abstract String state();
+    public abstract IssueState state();
 
     @Nullable
     public abstract String description();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer number();
@@ -80,7 +80,10 @@ public abstract class Milestone implements Parcelable {
 
     @Json(name = "due_on")
     @Nullable
-    public abstract String dueOn();
+    @FormattedTime
+    public abstract Date dueOn();
+
+    public abstract Builder toBuilder();
 
     public static JsonAdapter<Milestone> jsonAdapter(Moshi moshi) {
         return new AutoValue_Milestone.MoshiJsonAdapter(moshi);
@@ -96,11 +99,11 @@ public abstract class Milestone implements Parcelable {
 
         public abstract Builder title(String title);
 
-        public abstract Builder state(String state);
+        public abstract Builder state(IssueState state);
 
         public abstract Builder description(String description);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder number(Integer number);
 
@@ -118,7 +121,7 @@ public abstract class Milestone implements Parcelable {
 
         public abstract Builder closedAt(Date closedAt);
 
-        public abstract Builder dueOn(String dueOn);
+        public abstract Builder dueOn(Date dueOn);
 
         public abstract Milestone build();
     }

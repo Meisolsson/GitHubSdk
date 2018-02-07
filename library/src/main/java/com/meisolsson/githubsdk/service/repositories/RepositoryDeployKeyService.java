@@ -35,12 +35,12 @@ public interface RepositoryDeployKeyService {
     Single<Response<Page<DeployKey>>> getDeployKeys(@Path("owner") String owner, @Path("repo") String repo, @Query("page") long page);
 
     @GET("repos/{owner}/{repo}/keys/{id}")
-	Single<Response<DeployKey>> getDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<DeployKey>> getDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @POST("repos/{owner}/{repo}/keys")
 	Single<Response<DeployKey>> addDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Body CreateDeployKey body);
 
     @DELETE("repos/{owner}/{repo}/keys/{id}")
-	Single<Response<Boolean>> deleteDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Void>> deleteDeployKey(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
 }

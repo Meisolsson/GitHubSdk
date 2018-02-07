@@ -16,7 +16,9 @@
 
 package com.meisolsson.githubsdk.model;
 
+import com.squareup.moshi.Json;
+
 public enum IssueState {
-    open,
-    closed
+    @Json(name = "open") Open,
+    @Json(name = "closed") Closed
 }

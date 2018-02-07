@@ -16,6 +16,8 @@
 
 package com.meisolsson.githubsdk.model.request;
 
+import android.support.annotation.NonNull;
+
 import com.google.auto.value.AutoValue;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -23,6 +25,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class CommentRequest {
 
+    @NonNull
     public abstract String body();
 
     public static JsonAdapter<CommentRequest> jsonAdapter(Moshi moshi){
@@ -35,7 +38,7 @@ public abstract class CommentRequest {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder body(String body);
+        public abstract Builder body(@NonNull String body);
 
         public abstract CommentRequest build();
     }

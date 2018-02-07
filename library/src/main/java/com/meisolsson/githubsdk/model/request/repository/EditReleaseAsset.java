@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.model.request.repository;
 
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
@@ -26,7 +27,7 @@ import com.squareup.moshi.Moshi;
 @AutoValue
 public abstract class EditReleaseAsset implements Parcelable {
 
-    @Nullable
+    @NonNull
     public abstract String name();
 
     @Nullable
@@ -42,9 +43,9 @@ public abstract class EditReleaseAsset implements Parcelable {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract Builder name(String name);
+        public abstract Builder name(@NonNull String name);
 
-        public abstract Builder label(String label);
+        public abstract Builder label(@Nullable String label);
 
         public abstract EditReleaseAsset build();
     }

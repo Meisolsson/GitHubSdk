@@ -32,6 +32,22 @@ import java.util.Date;
 
 @AutoValue
 public abstract class GitHubEvent implements Parcelable {
+    @AutoValue
+    public abstract static class RepoIdentifier implements Parcelable {
+        @Nullable
+        public abstract Long id();
+
+        @Nullable
+        public abstract String url();
+
+        @Json(name = "name")
+        @Nullable
+        public abstract String repoWithUserName();
+
+        public static JsonAdapter<RepoIdentifier> jsonAdapter(Moshi moshi) {
+            return new AutoValue_GitHubEvent_RepoIdentifier.MoshiJsonAdapter(moshi);
+        }
+    }
 
     @Nullable
     public abstract GitHubEventType type();
@@ -44,7 +60,7 @@ public abstract class GitHubEvent implements Parcelable {
     public abstract GitHubPayload payload();
 
     @Nullable
-    public abstract Repository repo();
+    public abstract RepoIdentifier repo();
 
     @Nullable
     public abstract User actor();
@@ -80,7 +96,7 @@ public abstract class GitHubEvent implements Parcelable {
 
         public abstract Builder payload(GitHubPayload payload);
 
-        public abstract Builder repo(Repository repo);
+        public abstract Builder repo(RepoIdentifier repo);
 
         public abstract Builder actor(User actor);
 

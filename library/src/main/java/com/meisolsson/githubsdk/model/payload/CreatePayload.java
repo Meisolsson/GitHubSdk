@@ -21,6 +21,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.meisolsson.githubsdk.model.ReferenceType;
 import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
@@ -36,7 +37,7 @@ public abstract class CreatePayload extends GitHubPayload<CreatePayload.Builder>
 
     @Json(name = "ref_type")
     @Nullable
-    public abstract String refType();
+    public abstract ReferenceType refType();
 
     @Json(name = "master_branch")
     @Nullable
@@ -62,7 +63,7 @@ public abstract class CreatePayload extends GitHubPayload<CreatePayload.Builder>
 
         public abstract Builder description(String description);
 
-        public abstract Builder refType(String refType);
+        public abstract Builder refType(ReferenceType refType);
 
         public abstract Builder masterBranch(String masterBranch);
 

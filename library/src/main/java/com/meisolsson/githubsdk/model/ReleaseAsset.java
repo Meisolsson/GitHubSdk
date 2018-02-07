@@ -43,7 +43,7 @@ public abstract class ReleaseAsset implements Parcelable {
     public abstract String state();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Nullable
     public abstract Integer size();

@@ -30,9 +30,15 @@ import java.util.Map;
 
 @AutoValue
 public abstract class PullRequestPayload extends GitHubPayload<PullRequestPayload.Builder> implements Parcelable {
+    public enum Action {
+        @Json(name = "opened") Opened,
+        @Json(name = "closed") Closed,
+        @Json(name = "reopened") Reopened,
+        @Json(name = "synchronized") Synchronized
+    }
 
     @Nullable
-    public abstract String action();
+    public abstract Action action();
 
     @Nullable
     public abstract Integer number();
@@ -60,7 +66,7 @@ public abstract class PullRequestPayload extends GitHubPayload<PullRequestPayloa
 
     @AutoValue.Builder
     public abstract static class Builder extends GitHubPayload.Builder<PullRequestPayload, Builder> {
-        public abstract Builder action(String action);
+        public abstract Builder action(Action action);
 
         public abstract Builder number(Integer number);
 

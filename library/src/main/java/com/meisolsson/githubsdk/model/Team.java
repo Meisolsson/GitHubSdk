@@ -49,7 +49,7 @@ public abstract class Team implements Parcelable {
     public abstract User organization();
 
     @Nullable
-    public abstract Integer id();
+    public abstract Long id();
 
     @Json(name = "members_count")
     @Nullable
@@ -83,7 +83,7 @@ public abstract class Team implements Parcelable {
 
         public abstract Builder organization(User organization);
 
-        public abstract Builder id(Integer id);
+        public abstract Builder id(Long id);
 
         public abstract Builder membersCount(Integer membersCount);
 

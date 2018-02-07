@@ -43,12 +43,12 @@ public interface RepositoryCommentService {
 	Single<Response<GitComment>> createCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("sha") String sha, @Body CreateCommitComment body);
 
     @GET("repos/{owner}/{repo}/comments/{id}")
-	Single<Response<GitComment>> getCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<GitComment>> getCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
     @PATCH("repos/{owner}/{repo}/comments/{id}")
-	Single<Response<GitComment>> editCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id,  @Body CommentRequest body);
+	Single<Response<GitComment>> editCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id,  @Body CommentRequest body);
 
     @DELETE("repos/{owner}/{repo}/comments/{id}")
-	Single<Response<Boolean>> deleteCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") String id);
+	Single<Response<Void>> deleteCommitComment(@Path("owner") String owner, @Path("repo") String repo, @Path("id") long id);
 
 }

@@ -1,5 +1,7 @@
 package com.meisolsson.githubsdk.model.request;
 
+import android.support.annotation.Nullable;
+
 import com.google.auto.value.AutoValue;
 import com.meisolsson.githubsdk.core.FormattedTime;
 import com.squareup.moshi.Json;
@@ -18,6 +20,7 @@ public abstract class NotificationReadRequest {
 
     @Json(name = "last_read_at")
     @FormattedTime
+    @Nullable
     public abstract Date lastReadAt();
 
     public static JsonAdapter<NotificationReadRequest> jsonAdapter(Moshi moshi){
@@ -31,7 +34,7 @@ public abstract class NotificationReadRequest {
 
     @AutoValue.Builder
     public abstract static class Builder {
-        public abstract NotificationReadRequest.Builder lastReadAt(Date lastReadAt);
+        public abstract NotificationReadRequest.Builder lastReadAt(@Nullable Date lastReadAt);
 
         public abstract NotificationReadRequest build();
     }
