@@ -19,7 +19,6 @@ apply plugin: 'bintray-release'
 
 android {
     compileSdkVersion 25
-    buildToolsVersion "25.0.2"
 
     defaultConfig {
         minSdkVersion 15
@@ -37,58 +36,39 @@ android {
 }
 
 dependencies {
-    compile fileTree(include: ['*.jar'], dir: 'libs')
-    androidTestCompile('com.android.support.test.espresso:espresso-core:2.2.2', {
-        exclude group: 'com.android.support', module: 'support-annotations'
-    })
-    testCompile 'junit:junit:4.12'
+    implementation fileTree(include: ['*.jar'], dir: 'libs')
 
-    compile 'com.android.support:support-annotations:25.2.0'
-    compile 'com.squareup.retrofit2:retrofit:2.2.0'
-    compile 'com.squareup.retrofit2:converter-moshi:2.2.0'
-    compile 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
-    compile 'com.squareup.okhttp3:logging-interceptor:3.6.0'
-    compile 'io.reactivex.rxjava2:rxjava:2.0.6'
-    compile 'net.danlew:android.joda:2.9.5.1'
+    implementation 'com.android.support:support-annotations:25.2.0'
+    implementation 'com.squareup.retrofit2:retrofit:2.2.0'
+    implementation 'com.squareup.retrofit2:converter-moshi:2.2.0'
+    implementation 'com.squareup.retrofit2:adapter-rxjava2:2.2.0'
+    implementation 'com.squareup.okhttp3:logging-interceptor:3.6.0'
+    implementation 'io.reactivex.rxjava2:rxjava:2.0.6'
+    implementation 'net.danlew:android.joda:2.9.5.1'
 
-    provided 'com.ryanharter.auto.value:auto-value-moshi-annotations:0.4.4'
+    compileOnly 'com.ryanharter.auto.value:auto-value-moshi-annotations:0.4.4'
     annotationProcessor 'com.ryanharter.auto.value:auto-value-moshi:0.4.4'
 
-    provided 'com.google.auto.value:auto-value:1.3'
+    compileOnly 'com.google.auto.value:auto-value:1.3'
     annotationProcessor 'com.google.auto.value:auto-value:1.3'
 
-    compile 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
+    implementation 'com.ryanharter.auto.value:auto-value-parcel-adapter:0.2.5'
     annotationProcessor 'com.ryanharter.auto.value:auto-value-parcel:0.2.5'
-}
 
-task sourcesJar(type: Jar) {
-    from android.sourceSets.main.java.srcDirs
-    classifier = 'sources'
-}
-
-task javadoc(type: Javadoc) {
-    source = android.sourceSets.main.java.srcDirs
-    classpath += project.files(android.getBootClasspath().join(File.pathSeparator))
-}
-
-task javadocJar(type: Jar, dependsOn: javadoc) {
-    classifier = 'javadoc'
-    from javadoc.destinationDir
-}
-
-artifacts {
-    archives javadocJar
-    archives sourcesJar
+    androidTestImplementation('com.android.support.test.espresso:espresso-core:2.2.2', {
+        exclude group: 'com.android.support', module: 'support-annotations'
+    })
+    testImplementation 'junit:junit:4.12'
 }
 
 publish {
     bintrayUser = BINTRAY_USER
     bintrayKey = BINTRAY_KEY
     groupId = GROUP_NAME
-    version = VERSION_NAME
+    publishVersion = VERSION_NAME
     userOrg = 'meisolsson'
-    artifactId = 'githubsdk'
-    description = 'A SDK for GitHub built with Retrofit, Auto Value and Moshi'
+    artifactId = ARTIFACT_ID
+    desc = PROJECT_DESCRIPTION
     website = SITE_URL
     licences = ['Apache-2.0']
 }
