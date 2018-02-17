@@ -47,6 +47,21 @@ public abstract class GitHubEvent implements Parcelable {
         public static JsonAdapter<RepoIdentifier> jsonAdapter(Moshi moshi) {
             return new AutoValue_GitHubEvent_RepoIdentifier.MoshiJsonAdapter(moshi);
         }
+
+        public static Builder builder() {
+            return new AutoValue_GitHubEvent_RepoIdentifier.Builder();
+        }
+
+        @AutoValue.Builder
+        public abstract static class Builder {
+            public abstract Builder id(Long id);
+
+            public abstract Builder url(String url);
+
+            public abstract Builder repoWithUserName(String repoWithUserName);
+
+            public abstract RepoIdentifier build();
+        }
     }
 
     @Nullable
