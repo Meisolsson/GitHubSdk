@@ -20,5 +20,7 @@ import com.squareup.moshi.Json;
 
 public enum ContentType {
     @Json(name = "dir") Directory,
-    @Json(name = "file") File
+    @Json(name = "file") File,
+    @Json(name = "submodule") Submodule,
+    @Json(name = "symlink") Symlink
 }
