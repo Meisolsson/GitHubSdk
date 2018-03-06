@@ -20,11 +20,16 @@ import android.net.Uri;
 import android.text.TextUtils;
 
 import java.io.IOException;
+import java.nio.charset.Charset;
 import java.util.ArrayList;
 
 import okhttp3.Interceptor;
+import okhttp3.MediaType;
 import okhttp3.Response;
 import okhttp3.ResponseBody;
+import okhttp3.internal.Util;
+import okio.Buffer;
+import okio.BufferedSource;
 
 public class GitHubPaginationInterceptor implements Interceptor {
 
@@ -34,37 +39,50 @@ public class GitHubPaginationInterceptor implements Interceptor {
         if (response.isSuccessful()) {
             String linkHeader = response.header("link");
             final boolean isArray = response.peekBody(1).string().equals("[");
-            final ArrayList<String> pageJson;
+            String pageJson = null;
 
             if (linkHeader != null) {
-                pageJson = new ArrayList<>();
+                ArrayList<String> pageItems = new ArrayList<>();
                 String[] links = linkHeader.split(",");
                 for (String link : links) {
                     String[] pageLink = link.split(";");
                     String page = Uri.parse(pageLink[0].replaceAll("[<>]", "")).getQueryParameter("page");
                     String rel = pageLink[1].replaceAll("\"", "").replace("rel=", "");
 
-                    if (page != null)
-                        pageJson.add(String.format("\"%s\":\"%s\"", rel.trim(), page));
+                    if (page != null) {
+                        pageItems.add(String.format("\"%s\":\"%s\"", rel.trim(), page));
+                    }
                 }
-            } else {
-                pageJson = null;
+                if (!pageItems.isEmpty()) {
+                    pageJson = TextUtils.join(",", pageItems);
+                }
             }
 
-            final boolean hasPageInfo = pageJson != null && !pageJson.isEmpty();
-            if (isArray || hasPageInfo) {
-                final String json;
-                if (isArray) {
-                    json = String.format("{%s%s\"items\":%s}",
-                            hasPageInfo ? TextUtils.join(",", pageJson) : "",
-                            hasPageInfo ? ", " : "",
-                            response.body().string());
-                } else {
-                    json = String.format("{%s, %s",
-                            TextUtils.join(", ", pageJson),
-                            response.body().string().substring(1));
+            if (isArray || pageJson != null) {
+                MediaType contentType = response.body().contentType();
+                Charset charset = contentType != null ? contentType.charset(Util.UTF_8) : Util.UTF_8;
+                BufferedSource source = response.body().source();
+                Buffer newResponse = new Buffer();
+
+                try {
+                    source.request(Long.MAX_VALUE);
+
+                    if (isArray) {
+                        newResponse.writeString("{\"items\":", charset);
+                        newResponse.write(source.buffer(), source.buffer().size());
+                        if (pageJson != null) {
+                            newResponse.writeString("," + pageJson, charset);
+                        }
+                        newResponse.writeString("}", charset);
+                    } else {
+                        newResponse.write(source.buffer(), source.buffer().size() - 1);
+                        newResponse.writeString("," + pageJson + "}", charset);
+                    }
+                } finally {
+                    Util.closeQuietly(source);
                 }
-                return response.newBuilder().body(ResponseBody.create(response.body().contentType(), json)).build();
+                ResponseBody newBody = ResponseBody.create(contentType, newResponse.size(), newResponse);
+                return response.newBuilder().body(newBody).build();
             }
         }
         return response;
