@@ -21,11 +21,12 @@ import com.squareup.moshi.Json;
 public enum NotificationReason {
     @Json(name = "subscribed") Subscribed,
     @Json(name = "manual") Manual,
-    @Json(name= "author") Author,
+    @Json(name = "author") Author,
     @Json(name = "comment") Comment,
     @Json(name = "mention") Mention,
     @Json(name = "review_requested") ReviewRequested,
     @Json(name = "team_mention") TeamMention,
     @Json(name = "state_change") StateChange,
+    @Json(name = "security_alert") SecurityAlert,
     @Json(name = "assign") Assign
 }
