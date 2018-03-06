@@ -20,6 +20,7 @@ import android.os.Parcelable;
 import android.support.annotation.Nullable;
 
 import com.google.auto.value.AutoValue;
+import com.squareup.moshi.Json;
 import com.squareup.moshi.JsonAdapter;
 import com.squareup.moshi.Moshi;
 
@@ -49,6 +50,10 @@ public abstract class Content implements Parcelable {
 
     @Nullable
     public abstract String url();
+
+    @Json(name = "submodule_git_url")
+    @Nullable
+    public abstract String submoduleGitUrl();
 
     public static JsonAdapter<Content> jsonAdapter(Moshi moshi) {
         return new AutoValue_Content.MoshiJsonAdapter(moshi);
