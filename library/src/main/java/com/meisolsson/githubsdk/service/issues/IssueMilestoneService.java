@@ -19,6 +19,7 @@ package com.meisolsson.githubsdk.service.issues;
 import com.meisolsson.githubsdk.model.Milestone;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.request.issue.CreateMilestone;
+import com.meisolsson.githubsdk.model.request.issue.EditMilestone;
 
 import io.reactivex.Single;
 import retrofit2.Response;
@@ -43,7 +44,7 @@ public interface IssueMilestoneService {
     Single<Response<Milestone>> createMilestone(@Path("owner") String owner, @Path("repo") String repo, @Body CreateMilestone body);
 
     @PATCH("repos/{owner}/{repo}/milestones/{number}")
-    Single<Response<Milestone>> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body CreateMilestone body);
+    Single<Response<Milestone>> editMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number, @Body EditMilestone body);
 
     @DELETE("repos/{owner}/{repo}/milestones/{number}")
     Single<Response<Void>> deleteMilestone(@Path("owner") String owner, @Path("repo") String repo, @Path("number") long number);
