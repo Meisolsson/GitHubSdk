@@ -16,10 +16,10 @@
 
 package com.meisolsson.githubsdk.service.activity;
 
+import com.meisolsson.githubsdk.core.DateQuery;
 import com.meisolsson.githubsdk.model.NotificationThread;
 import com.meisolsson.githubsdk.model.Page;
 import com.meisolsson.githubsdk.model.Subscription;
-import com.meisolsson.githubsdk.model.request.NotificationReadRequest;
 import com.meisolsson.githubsdk.model.request.activity.SubscriptionRequest;
 
 import java.util.Map;
@@ -63,12 +63,12 @@ public interface NotificationService {
                                                                     @Query("page") long page);
 
     @PUT("notifications")
-    Single<Response<Void>> markAllNotificationsRead(@Body NotificationReadRequest body);
+    Single<Response<Void>> markAllNotificationsRead(@Query("last_read_at") DateQuery last_read_at);
 
     @PUT("repos/{owner}/{repo}/notifications")
     Single<Response<Void>> markAllRepositoryNotificationsRead(@Path("owner") String owner,
                                                               @Path("repo") String repo,
-                                                              @Body NotificationReadRequest body);
+                                                              @Query("last_read_at") DateQuery last_read_at);
 
     @GET("notifications/threads/{id}")
     Single<Response<NotificationThread>> getNotification(@Path("id") String id);
