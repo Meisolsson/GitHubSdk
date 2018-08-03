@@ -20,7 +20,7 @@ import com.squareup.moshi.FromJson;
 import com.squareup.moshi.ToJson;
 
 import org.joda.time.DateTime;
-import org.joda.time.format.DateTimeFormat;
+import org.joda.time.format.ISODateTimeFormat;
 import org.joda.time.format.DateTimeFormatter;
 
 import java.util.Date;
@@ -30,14 +30,14 @@ public class FormattedTimeAdapter {
     @FromJson
     @FormattedTime
     Date fromJson(String time){
-        DateTimeFormatter format = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
+        DateTimeFormatter format = ISODateTimeFormat.dateTimeParser();
         DateTime t = format.withZoneUTC().parseDateTime(time);
         return t.toDate();
     }
 
     @ToJson
     String toJson(@FormattedTime Date date){
-        DateTimeFormatter formats = DateTimeFormat.forPattern("yyyy-MM-dd'T'HH:mm:ss'Z'");
-        return formats.print(date.getTime());
+        DateTimeFormatter format = ISODateTimeFormat.dateTime();
+        return format.print(date.getTime());
     }
 }
