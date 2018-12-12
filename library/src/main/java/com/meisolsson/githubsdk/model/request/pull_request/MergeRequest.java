@@ -43,6 +43,7 @@ public abstract class MergeRequest implements Parcelable {
     @Nullable
     public abstract String sha();
 
+    @Json(name = "merge_method")
     @Nullable
     public abstract Method method();
 
