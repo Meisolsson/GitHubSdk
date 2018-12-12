@@ -52,6 +52,7 @@ public enum IssueEventType {
     @Json(name = "review_requested") ReviewRequested,
     @Json(name = "review_request_removed") ReviewRequestRemoved,
     @Json(name = "subscribed") Subscribed,
+    @Json(name = "transferred") Transferred,
     @Json(name = "unassigned") Unassigned,
     @Json(name = "unlabeled") Unlabeled,
     @Json(name = "unlocked") Unlocked,
