@@ -6,15 +6,15 @@ buildscript {
         google()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:3.0.1'
-        classpath 'com.novoda:bintray-release:0.8.0'
+        classpath 'com.android.tools.build:gradle:3.3.1'
+        classpath 'com.novoda:bintray-release:0.9'
     }
 }
 
 ext{
     def versionMajor = 0
-    def versionMinor = 5
-    def versionPatch = 1
+    def versionMinor = 6
+    def versionPatch = 0
 
     VERSION_NAME = "${versionMajor}.${versionMinor}.${versionPatch}"
     VERSION_CODE = versionMajor * 10000 + versionMinor * 1000 + versionPatch * 100
