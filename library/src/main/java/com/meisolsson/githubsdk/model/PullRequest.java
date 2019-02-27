@@ -35,6 +35,7 @@ public abstract class PullRequest implements Parcelable {
         @Json(name = "behind") Behind,
         @Json(name = "blocked") Blocked,
         @Json(name = "clean") Clean,
+        @Json(name = "draft") Draft,
         @Json(name = "dirty") Dirty,
         @Json(name = "unknown") Unknown,
         @Json(name = "unstable") Unstable
