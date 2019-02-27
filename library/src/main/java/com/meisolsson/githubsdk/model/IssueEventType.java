@@ -44,6 +44,7 @@ public enum IssueEventType {
     @Json(name = "moved_columns_in_project") MovedColumnsInProject,
     @Json(name = "milestoned") Milestoned,
     @Json(name = "pinned") Pinned,
+    @Json(name = "ready_for_review") ReadyForReview,
     @Json(name = "referenced") Referenced,
     @Json(name = "removed_from_project") RemovedFromProject,
     @Json(name = "renamed") Renamed,
