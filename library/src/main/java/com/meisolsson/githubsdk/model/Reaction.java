@@ -35,6 +35,8 @@ public abstract class Reaction implements Parcelable {
     public static final String CONTENT_CONFUSED = "confused";
     public static final String CONTENT_HEART = "heart";
     public static final String CONTENT_HOORAY = "hooray";
+    public static final String CONTENT_ROCKET = "rocket";
+    public static final String CONTENT_EYES = "eyes";
 
     @Nullable
     public abstract Long id();

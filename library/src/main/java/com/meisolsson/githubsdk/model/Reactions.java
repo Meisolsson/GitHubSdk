@@ -47,6 +47,10 @@ public abstract class Reactions implements Parcelable {
 
     public abstract Integer heart();
 
+    public abstract Integer rocket();
+
+    public abstract Integer eyes();
+
     public abstract Builder toBuilder();
 
     public static JsonAdapter<Reactions> jsonAdapter(Moshi moshi) {
@@ -70,6 +74,10 @@ public abstract class Reactions implements Parcelable {
         public abstract Builder confused(Integer confused);
 
         public abstract Builder heart(Integer heart);
+
+        public abstract Builder rocket(Integer rocket);
+
+        public abstract Builder eyes(Integer eyes);
 
         public abstract Reactions build();
     }
