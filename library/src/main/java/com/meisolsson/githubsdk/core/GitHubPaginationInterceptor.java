@@ -17,6 +17,7 @@
 package com.meisolsson.githubsdk.core;
 
 import android.net.Uri;
+import android.support.annotation.NonNull;
 import android.text.TextUtils;
 
 import java.io.IOException;
@@ -33,8 +34,9 @@ import okio.BufferedSource;
 
 public class GitHubPaginationInterceptor implements Interceptor {
 
+    @NonNull
     @Override
-    public Response intercept(Chain chain) throws IOException {
+    public Response intercept(@NonNull Chain chain) throws IOException {
         Response response = chain.proceed(chain.request());
         if (response.isSuccessful()) {
             String linkHeader = response.header("link");
@@ -69,13 +71,13 @@ public class GitHubPaginationInterceptor implements Interceptor {
 
                     if (isArray) {
                         newResponse.writeString("{\"items\":", charset);
-                        newResponse.write(source.buffer(), source.buffer().size());
+                        newResponse.write(source.getBuffer(), source.getBuffer().size());
                         if (pageJson != null) {
                             newResponse.writeString("," + pageJson, charset);
                         }
                         newResponse.writeString("}", charset);
                     } else {
-                        newResponse.write(source.buffer(), source.buffer().size() - 1);
+                        newResponse.write(source.getBuffer(), source.getBuffer().size() - 1);
                         newResponse.writeString("," + pageJson + "}", charset);
                     }
                 } finally {
