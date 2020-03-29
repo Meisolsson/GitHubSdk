@@ -40,6 +40,10 @@ public interface RepositoryContentService {
     @Headers("Accept: application/vnd.github.html")
     Single<Response<String>> getReadmeHtml(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
 
+    @GET("repos/{owner}/{repo}/readme")
+    @Headers("Accept: application/vnd.github.VERSION.raw")
+    Single<Response<String>> getReadmeRaw(@Path("owner") String owner, @Path("repo") String repo, @Query("ref") String ref);
+
     @GET("repos/{owner}/{repo}/contents/{path}")
     Single<Response<Content>> getContents(@Path("owner") String owner, @Path("repo") String repo, @Path("path") String path, @Query("ref") String ref);
 
